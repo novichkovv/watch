@@ -1,0 +1,444 @@
+2016-09-01 15:48:37 - Feed Class 2621
+2016-09-01 15:48:38 - Feed Class 2621
+2016-09-01 15:48:39 - Feed Class 2621
+2016-09-01 15:48:41 - Feed Class 2621
+2016-09-01 15:48:43 - Feed Class 2621
+2016-09-01 15:48:45 - Feed Class 2621
+2016-09-01 15:48:46 - Feed Class 2621
+2016-09-01 15:48:47 - Feed Class 2621
+2016-09-01 15:48:48 - Feed Class 2621
+2016-09-01 15:48:53 - Feed Class 2621
+2016-09-01 15:50:03 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.2977071
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 15:50:08 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3007567
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 15:50:19 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3018666
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 15:50:22 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3020849
+    [errorMessage] => invalid id: feed/http://feeds.wired.com/wired/index
+)
+
+2016-09-01 15:50:32 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3030825
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 15:50:34 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3033085
+    [errorMessage] => invalid id: feed/http://feeds.mashable.com/Mashable
+)
+
+2016-09-01 15:50:35 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3034241
+    [errorMessage] => invalid id: feed/http://feeds.arstechnica.com/arstechnica/index/
+)
+
+2016-09-01 15:50:40 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3039320
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/food52-TheAandMBlog
+)
+
+2016-09-01 15:50:45 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3044055
+    [errorMessage] => invalid id: feed/http://feeds.feedblitz.com/delicieux
+)
+
+2016-09-01 15:50:46 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3045309
+    [errorMessage] => invalid id: feed/http://bakingbites.com/feed/
+)
+
+2016-09-01 15:51:06 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3064769
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 15:51:10 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3069545
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 15:51:12 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3071044
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 15:51:16 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3074949
+    [errorMessage] => invalid id: feed/http://feeds.wired.com/wired/index
+)
+
+2016-09-01 15:51:17 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3076034
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 15:51:20 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3079704
+    [errorMessage] => invalid id: feed/http://feeds.mashable.com/Mashable
+)
+
+2016-09-01 15:51:29 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3088169
+    [errorMessage] => invalid id: feed/http://feeds.arstechnica.com/arstechnica/index/
+)
+
+2016-09-01 15:51:32 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3091020
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/food52-TheAandMBlog
+)
+
+2016-09-01 15:51:35 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3094270
+    [errorMessage] => invalid id: feed/http://feeds.feedblitz.com/delicieux
+)
+
+2016-09-01 15:51:37 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090105.3095770
+    [errorMessage] => invalid id: feed/http://bakingbites.com/feed/
+)
+
+2016-09-01 16:53:51 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3230793
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 16:53:53 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3232357
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 16:53:54 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3233988
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 16:53:55 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3234655
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 16:53:56 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3236150
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 16:53:59 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3238441
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 16:54:15 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3254576
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 16:54:16 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3256114
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 16:54:17 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3256839
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 16:54:22 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3261319
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 16:54:22 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3261968
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 16:54:24 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3263472
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 16:57:33 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3452609
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 16:57:34 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3453392
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 16:57:34 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3454063
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 16:57:36 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3455655
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 16:57:38 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3457164
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 16:57:39 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090106.3458673
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 17:07:17 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.436906
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 17:07:21 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.440448
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 17:07:23 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.441807
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 17:07:25 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.444361
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 17:07:26 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.445427
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 17:07:27 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.446937
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 17:21:12 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1271999
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 17:21:15 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1274652
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 17:21:18 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1277701
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 17:21:20 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1279943
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 17:21:23 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1282206
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 17:21:25 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1284425
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 17:22:19 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1338199
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 17:22:19 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1339149
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 17:22:21 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1340720
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 17:22:22 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1341448
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 17:22:23 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1343053
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 17:22:25 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1344983
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+
+2016-09-01 17:23:07 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1386885
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/lifehacker/vip
+)
+
+2016-09-01 17:23:09 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1388762
+    [errorMessage] => invalid id: feed/http://www.engadget.com/rss.xml
+)
+
+2016-09-01 17:23:11 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1390341
+    [errorMessage] => invalid id: feed/http://www.digitaltrends.com/feed/?key=f00edf6a58d2a8740e624dda919cab37
+)
+
+2016-09-01 17:23:12 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1391882
+    [errorMessage] => invalid id: feed/http://feeds.feedburner.com/Techcrunch
+)
+
+2016-09-01 17:23:13 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1392790
+    [errorMessage] => invalid id: feed/http://feeds.gawker.com/gizmodo/full
+)
+
+2016-09-01 17:23:14 - Feed Class 262Array
+(
+    [errorCode] => 400
+    [errorId] => sandbox-he.2016090107.1393682
+    [errorMessage] => invalid id: feed/http://www.theverge.com/rss/full.xml
+)
+

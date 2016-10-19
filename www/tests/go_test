@@ -1,0 +1,1 @@
+phpunit --bootstrap c:\OpenServer\domains\news-bot\www\tests\bootstrap.php c:\OpenServer\domains\news-bot\www\tests\
