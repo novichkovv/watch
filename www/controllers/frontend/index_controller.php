@@ -9,27 +9,6 @@ class index_controller extends controller
 {
     public function index()
     {
-        header('Location: ' . SITE_DIR . 'mask/');
-//        $api = new paypal_api_class();
-//        $params = json_decode('{
-//          "intent":"sale",
-//          "redirect_urls":{
-//            "return_url":"http://thaib.loc/api/paypal/",
-//            "cancel_url":"http://thaib.loc/api/paypal/"
-//          },
-//          "payer":{
-//            "payment_method":"paypal"
-//          },
-//          "transactions":[
-//            {
-//              "amount":{
-//                "total":"7.47",
-//                "currency":"USD"
-//              }
-//            }
-//          ]
-//        }', true);
-//        $api->test($params);
         $this->view_only('index' . DS . 'index');
     }
 
@@ -59,5 +38,33 @@ class index_controller extends controller
     public function show_na()
     {
         $this->show();
+    }
+
+    public function show_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "save_form":
+                $user = [];
+                $user['user_name'] = $_POST['name'];
+                $user['phone'] = $_POST['phone'];
+                if(!$tmp = $this->model('users')->getByFields($user)) {
+                    $user['create_date'] = date('Y-m-d H:i:s');
+                    $user['id'] = $this->model('users')->insert($user);
+                } else {
+                    $user = $tmp;
+                }
+                $order = [];
+                $order['product_id'] = $_POST['product_id'];
+                $order['create_date'] = date('Y-m-d H:i:s');
+                $order['user_id'] = $user['id'];
+                $this->model('orders')->insert($order);
+                exit;
+                break;
+        }
+    }
+
+    public function show_na_ajax()
+    {
+        $this->show_ajax();
     }
 }

@@ -9,6 +9,7 @@ class orders_controller extends controller
 {
     public function index()
     {
+        $this->render('products', $this->model('products')->getAll('product_name'));
         $this->view('orders' . DS . 'index');
     }
 
@@ -21,9 +22,9 @@ class orders_controller extends controller
                 $params['select'] = [
                     'o.id',
                     'p.product_name',
-                    'o.status_id',
+                    'u.user_name',
+                    'u.phone',
                     'o.create_date',
-                    'o.pay_date',
                     'CONCAT("
                     <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"#order_modal\" data-id=\"", o.id, "\">
                         <i class=\"fa fa-search\"></i>
@@ -31,6 +32,9 @@ class orders_controller extends controller
                 ];
                 $params['join']['products p'] = [
                     'on' => 'p.id = o.product_id',
+                ];
+                $params['join']['users u'] = [
+                    'on' => 'u.id = o.user_id'
                 ];
                 echo json_encode($this->getDataTable($params));
                 exit;
@@ -48,14 +52,7 @@ class orders_controller extends controller
                 break;
 
             case "edit_order_info":
-                $address = $_POST['address'];
-                if(!$address['id']) {
-                    $address['user_id'] = $_POST['user']['id'];
-                }
-                $address['id'] = $this->model('user_addresses')->insert($_POST['address']);
-                $order['address_id'] = $address['id'];
                 $this->model('users')->insert($_POST['user']);
-                $this->model('orders')->insert($order);
                 echo json_encode(array('status' => 1));
                 exit;
                 break;

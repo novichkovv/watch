@@ -21,11 +21,34 @@
                 <table class="table table-bordered" id="get_orders">
                     <thead>
                     <tr>
+                        <td>
+                            <input type="text" data-sign="=" placeholder="Поиск" name="o.id" class="form-control filter-field">
+                        </td>
+                        <td>
+                            <select data-sign="=" class="form-control filter-field filter-select" name="o.product_id">
+                                <option value="">Все Товары</option>
+                                <?php foreach ($products as $product): ?>
+                                    <option value="<?php echo $product['id']; ?>"><?php echo $product['product_name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input data-sign="like" type="text" placeholder="Поиск" name="u.user_name" class="form-control filter-field">
+                        </td>
+                        <td>
+                            <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
+                        </td>
+                        <td>
+                            <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <th>#</th>
                         <th>Продукт</th>
-                        <th>Статус</th>
+                        <th>Имя</th>
+                        <th>Тедефон</th>
                         <th>Дата Создания</th>
-                        <th>Дата Оплаты</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -73,6 +96,7 @@
                 'callback': function (msg) {
                     ajax_respond(msg,
                         function (respond) { //success
+                            ajax_datatable('get_orders');
                             $('#order_modal').modal('hide');
                             Notifier.success('Информация о заказе сохранена');
                         },

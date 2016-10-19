@@ -1,0 +1,40 @@
+/*Ð¢Ð°Ð¹Ð¼ÐµÑ€*/
+.countbox {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 500;
+    height: 140px;
+    line-height: 42px;
+    padding: 24px 0 15px;
+    width: 320px;
+    margin: 0 auto;
+    display: block;
+}
+.countbox .countbox-num {
+    float: left;
+}
+.countbox .countbox-space {
+    float: left;
+    height: 66px;
+    width: 10px;
+}
+.countbox-hours1, .countbox-mins1, .countbox-secs1, .countbox-hours2, .countbox-mins2, .countbox-secs2 {
+    font-size: 36px;
+    font-family: 'pfdintextcomppro-medium';
+    background-image: url(../img/flip.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    float: left;
+    width: 50px;
+    height: 66px;
+    line-height: 66px;
+    margin: 0;
+    text-align: center;
+    z-index: 1;
+}
+
+.countbox-hours-text, .countbox-mins-text, .countbox-secs-text {
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+}

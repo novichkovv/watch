@@ -50,36 +50,36 @@
                         <input type="text" class="form-control" name="user[phone]" value="<?php echo $user['phone']; ?>">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4">Email</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="user[email]" value="<?php echo $user['email']; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4">Индекс</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="address[zip]" value="<?php echo $address['zip']; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4">Провинция</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="address[region]" value="<?php echo $address['region']; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4">Город</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="address[city]" value="<?php echo $address['city']; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-4">Адрес</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="address[address]" value="<?php echo $address['address']; ?>">
-                    </div>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Email</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" class="form-control" name="user[email]" value="--><?php //echo $user['email']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Индекс</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" class="form-control" name="address[zip]" value="--><?php //echo $address['zip']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Провинция</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" class="form-control" name="address[region]" value="--><?php //echo $address['region']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Город</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" class="form-control" name="address[city]" value="--><?php //echo $address['city']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Адрес</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" class="form-control" name="address[address]" value="--><?php //echo $address['address']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -89,5 +89,5 @@
     </div>
     <input type="hidden" name="order[id]" value="<?php echo $order['id']; ?>">
     <input type="hidden" name="user[id]" value="<?php echo $user['id']; ?>">
-    <input type="hidden" name="address[id]" value="<?php echo $address['id']; ?>">
+<!--    <input type="hidden" name="address[id]" value="--><?php //echo $address['id']; ?><!--">-->
 </form>
