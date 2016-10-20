@@ -9,6 +9,8 @@ class index_controller extends controller
 {
     public function index()
     {
+        header('Location: ' . SITE_DIR . 'porshe-design-watch/');
+        exit;
         $this->view_only('index' . DS . 'index');
     }
 

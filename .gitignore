@@ -3,3 +3,5 @@
 config.php
 uploads
 tmp
+/www/config.php
+/www/.htaccess
