@@ -6,8 +6,7 @@ $(document).ready(function() {
     $("body").on("submit", "form", function () {
         if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}
         saveForm(this);
-        urlGen(this);
-        fbq('track', 'Lead');
+
         return true;
     });
     function saveForm(form) {
@@ -21,7 +20,8 @@ $(document).ready(function() {
             'action': 'save_form',
             'values': values,
             'callback': function (msg) {
-
+                fbq('track', 'Lead');
+                urlGen(form);
             }
         };
         ajax(params);
