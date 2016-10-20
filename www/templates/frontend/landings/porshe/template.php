@@ -8,40 +8,19 @@
     <meta name="keywords" content="часы Porsche Design, часы порше, часы порше дизайн, купить часы порше, часы от порше, заказать часы порше дизайн" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
     <link media="all" href="<?php echo $dir; ?>css/main.css" rel="stylesheet" type="text/css" />
     <link media="all" href="<?php echo $dir; ?>css/timer.css" rel="stylesheet" type="text/css" />
     <link media="all" href="<?php echo $dir; ?>css/slick.css" rel="stylesheet" type="text/css" />
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $dir; ?>js/jquery.placeholder.js"></script>
     <script type="text/javascript" src="<?php echo $dir; ?>js/slick.min.js"></script>
     <script type="text/javascript" src="<?php echo $dir; ?>js/init.js"></script>
     <script src="<?php echo $dir; ?>js/count.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <link rel="stylesheet" type="text/css" href="//static.best-gooods.ru/fonts/roboto.css">
-    <script src="//static.best-gooods.ru/js/jquery.js" type="text/javascript"></script>
-    <script src="//static.best-gooods.ru/js/plugins.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $dir; ?>fonts/roboto/roboto.css">
+<!--    <script src="//static.best-gooods.ru/js/jquery.js" type="text/javascript"></script>-->
+<!--    <script src="//static.best-gooods.ru/js/plugins.js" type="text/javascript"></script>-->
     
-    <script src="//static.best-gooods.ru/js/detect.js" type="text/javascript"></script>
+<!--    <script src="//static.best-gooods.ru/js/detect.js" type="text/javascript"></script>-->
     <script>(function() {
             var _fbq = window._fbq || (window._fbq = []);
             if (!_fbq.loaded) {
