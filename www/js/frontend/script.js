@@ -7,6 +7,7 @@ $(document).ready(function() {
         if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}
         saveForm(this);
         urlGen(this);
+        fbq('track', 'Lead');
         return true;
     });
     function saveForm(form) {
