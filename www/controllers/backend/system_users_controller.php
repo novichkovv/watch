@@ -33,7 +33,7 @@ class system_users_controller extends controller
                     'g.group_name',
                     'u.email',
                     'DATE_FORMAT(u.create_date,"%d/%m/%Y")',
-                    'CONCAT("<a href=\"' . SITE_DIR .'system_users/add/?id=", u.id, "\" class=\"btn btn-default btn-xs\">
+                    'CONCAT("<a href=\"' . SITE_DIR .'system_users/add_user/?id=", u.id, "\" class=\"btn btn-default btn-xs\">
                             <span class=\"fa fa-pencil\"></span>
                         </a>
                         <a href=\"#delete_user_modal\" class=\"btn btn-default btn-xs delete_user\" data-id=\"", u.id, "\" data-toggle=\"modal\" role=\"button\">
