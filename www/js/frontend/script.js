@@ -3,29 +3,32 @@
  */
 $ = jQuery.noConflict();
 $(document).ready(function() {
-    $("body").on("submit", "form", function () {
+    $("body").on("submit", ".m1_form", function () {
         if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}
-        saveForm(this);
-
         return true;
     });
-    function saveForm(form) {
-        var $form = $(form);
-        var values = {
-            'name': $form.find('input[name="name"]').val(),
-            'phone': $form.find('input[name="phone"]').val(),
-            'product_id': $form.find('input[name="app_product_id"]').val()
-        };
-        var params = {
-            'action': 'save_form',
-            'values': values,
-            'callback': function (msg) {
-                fbq('track', 'Lead');
-                urlGen(form);
-            }
-        };
-        ajax(params);
-    }
+    // $("body").on("submit", "form", function () {
+    //     if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}
+    //     saveForm(this);
+    //     return true;
+    // });
+    // function saveForm(form) {
+    //     var $form = $(form);
+    //     var values = {
+    //         'name': $form.find('input[name="name"]').val(),
+    //         'phone': $form.find('input[name="phone"]').val(),
+    //         'product_id': $form.find('input[name="app_product_id"]').val()
+    //     };
+    //     var params = {
+    //         'action': 'save_form',
+    //         'values': values,
+    //         'callback': function (msg) {
+    //             fbq('track', 'Lead');
+    //             urlGen(form);
+    //         }
+    //     };
+    //     ajax(params);
+    // }
 });
 
 /**

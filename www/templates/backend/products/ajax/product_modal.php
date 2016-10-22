@@ -39,6 +39,14 @@
             </div>
             <div class="portlet-body">
                 <div class="form-group">
+                    <label class="control-label col-md-4">Ключ Лендинга 2</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[success_landing_key]" class="form-control" value="<?php echo $product['success_landing_key']; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
                     <label class="control-label col-md-4">ID товара в партнерке</label>
                     <div class="col-md-6">
                         <input type="text" name="product[affiliate_id]" class="form-control" value="<?php echo $product['affiliate_id']; ?>">

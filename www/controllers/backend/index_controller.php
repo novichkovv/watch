@@ -9,7 +9,7 @@ class index_controller extends controller
 {
     public function index()
     {
-        header('Location: ' . SITE_DIR . 'orders/');
+//        header('Location: ' . SITE_DIR . 'orders/');
         $this->view('index' . DS . 'index');
     }
 

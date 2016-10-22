@@ -23,6 +23,7 @@ class products_controller extends controller
                     'p.product_name',
                     'p.product_key',
                     'p.landing_key',
+                    'p.success_landing_key',
                     'p.affiliate_id',
                     'p.webmaster_id',
                     'p.price',

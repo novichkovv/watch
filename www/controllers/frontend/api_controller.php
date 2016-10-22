@@ -17,14 +17,18 @@ class api_controller extends controller
 
     }
 
-    public function paypal()
+    public function m1()
     {
-
+        $this->writeLog('API_LOG', getallheaders());
+        $this->writeLog('API_LOG', $_POST);
+        $this->writeLog('API_LOG', $_GET);
+        $this->writeLog('API_LOG', $_SERVER);
+        $this->writeLog('API_LOG', $_FILES);
     }
 
-    public function paypal_na()
+    public function m1_na()
     {
-        $this->paypal();
+        $this->m1();
     }
 
     public function default_action()
