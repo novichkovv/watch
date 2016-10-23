@@ -9,7 +9,7 @@ class index_controller extends controller
 {
     public function index()
     {
-        header('Location: ' . SITE_DIR . 'porshe-design-watch/');
+        header('Location: ' . SITE_DIR . 'tights/');
         exit;
         $this->view_only('index' . DS . 'index');
     }
