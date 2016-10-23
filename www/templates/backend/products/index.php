@@ -106,4 +106,4 @@
         });
     });
 </script>
-http://watch19.ru/api/m1/?web_total={web_total}&lead_date={lead_date}&w={w}&s={s}&order_id={order_id}&status={status}
+http://watch19.ru/api/m1/?web_total=65&lead_date=2016-01-01&w=postback&s=w97VFPEULUEQ58I0H8GM327I&order_id=135452&status=approved
