@@ -41,6 +41,7 @@ class api_controller extends controller
             $data['payout'] = $_GET['web_total']/65;
             $data['txid'] = $_GET['order_id'];
 //            $data['var3'] = $_GET['w'];
+            $this->writeLog('POSTBACK_DATA', $data);
             $this->send_post_back($data);
         }
     }
