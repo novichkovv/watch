@@ -26,6 +26,7 @@
                         <th>Url ключ</th>
                         <th>Ключ Лендинга</th>
                         <th>Ключ Лендинга 2</th>
+                        <th>Cross Товар</th>
                         <th>ID товара в партнерке</th>
                         <th>Webmaster ID</th>
                         <th>Цена</th>

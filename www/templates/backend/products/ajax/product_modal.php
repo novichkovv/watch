@@ -47,6 +47,25 @@
             </div>
             <div class="portlet-body">
                 <div class="form-group">
+                    <label class="control-label col-md-4">Cross Товар</label>
+                    <div class="col-md-6">
+                        <select name="product[cross_product_id]" class="form-control">
+                            <option value=""></option>
+                            <?php if ($products): ?>
+                                <?php foreach ($products as $p): ?>
+                                    <option value="<?php echo $p['id']; ?>"
+                                        <?php if ($p['id'] == $product['cross_product_id']) echo ' selected' ?>
+                                        >
+                                        <?php echo $p['product_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
                     <label class="control-label col-md-4">ID товара в партнерке</label>
                     <div class="col-md-6">
                         <input type="text" name="product[affiliate_id]" class="form-control" value="<?php echo $product['affiliate_id']; ?>">

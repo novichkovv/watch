@@ -21,13 +21,13 @@ $(function(){
     $("a.tov-button").click(function(){
         var title = $(this).attr("title");
         var el=$(this).parents(".section");
-        $(el).append("<div class='pop-form'><div><form action='call.php' method='post'><div><input type='text' name='name' placeholder='Введите Ф.И.О' required=''></div><div><input type='text' name='phone' placeholder='Введите телефон' required=''></div><div><button class='button'>Получить скидку</button></div><input type='hidden' name='comment'></form></div></div>");
+        // $(el).append("<div class='pop-form'><div><form action='call.php' method='post'><div><input type='text' name='name' placeholder='Введите Ф.И.О' required=''></div><div><input type='text' name='phone' placeholder='Введите телефон' required=''></div><div><button class='button'>Получить скидку</button></div><input type='hidden' name='comment'></form></div></div>");
         if ($(".pop-form").css('display') == 'none') {
             $(".pop-form").animate({height: 'show'}, "fast");
             $(this).css({'background-color' : '#cccccc', 'border-color' : '#aaaaaa', 'color' : '#999999'});
             $(this).text("Скрыть")
         } else {
-            $(".pop-form").animate({height: 'hide'},"fast", function(){$(this).remove()});
+            $(".pop-form").animate({height: 'hide'},"fast", function(){});
             $(this).css({'background-color' : '#d30c81', 'border-color' : '#d30c81', 'color' : '#fff'});
             $(this).text("Получить скидку")
         }

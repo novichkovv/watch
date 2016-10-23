@@ -30,7 +30,7 @@
 window._fbq = window._fbq || [];
 window._fbq.push(['track', 'PageView', {}]);
 </script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=PixelInitialized" /></noscript>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=PageView" /></noscript>
 <script src="<?php echo SITE_DIR; ?>js/frontend/script.js"></script>
 <link rel="stylesheet" type="text/css" href="//static.best-gooods.ru/fonts/roboto.css">
 <script src="//static.best-gooods.ru/js/jquery.js" type="text/javascript"></script>
@@ -53,6 +53,22 @@ window._fbq.push(['track', 'PageView', {}]);
             <div class="section block-1">
                 <div class="billabong logo">ElaSlim</div>
                 <a class="tov-button" title="ElaSlim">Получить скидку</a>
+                <div class='pop-form'>
+                    <div>
+                        <form action="<?php echo SITE_DIR; ?>order/m1/" method='post'>
+                            <div>
+                                <input type='text' name='name' placeholder='Введите Ф.И.О' required=''>
+                            </div>
+                            <div><input type='text' name='phone' placeholder='Введите телефон' required=''></div>
+                            <div><button class='button'>Получить скидку</button></div>
+                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <input type="hidden" name="pixel" value="<?php echo $_GET['pixel']; ?>">
+                            <input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+                            <input type="hidden" name="t" value="<?php echo $_GET['t']; ?>">
+                            <input type="hidden" name="w" value="<?php echo $_GET['w']; ?>">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="main-wrap mar_top">
@@ -102,7 +118,7 @@ window._fbq.push(['track', 'PageView', {}]);
             
                 <div class="this_video pointer">
                     <img class="start_this_video"
-                    src="imgvideo/1.jpg" alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" />
+                    src="<?php echo $dir; ?>imgvideo/1.jpg" alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" />
                 </div>
                     <p class="rev_big" style="margin-top:8px;">Секрет высокой прочности колготок ElaSlim скрывается в свойствах плетения и особой технологии изготовления нити. Если большинство производителей используют сырье, получаемое из двух нейлоновых нитей, то производители ElaSlim добавили эластомерную нить, которую переплели нейлоновым тандемом в особом плетении. Именно это обеспечило колготкам высокую прочность и увеличило срок их носки.</p>
 
@@ -130,10 +146,10 @@ window._fbq.push(['track', 'PageView', {}]);
                     <p>Введите ваш телефон:</p>
                     <div><input name="phone" type="text" placeholder="+_-___-___-__-__ "></div>
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                    <input type="hidden" name="pixel" value="<?php echo $_POST['pixel']; ?>">
-                    <input type="hidden" name="s" value="<?php echo $_POST['s']; ?>">
-                    <input type="hidden" name="t" value="<?php echo $_POST['t']; ?>">
-                    <input type="hidden" name="w" value="<?php echo $_POST['w']; ?>">
+                    <input type="hidden" name="pixel" value="<?php echo $_GET['pixel']; ?>">
+                    <input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+                    <input type="hidden" name="t" value="<?php echo $_GET['t']; ?>">
+                    <input type="hidden" name="w" value="<?php echo $_GET['w']; ?>">
                     <div><button>Заказать со скидкой</button></div>
                 </form>
                 <p class="limit">Акция строго ограничена по времени.<br> Заказать можно будет позже, но цена будет дороже.</p>

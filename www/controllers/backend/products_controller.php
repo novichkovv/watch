@@ -9,6 +9,7 @@ class products_controller extends controller
 {
     public function index()
     {
+        $this->render('products', $this->model('products')->getAll());
         $this->view('products' . DS . 'index');
     }
 
@@ -24,6 +25,7 @@ class products_controller extends controller
                     'p.product_key',
                     'p.landing_key',
                     'p.success_landing_key',
+                    'IF(p2.id, p2.product_name, "-")',
                     'p.affiliate_id',
                     'p.webmaster_id',
                     'p.price',
@@ -32,11 +34,17 @@ class products_controller extends controller
                         <i class=\"fa fa-pencil\"></i>
                     </a>")'
                 ];
+                $params['join']['products'] = [
+                    'as' => 'p2',
+                    'left' => true,
+                    'on' => 'p.cross_product_id = p2.id'
+                ];
                 echo json_encode($this->getDataTable($params));
                 exit;
                 break;
 
             case "get_product_modal_form":
+                $this->render('products', $this->model('products')->getAll());
                 $product = $this->model('products')->getById($_POST['id']);
                 $this->render('product', $product);
                 $template = $this->fetch('products' . DS . 'ajax' . DS . 'product_modal');
