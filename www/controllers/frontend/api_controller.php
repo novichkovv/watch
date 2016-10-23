@@ -27,10 +27,10 @@ class api_controller extends controller
             $order['click_id'] = $_GET['s'];
             switch ($_GET['status']) {
                 case "approved":
-                    $order['status_id'] = 1;
+                    $order['status_id'] = 2;
                     break;
                 case "declined":
-                    $order['status_id'] = 2;
+                    $order['status_id'] = 3;
                     break;
             }
             $this->model('orders')->insert($order);
@@ -38,8 +38,10 @@ class api_controller extends controller
         if($_GET['status'] == 'approved') {
             $data = [];
             $data['cid'] = $_GET['s'];
-            $data['payout'] = $_GET['web_total'];
+            $data['payout'] = $_GET['web_total']/65;
             $data['txid'] = $_GET['order_id'];
+            $data['var3'] = $_GET['w'];
+            $this->writeLog('POSTBACK_DATA', $data);
             $this->send_post_back($data);
         }
     }
