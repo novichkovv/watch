@@ -33,7 +33,7 @@
                             </select>
                         </td>
                         <td>
-                            <select name="o.status_id" class="form-control filter-field filter-select">
+                            <select data-sign="=" name="o.status_id" class="form-control filter-field filter-select">
                                 <option value="">Все</option>
                                 <option value="0">Не принят</option>
                                 <?php foreach ($order_statuses as $status): ?>
