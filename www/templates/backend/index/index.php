@@ -46,7 +46,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-bar-chart font-green-haze"></i>
-                    <span class="caption-subject bold uppercase font-green-haze"> Сегодня</span>
+                    <span class="caption-subject bold uppercase font-green-haze"> Глобальная статистика</span>
                     <span class="caption-helper"></span>
                 </div>
                 <div class="tools">
@@ -58,133 +58,127 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
-                            <div class="visual">
-                                <i class="fa fa-comments"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="today sum" data-counter="counterup" data-value="<?php echo $stats['today']['sum']; ?>"><?php echo $stats['today']['sum'] ? $stats['today']['sum'] : 0; ?></span>
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_1_1" data-toggle="tab" aria-expanded="false"> Сегодня </a>
+                        </li>
+                        <li class="">
+                            <a href="#tab_1_2" data-toggle="tab" aria-expanded="false"> <?php echo tools_class::$months_rus[date('m')]; ?> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1_1">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-comments"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="today sum" data-counter="counterup" data-value="<?php echo $stats['today']['sum']; ?>"><?php echo $stats['today']['sum'] ? $stats['today']['sum'] : 0; ?></span>
+                                            </div>
+                                            <div class="desc"> Выручка </div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="desc"> Выручка </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 red" href="#">
-                            <div class="visual">
-                                <i class="fa fa-bar-chart-o"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="today approved" data-counter="counterup" data-value="12,5"><?php echo $stats['today']['approved'] ? $stats['today']['approved'] : 0; ?></span> </div>
-                                <div class="desc"> Подтвержено </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 green" href="#">
-                            <div class="visual">
-                                <i class="fa fa-shopping-cart"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="today accepted" data-counter="counterup" data-value="<?php echo $stats['today']['accepted']; ?>"><?php echo $stats['today']['accepted'] ? $stats['today']['accepted'] : 0; ?></span>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="today approved" data-counter="counterup" data-value="12,5"><?php echo $stats['today']['approved'] ? $stats['today']['approved'] : 0; ?></span> </div>
+                                            <div class="desc"> Подтвержено </div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="desc"> Принято </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="today accepted" data-counter="counterup" data-value="<?php echo $stats['today']['accepted']; ?>"><?php echo $stats['today']['accepted'] ? $stats['today']['accepted'] : 0; ?></span>
+                                            </div>
+                                            <div class="desc"> Принято </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="today total" data-counter="counterup" data-value="<?php echo $stats['today']['total']; ?>"><?php echo $stats['today']['total'] ? $stats['today']['total'] : 0; ?></span> </div>
+                                            <div class="desc"> Всего </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
-                            <div class="visual">
-                                <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="tab-pane" id="tab_1_2">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-comments"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="month sum" data-counter="counterup" data-value="<?php echo $stats['month']['sum']; ?>"><?php echo $stats['month']['sum'] ? $stats['month']['sum'] : 0; ?></span>
+                                            </div>
+                                            <div class="desc"> Выручка </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span  class="month approved" data-counter="counterup" data-value="12,5"><?php echo $stats['month']['approved'] ? $stats['month']['approved'] : 0; ?></span> </div>
+                                            <div class="desc"> Подтвержено </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="month accepted" data-counter="counterup" data-value="<?php echo $stats['month']['accepted']; ?>"><?php echo $stats['month']['accepted'] ? $stats['month']['accepted'] : 0; ?></span>
+                                            </div>
+                                            <div class="desc"> Принято </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="month total" data-counter="counterup" data-value="<?php echo $stats['month']['total']; ?>"><?php echo $stats['month']['total'] ? $stats['month']['total'] : 0; ?></span> </div>
+                                            <div class="desc"> Всего </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="today total" data-counter="counterup" data-value="<?php echo $stats['today']['total']; ?>"><?php echo $stats['today']['total'] ? $stats['today']['total'] : 0; ?></span> </div>
-                                <div class="desc"> Всего </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="icon-bar-chart font-green-haze"></i>
-                    <span class="caption-subject bold uppercase font-green-haze"> <?php echo tools_class::$months_rus[date('m')]; ?></span>
-                    <span class="caption-helper"></span>
-                </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-                    <!--                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>-->
-                    <!--                    <a href="javascript:;" class="reload" data-original-title="" title=""> </a>-->
-                    <a href="javascript:;" class="fullscreen" data-original-title="" title=""> </a>
-                    <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
-                            <div class="visual">
-                                <i class="fa fa-comments"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="month sum" data-counter="counterup" data-value="<?php echo $stats['month']['sum']; ?>"><?php echo $stats['month']['sum'] ? $stats['month']['sum'] : 0; ?></span>
-                                </div>
-                                <div class="desc"> Выручка </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 red" href="#">
-                            <div class="visual">
-                                <i class="fa fa-bar-chart-o"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span  class="month approved" data-counter="counterup" data-value="12,5"><?php echo $stats['month']['approved'] ? $stats['month']['approved'] : 0; ?></span> </div>
-                                <div class="desc"> Подтвержено </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 green" href="#">
-                            <div class="visual">
-                                <i class="fa fa-shopping-cart"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="month accepted" data-counter="counterup" data-value="<?php echo $stats['month']['accepted']; ?>"><?php echo $stats['month']['accepted'] ? $stats['month']['accepted'] : 0; ?></span>
-                                </div>
-                                <div class="desc"> Принято </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
-                            <div class="visual">
-                                <i class="fa fa-globe"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <span class="month total" data-counter="counterup" data-value="<?php echo $stats['month']['total']; ?>"><?php echo $stats['month']['total'] ? $stats['month']['total'] : 0; ?></span> </div>
-                                <div class="desc"> Всего </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
