@@ -1,21 +1,21 @@
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         Товар
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         Кто
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         С
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         По
     </div>
 </div>
 <form method="post" id="stats_filter_form">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <select class="form-control filter" name="filter_product_id">
                 <option value="">Все</option>
                 <?php foreach ($products as $product): ?>
@@ -25,20 +25,17 @@
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <select class="form-control filter" name="filter_name">
                 <option value="">Все</option>
                 <option value="nik">nik</option>
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <input type="text" name="filter_date_from" class="filter form-control datepicker" value="<?php echo date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')); ?>">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <input type="text" name="filter_date_to" class="filter form-control datepicker" value="<?php echo date('Y-m-d'); ?>">
-        </div>
-        <div class="col-md-2">
-<!--            <button type="submit" class="btn outline blue">Применить</button>-->
         </div>
     </div>
 </form>
