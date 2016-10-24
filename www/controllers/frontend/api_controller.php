@@ -19,7 +19,7 @@ class api_controller extends controller
 
     public function m1()
     {
-        $this->writeLog('POSTBACK_CONTACT', 1);
+        $this->writeLog('POSTBACK_CONTACT', $_GET);
         if($order = $this->model('orders')->getByField('click_id', $_GET['s'])) {
             $order['price'] = $_GET['web_total'];
             $order['pay_date'] = $_GET['lead_date'];

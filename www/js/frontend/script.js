@@ -4,7 +4,16 @@
 $ = jQuery.noConflict();
 $(document).ready(function() {
     $("body").on("submit", ".m1_form", function () {
-        if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}
+        if(this.name.value==''){
+            alert('Введите Ваше имя!');
+            return false
+        } if(this.phone.value=='') {
+            alert('Введите Ваш номер телефона!');
+            return false
+        }
+        $(".m1_form").each(function() {
+            $(this).find('input[type="submit"], button[type="submit"]').prop('disabled', true);
+        });
         return true;
     });
     // $("body").on("submit", "form", function () {

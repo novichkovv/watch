@@ -59,7 +59,7 @@ class order_controller extends controller
                 $order['status_id'] = 1;
                 $this->model('orders')->insert($order);
             } else {
-                $this->writeLog('ORDER_ERROR', 'Order not saved' . "\n" . print_r($data, 1));
+                $this->writeLog('ORDER_ERROR', 'Order not saved' . "\n" . print_r($data, 1) . "\n" . print_r($res, 1));
             }
             $path = 'landings' . DS . $product['success_landing_key'] . DS;
             $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
