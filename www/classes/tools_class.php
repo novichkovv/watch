@@ -7,7 +7,7 @@
  */
 class tools_class
 {
-    public static  $months_rus = array(
+    public static $months_rus = array(
         '01' => 'Январь',
         '02' => 'Февраль',
         '03' => 'Март',

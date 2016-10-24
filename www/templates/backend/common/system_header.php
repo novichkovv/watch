@@ -38,6 +38,11 @@
     <link href="<?php echo SITE_DIR; ?>css/backend/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="<?php echo SITE_DIR; ?>css/backend/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo SITE_DIR; ?>css/backend/style.css" rel="stylesheet" type="text/css"/>
+    <?php if ($styles): ?>
+        <?php foreach ($styles as $style): ?>
+            <link href="<?php echo $style; ?>" rel="stylesheet" type="text/css"/>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -89,6 +94,11 @@
     <script src="<?php echo SITE_DIR; ?>css/backend/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/backend/notifier.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/backend/script.js" type="text/javascript"></script>
+    <?php if ($scripts): ?>
+        <?php foreach ($scripts as $script): ?>
+            <script src="<?php echo $script; ?>" type="text/javascript"></script>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <!-- END PAGE LEVEL SCRIPTS -->
 
     <!-- END JAVASCRIPTS -->
