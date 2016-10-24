@@ -6,7 +6,7 @@
 <!-- BEGIN LOGO -->
 <div class="page-logo">
     <a href="<?php echo SITE_DIR; ?>">
-<!--        <img style="max-width: 162px; margin: 6px 0 0 !important;" src="--><?php //echo SITE_DIR; ?><!--images/logo.jpg" alt="logo" class="logo-default"/>-->
+<!--        <img style="max-width: 162px; margin: 6px 0 0 !important;" src="--><?php //echo SITE_DIR; ?><!--images/logo1.jpg" alt="logo" class="logo-default"/>-->
     </a>
 <!--    <div class="menu-toggler sidebar-toggler">-->
 <!--        <span></span>-->

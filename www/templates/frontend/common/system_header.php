@@ -16,7 +16,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo SITE_DIR; ?>js/jquery.min.js"></script>
-
+    <link rel="shortcut icon" href="<?php echo SITE_DIR; ?>images/favicon.ico"/>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo SITE_DIR; ?>js/libs/bootstrap.min.js"></script>
     <script src="<?php echo SITE_DIR; ?>js/common/common.js"></script>
