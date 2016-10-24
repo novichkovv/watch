@@ -17,6 +17,7 @@ abstract class controller extends base
     protected $controller_name;
     protected $action_name;
     protected $sidebar;
+    protected $breadcrumbs;
     protected $content;
     private $redirect;
     public  $check_auth;
@@ -117,7 +118,9 @@ abstract class controller extends base
         if($this->content !== false) {
             require_once(!$this->content ? TEMPLATE_DIR . 'common' . DS . 'content.php' : TEMPLATE_DIR . 'common' . DS .$this->content . '.php');
         }
+        if($this->breadcrumbs !== false && PROJECT == 'backend') {
 
+        }
         if($template_file !== false) {
             $this->render('template', $template_file);
         }

@@ -4,6 +4,7 @@
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
+            <?php require_once(TEMPLATE_DIR . 'common' . DS . 'breadcrumbs.php'); ?>
             <?php if ($breadcrumbs): ?>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">

@@ -1,4 +1,6 @@
-
+<h3 class="page-title"> Главная
+    <small></small>
+</h3>
 <div class="row">
     <div class="col-md-3">
         Товар
