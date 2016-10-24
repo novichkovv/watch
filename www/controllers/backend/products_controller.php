@@ -10,7 +10,6 @@ class products_controller extends controller
     public function index()
     {
         $this->render('products', $this->model('products')->getAll());
-        $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
         $this->view('products' . DS . 'index');
     }
 
