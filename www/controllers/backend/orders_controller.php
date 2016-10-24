@@ -22,8 +22,10 @@ class orders_controller extends controller
                 $params['select'] = [
                     'o.id',
                     'p.product_name',
+                    'IF(os.id IS NULL, "Не Принят", os.status_name)',
                     'u.user_name',
                     'u.phone',
+                    'o.my_name',
                     'o.create_date',
                     'CONCAT("
                     <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"#order_modal\" data-id=\"", o.id, "\">
@@ -36,6 +38,12 @@ class orders_controller extends controller
                 $params['join']['users u'] = [
                     'on' => 'u.id = o.user_id'
                 ];
+                $params['join']['order_statuses'] = [
+                    'as' => 'os',
+                    'left' => true,
+                    'on' => 'os.id = o.status_id'
+                ];
+                $params['order'] = 'o.create_date DESC';
                 echo json_encode($this->getDataTable($params));
                 exit;
                 break;

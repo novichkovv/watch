@@ -2,7 +2,7 @@
     <small></small>
 </h3>
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption font-dark">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="portlet-body custom-datatable">
+            <div class="portlet-body custom-datatable" style="overflow-x: auto;">
                 <table class="table table-bordered" id="get_orders">
                     <thead>
                     <tr>
@@ -33,21 +33,38 @@
                             </select>
                         </td>
                         <td>
+                            <select name="o.status_id" class="form-control filter-field filter-select">
+                                <option value="">Все</option>
+                                <option value="0">Не принят</option>
+                                <?php foreach ($order_statuses as $status): ?>
+                                    <option value="<?php echo $status['id']; ?>">
+                                        <?php echo $status['status_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
                             <input data-sign="like" type="text" placeholder="Поиск" name="u.user_name" class="form-control filter-field">
                         </td>
                         <td>
                             <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
                         </td>
                         <td>
+                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field">
+                        </td>
+                        <td>
                             <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
                         </td>
-                        <td></td>
+                        <td>
+                        </td>
                     </tr>
                     <tr>
                         <th>#</th>
                         <th>Продукт</th>
+                        <th>Статус</th>
                         <th>Имя</th>
-                        <th>Тедефон</th>
+                        <th>Телефон</th>
+                        <th>My Name</th>
                         <th>Дата Создания</th>
                         <th></th>
                     </tr>
