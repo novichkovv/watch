@@ -35,7 +35,7 @@ class order_controller extends controller
             $user = $tmp;
         }
         $order = [];
-        $order['product_id'] = $_POST['product_id'];
+        $order['product_id'] = $_POST['app_product_id'];
         $order['create_date'] = date('Y-m-d H:i:s');
         $order['user_id'] = $user['id'];
         $order['click_id'] = $_POST['s'];
@@ -49,7 +49,6 @@ class order_controller extends controller
         $data['phone'] = $_POST['phone'];
         $data['name'] = $_POST['name'];
         $data['ip'] = $this->get_ip();
-//            $data['referer'] = $_SERVER['HTTP_REFERER'];
         $data['s'] = $_POST['s'];
         $data['w'] = $_POST['w'];
         $data['t'] = $_POST['t'];
