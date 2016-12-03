@@ -20,22 +20,20 @@
     <script type="text/javascript" src="<?php echo $dir; ?>js/init.js"></script>
 
     <link rel="stylesheet" type="text/css" href="<?php echo SITE_DIR; ?>css/fonts/roboto/roboto.css">
-    <script>(function() {
-            var _fbq = window._fbq || (window._fbq = []);
-            if (!_fbq.loaded) {
-                var fbds = document.createElement('script');
-                fbds.async = true;
-                fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(fbds, s);
-                _fbq.loaded = true;
-            }
-            _fbq.push(['addPixelId', '<?php echo $_GET['pixel']; ?>']);
-        })();
-        window._fbq = window._fbq || [];
-        window._fbq.push(['track', 'PixelInitialized', {}]);
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '<?php echo $_GET['pixel']; ?>');
+        fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=PixelInitialized" /></noscript>
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- DO NOT MODIFY -->
     <script src="<?php echo SITE_DIR; ?>js/frontend/script.js"></script>
 </head>
     <body>

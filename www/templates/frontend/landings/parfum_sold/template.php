@@ -9,23 +9,23 @@
 	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link media="all" href="<?php echo $dir; ?>index.css" type="text/css" rel="stylesheet">
-	<script>(function() {
-			var _fbq = window._fbq || (window._fbq = []);
-			if (!_fbq.loaded) {
-				var fbds = document.createElement('script');
-				fbds.async = true;
-				fbds.src = '//connect.facebook.net/en_US/fbds.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(fbds, s);
-				_fbq.loaded = true;
-			}
-			_fbq.push(['addPixelId', '<?php echo $_GET['pixel']; ?>']);
-		})();
-		window._fbq = window._fbq || [];
-		window._fbq.push(['track', 'AddToWishlist', {}]);
+
+	<script>
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+			n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+			document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '<?php echo $_GET['pixel']; ?>');
+		fbq('track', 'PageView');
+		fbq('track', 'AddToCart');
 	</script>
-	<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=AddToWishlist" /></noscript>
+	<noscript><img height="1" width="1" style="display:none"
+				   src="https://www.facebook.com/tr?id=<?php echo $_GET['pixel']; ?>&ev=PageView&noscript=1"
+		/></noscript>
+
 	<link rel="stylesheet" type="text/css" href="//static.best-gooods.ru/fonts/roboto.css">
+
     <link rel="stylesheet" type="text/css" href="//static.best-gooods.ru/fonts/roboto.css">
 </head>
 <body style="background-color: #e9e8e9;">
