@@ -52,7 +52,7 @@
                 <div class="center"><a href="#order" class="button">Заказать со скидкой</a></div>
             </div>
             <div class="section block-2">
-                <h2>Smart Watch <span class="col-1">G3</span><br/><small>это прежде всего:</small></h2>
+                <h2>Sw SmartWatch <span class="col-1">GT08</span><br/><small>это прежде всего:</small></h2>
                 <ul>
                     <li>
                         <h3 class="col-1">Стиль</h3>
