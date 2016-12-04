@@ -215,6 +215,7 @@
                         <input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
                         <input type="hidden" name="t" value="<?php echo $_GET['t']; ?>">
                         <input type="hidden" name="w" value="<?php echo $_GET['w']; ?>">
+                        <input type="hidden" name="pixel" value="<?php echo $_GET['pixel']; ?>">
                     <div><button class="button">Заказать со скидкой</button></div>
                 </form>
             </div>
