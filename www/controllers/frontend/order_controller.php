@@ -67,8 +67,8 @@ class order_controller extends controller
             $this->render('w', $_POST['w']);
             $this->render('s', $_POST['s']);
             $this->render('t', $_POST['t']);
-            $this->render('pixel', $_POST['pixel']);
         }
+        $this->render('pixel', $_POST['pixel']);
         $this->render('dir', $dir);
         $this->view_only($path . 'template');
     }
