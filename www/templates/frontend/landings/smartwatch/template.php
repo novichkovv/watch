@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Умные часы SmartWatch G3 с доставкой по СНГ</title>
-    <meta name="description" content="Умные часы SmartWatch G3 с доставкой по СНГ и скидкой 70%" />
-    <meta name="keywords" content="SmartWatch G3, SmartWatch G3 цена, SmartWatch G3 купить, SmartWatch G3 отзывы, SmartWatch G3 заказать онлайн" />
+<title>Умные часы Sw SmartWatch GT08 с доставкой по СНГ</title>
+    <meta name="description" content="Умные часы Sw SmartWatch GT08 с доставкой по СНГ и скидкой 70%" />
+    <meta name="keywords" content="Sw SmartWatch GT08, Sw SmartWatch GT08 цена, Sw SmartWatch GT08 купить, Sw SmartWatch GT08 отзывы, Sw SmartWatch GT08 заказать онлайн" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 	
@@ -74,7 +74,7 @@
             </div>
             <div class="line"></div><!-- owmen17 -->    
             <div class="section block-3">
-                <h2>Характеристики<br> <span class="col-1">Smart Watch G3</span></h2>
+                <h2>Характеристики<br> <span class="col-1">Sw SmartWatch GT08</span></h2>
                 <img src="<?php echo $dir; ?>img/tov-1.jpg" alt="Умные часы SmartWatch G3" title="Умные часы SmartWatch G3" >
                 <div class="tov-spec">
 					<dl>
@@ -143,7 +143,7 @@
                         <dd>MP3, AAC, FM-радио</dd>
                     </dl>
                 </div>
-				<h2>Видео <span class="col-1">Smart Watch G3</span></h2>
+				<h2>Видео <span class="col-1">Sw SmartWatch GT08</span></h2>
 				<br>
 				<iframe  style="border:5px solid #CE4A24;" width="100%" height="265" src="https://www.youtube.com/embed/OZuINJVNB6A?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 				<br><br>
