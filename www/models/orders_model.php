@@ -13,7 +13,7 @@ class orders_model extends model
             SELECT 
                 DATE(create_date) as create_date,
                 SUM(IF(status_id = 0, 1, 0)) AS unaccepted,
-                SUM(IF(status_id = 1, 1, 0)) AS accepted,
+                SUM(IF(status_id IN(2,1), 1, 0)) AS accepted,
                 SUM(IF(status_id = 2, 1, 0)) AS approved
             FROM
                 orders
@@ -51,7 +51,7 @@ class orders_model extends model
         $stm = $this->pdo->prepare('
             SELECT 
                 SUM(IF(status_id = 2, price, 0)) AS sum,
-                SUM(IF(status_id = 1, 1, 0)) AS accepted,
+                SUM(IF(status_id IN(2,1), 1, 0)) AS accepted,
                 SUM(IF(status_id = 2, 1, 0)) AS approved,
                 COUNT(id) total
             FROM
