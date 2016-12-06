@@ -414,9 +414,9 @@
                         axisLabelFontSizePixels: 11,
                         axisLabelPadding: 5
                     },
-                    colors: [ "#6db6ee",
-                        "red",
+                    colors: [ "red",
                         "#993eb7",
+                        "#6db6ee",
                         "#3ba3aa"],
                     series: {
                         lines: {
