@@ -21,6 +21,7 @@ class orders_model extends model
         $stm = $this->pdo->prepare('
             SELECT 
                 DATE(create_date) as create_date,
+                SUM(1) as all_orders,
                 SUM(IF(status_id = 0, 1, 0)) AS unaccepted,
                 SUM(IF(status_id = 1, 1, 0)) AS accepted,
                 SUM(IF(status_id = 2, 1, 0)) AS approved,
@@ -53,6 +54,7 @@ class orders_model extends model
             $res['accepted'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['accepted'] ? $stats[date('Y-m-d', $i)]['accepted']: 0;
             $res['approved'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['approved'] ? $stats[date('Y-m-d', $i)]['approved'] : 0;
             $res['declined'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['declined'] ? $stats[date('Y-m-d', $i)]['declined'] : 0;
+            $res['all_orders'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['all_orders'] ? $stats[date('Y-m-d', $i)]['all_orders'] : 0;
         }
         return $res;
     }

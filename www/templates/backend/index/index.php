@@ -209,6 +209,9 @@
             <div class="portlet-body">
                 <div class="row">
                     <div class="col-md-2">
+                        <button class="btn btn-default graph-filter" id="all_orders" style="width: 100%">Все</button>
+                    </div>
+                    <div class="col-md-2">
                         <button class="btn btn-default graph-filter" id="unaccepted" style="width: 100%">Не принято</button>
                     </div>
                     <div class="col-md-2">
@@ -302,24 +305,36 @@
                                     d4.push([new Date(i).getTime(), arr4[i] ? arr4[i] : 0]);
                                 }
 
+                                var arr5 = respond.all_orders;
+                                //var arr2 = {"2016, 10, 10":"1","2016, 10, 14":"2","2016, 10, 16":"1","2016, 10, 17":"1","2016, 10, 20":"2"};//<?php echo $unsigned; ?>;
+                                var d5 = [];
+                                for(var i in arr)
+                                {
+                                    d5.push([new Date(i).getTime(), arr5[i] ? arr5[i] : 0]);
+                                }
+
                                 var colors = [];
                                 var stats = [];
 
                                 if($("#unaccepted").hasClass('btn-default')) {
                                     stats.push({  data: d2, label: 'Не принято'});
-                                    colors.push("#eee");
+                                    colors.push("#4651ee");
                                 }
                                 if($("#accepted").hasClass('btn-default')) {
                                     stats.push({data: d1, label: 'В обработкке'});
-                                    colors.push("#b4dcdd");
+                                    colors.push("#cbccd2");
                                 }
                                 if($("#approved").hasClass('btn-default')) {
                                     stats.push({data: d3, label: 'Подтверждено'});
-                                    colors.push("#85ee59");
+                                    colors.push("#41d62d");
                                 }
                                 if($("#declined").hasClass('btn-default')) {
                                     stats.push({data: d4, label: 'Отказ'});
                                     colors.push("#ff6b3d");
+                                }
+                                if($("#all_orders").hasClass('btn-default')) {
+                                    stats.push({data: d5, label: 'Все'});
+                                    colors.push("#faff5b");
                                 }
 
                                 $.plot("#placeholder", stats  ,{
@@ -458,11 +473,18 @@
                 d4.push([new Date(i).getTime(), arr4[i] ? arr4[i] : 0]);
             }
 
+            var arr5 = <?php echo json_encode($stats['all_orders']); ?>;
+            var d5 = [];
+            for(var i in arr)
+            {
+                d5.push([new Date(i).getTime(), arr5[i] ? arr5[i] : 0]);
+            }
+
             // A null signifies separate line segments
 
 
 
-            $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'В обработке' },{data: d3, label: 'Подтверждено'},{data: d4, label: 'Отказ'} ]  ,{
+            $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'В обработке' },{data: d3, label: 'Подтверждено'},{data: d4, label: 'Отказ'},{data: d5, label: 'Все'} ]  ,{
                     xaxis: {
                         min: date_start,
                         max: date_end,
@@ -476,10 +498,11 @@
                         axisLabelPadding: 5
                     },
                     colors: [
-                        "#eee",
-                        "#b4dcdd",
-                        "#85ee59",
-                        "#ff6b3d"],
+                        "#4651ee",
+                        "#cbccd2",
+                        "#41d62d",
+                        "#ff6b3d",
+                        "#faff5b"],
                     series: {
                         lines: {
                             show: true,
