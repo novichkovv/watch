@@ -212,10 +212,10 @@
                         <button class="btn btn-default graph-filter" id="all_orders" style="width: 100%">Все</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-default graph-filter" id="unaccepted" style="width: 100%">Не принято</button>
+                        <button class="btn graph-filter" id="unaccepted" style="width: 100%">Не принято</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-default graph-filter" id="accepted" style="width: 100%">В обработке</button>
+                        <button class="btn graph-filter" id="accepted" style="width: 100%">В обработке</button>
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-default graph-filter" id="approved" style="width: 100%">Подтверждено</button>
@@ -484,7 +484,7 @@
 
 
 
-            $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'В обработке' },{data: d3, label: 'Подтверждено'},{data: d4, label: 'Отказ'},{data: d5, label: 'Все'} ]  ,{
+            $.plot("#placeholder", [{data: d3, label: 'Подтверждено'},{data: d4, label: 'Отказ'},{data: d5, label: 'Все'} ]  ,{
                     xaxis: {
                         min: date_start,
                         max: date_end,
