@@ -498,8 +498,6 @@
                         axisLabelPadding: 5
                     },
                     colors: [
-                        "#4651ee",
-                        "#cbccd2",
                         "#41d62d",
                         "#ff6b3d",
                         "#faff5b"],
