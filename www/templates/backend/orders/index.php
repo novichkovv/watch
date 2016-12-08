@@ -57,6 +57,8 @@
                         </td>
                         <td>
                         </td>
+                        <td>
+                        </td>
                     </tr>
                     <tr>
                         <th>#</th>
@@ -66,6 +68,7 @@
                         <th>Телефон</th>
                         <th>My Name</th>
                         <th>Дата Создания</th>
+                        <th>Коммент</th>
                         <th></th>
                     </tr>
                     </thead>

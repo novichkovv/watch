@@ -28,6 +28,7 @@ class orders_controller extends controller
                     'u.phone',
                     'o.my_name',
                     'o.create_date',
+                    'o.comments',
                     'CONCAT("
                     <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"#order_modal\" data-id=\"", o.id, "\">
                         <i class=\"fa fa-search\"></i>

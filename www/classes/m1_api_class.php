@@ -41,6 +41,15 @@ class m1_api_class extends base
     public static function sendOrder($data)
     {
         $data['api_key'] = M1_API_KEY;
-        return self::makeApiCall(M1_API_URL, 'POST', $data);
+        return self::makeApiCall(M1_API_URL . 'send_order/', 'POST', $data);
+    }
+
+    public function get_order_status(array $orders, $ref)
+    {
+        $data = [];
+        $data['api_key'] = M1_API_KEY;
+        $data['ref'] = $ref;
+        $data['id'] = implode(',', $orders);
+        return self::makeApiCall(M1_API_URL . 'get_order_status/', 'POST', $data);
     }
 }

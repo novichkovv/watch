@@ -31,6 +31,7 @@
             <select class="form-control filter" name="filter_name">
                 <option value="">Все</option>
                 <option value="nik">nik</option>
+                <option value="nov">nov</option>
             </select>
         </div>
         <div class="col-md-3">
@@ -69,8 +70,10 @@
                             <a href="#tab_1_2" data-toggle="tab" aria-expanded="false"> <?php echo tools_class::$months_rus[date('m')]; ?> </a>
                         </li>
                     </ul>
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1_1">
+
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
@@ -106,7 +109,7 @@
                                             <div class="number">
                                                 <span class="today accepted" data-counter="counterup" data-value="<?php echo $stats['today']['accepted']; ?>"><?php echo $stats['today']['accepted'] ? $stats['today']['accepted'] : 0; ?></span>
                                             </div>
-                                            <div class="desc"> Принято </div>
+                                            <div class="desc"> В обработке </div>
                                         </div>
                                     </a>
                                 </div>
@@ -160,7 +163,7 @@
                                             <div class="number">
                                                 <span class="month accepted" data-counter="counterup" data-value="<?php echo $stats['month']['accepted']; ?>"><?php echo $stats['month']['accepted'] ? $stats['month']['accepted'] : 0; ?></span>
                                             </div>
-                                            <div class="desc"> Принято </div>
+                                            <div class="desc"> Отказ </div>
                                         </div>
                                     </a>
                                 </div>
@@ -204,9 +207,28 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="demo-container">
-                    <div id="placeholder" class="demo-placeholder" style="height: 300px;">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-default graph-filter" id="unaccepted" style="width: 100%">Не принято</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default graph-filter" id="accepted" style="width: 100%">В обработке</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default graph-filter" id="approved" style="width: 100%">Подтверждено</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default graph-filter" id="declined" style="width: 100%">Отказ</button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="demo-container">
+                            <div id="placeholder" class="demo-placeholder" style="height: 300px;">
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,6 +241,16 @@
         $(".filter").change(function() {
             $(this).closest('form').submit();
         });
+
+        $(".graph-filter").click(function () {
+            if($(this).hasClass('btn-default')) {
+                $(this).removeClass('btn-default');
+            } else {
+                $(this).addClass('btn-default');
+            }
+            $("#stats_filter_form").submit();
+        });
+
         $("body").on("submit", "#stats_filter_form", function () {
             var params = {
                 'action': 'get_stats',
@@ -262,10 +294,35 @@
                                 }
 
                                 // A null signifies separate line segments
+                                var arr4 = respond.declined;
+                                //var arr2 = {"2016, 10, 10":"1","2016, 10, 14":"2","2016, 10, 16":"1","2016, 10, 17":"1","2016, 10, 20":"2"};//<?php echo $unsigned; ?>;
+                                var d4 = [];
+                                for(var i in arr)
+                                {
+                                    d4.push([new Date(i).getTime(), arr4[i] ? arr4[i] : 0]);
+                                }
 
+                                var colors = [];
+                                var stats = [];
 
+                                if($("#unaccepted").hasClass('btn-default')) {
+                                    stats.push({  data: d2, label: 'Не принято'});
+                                    colors.push("#eee");
+                                }
+                                if($("#accepted").hasClass('btn-default')) {
+                                    stats.push({data: d1, label: 'В обработкке'});
+                                    colors.push("#b4dcdd");
+                                }
+                                if($("#approved").hasClass('btn-default')) {
+                                    stats.push({data: d3, label: 'Подтверждено'});
+                                    colors.push("#85ee59");
+                                }
+                                if($("#declined").hasClass('btn-default')) {
+                                    stats.push({data: d4, label: 'Отказ'});
+                                    colors.push("#ff6b3d");
+                                }
 
-                                $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'Принято' },{data: d3, label: 'Подтверждено'} ]  ,{
+                                $.plot("#placeholder", stats  ,{
                                         xaxis: {
                                             min: date_start,
                                             max: date_end,
@@ -278,10 +335,7 @@
                                             axisLabelFontSizePixels: 11,
                                             axisLabelPadding: 5
                                         },
-                                        colors: [ "#6db6ee",
-                                            "red",
-                                            "#993eb7",
-                                            "#3ba3aa"],
+                                        colors: colors,
                                         series: {
                                             lines: {
                                                 show: true,
@@ -397,11 +451,18 @@
                 d3.push([new Date(i).getTime(), arr3[i] ? arr3[i] : 0]);
             }
 
+            var arr4 = <?php echo json_encode($stats['declined']); ?>;
+            var d4 = [];
+            for(var i in arr)
+            {
+                d4.push([new Date(i).getTime(), arr4[i] ? arr4[i] : 0]);
+            }
+
             // A null signifies separate line segments
 
 
 
-            $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'Принято' },{data: d3, label: 'Подтверждено'} ]  ,{
+            $.plot("#placeholder", [{  data: d2, label: 'Не принято'},{data: d1, label: 'В обработке' },{data: d3, label: 'Подтверждено'},{data: d4, label: 'Отказ'} ]  ,{
                     xaxis: {
                         min: date_start,
                         max: date_end,
@@ -414,10 +475,11 @@
                         axisLabelFontSizePixels: 11,
                         axisLabelPadding: 5
                     },
-                    colors: [ "red",
-                        "#993eb7",
-                        "#6db6ee",
-                        "#3ba3aa"],
+                    colors: [
+                        "#eee",
+                        "#b4dcdd",
+                        "#85ee59",
+                        "#ff6b3d"],
                     series: {
                         lines: {
                             show: true,
