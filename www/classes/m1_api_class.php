@@ -35,6 +35,7 @@ class m1_api_class extends base
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $response = curl_exec($curl);
+        echo $response;
         return json_decode($response, true);
     }
 
