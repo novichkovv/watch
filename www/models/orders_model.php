@@ -11,7 +11,7 @@ class orders_model extends model
     public function getOrdersForCron()
     {
         $stm = $this->pdo->prepare('
-            SELECT * FROM orders WHERE status_id NOT IN (3,4,5,6) AND DATE(create_date) < DATE(NOW()) - INTERVAL 14 DAY
+            SELECT * FROM orders WHERE status_id NOT IN (3,4,5,6) AND DATE(create_date) > DATE(NOW()) - INTERVAL 14 DAY
         ');
         return $this->get_all($stm);
     }
