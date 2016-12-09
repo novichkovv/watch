@@ -354,7 +354,7 @@
                                         series: {
                                             lines: {
                                                 show: true,
-                                                fill: true,
+                                                fill: false,
                                                 fillColor: { colors: [ { opacity: 0.2 }, { opacity: 0.2 } ] },
                                                 lineWidth: 1.5 },
                                             points: {
@@ -504,7 +504,7 @@
                     series: {
                         lines: {
                             show: true,
-                            fill: true,
+                            fill: false,
                             fillColor: { colors: [ { opacity: 0.2 }, { opacity: 0.2 } ] },
                             lineWidth: 1.5 },
                         points: {
