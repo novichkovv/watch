@@ -50,16 +50,18 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(status_id = 2, price, 0)) AS sum,
-                SUM(IF(status_id IN(2,1), 1, 0)) AS accepted,
-                SUM(IF(status_id = 2, 1, 0)) AS approved,
-                COUNT(id) total
+                SUM(IF(o.status_id = 2, o.price, 0)) AS sum,
+                SUM(IF(o.status_id IN(2,1), 1, 0)) AS accepted,
+                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
+                COUNT(o.id) total
             FROM
-                orders
+                orders o
+                    JOIN
+                products p ON p.id = o.product_id
             WHERE
                 DATE(create_date) = DATE(NOW())
-            ' . ($product_id ? ' AND product_id = :product_id' : '') . '
-            ' . ($my_name ? ' AND my_name = :my_name' : '') . '
+            ' . ($product_id ? ' AND o.product_id = :product_id' : '') . '
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
         ');
         $terms = [];
         if($product_id) {

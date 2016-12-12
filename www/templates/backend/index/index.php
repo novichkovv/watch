@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="details">
                                             <div class="number">
-                                                <span class="today approved" data-counter="counterup" data-value="12,5"><?php echo $stats['today']['approved'] ? $stats['today']['approved'] : 0; ?></span> </div>
+                                                <span class="today approved" data-counter="counterup" data-value="<?php echo $stats['today']['approved'] ? $stats['today']['approved'] : 0; ?>"><?php echo $stats['today']['approved'] ? $stats['today']['approved'] : 0; ?></span> </div>
                                             <div class="desc"> Подтвержено </div>
                                         </div>
                                     </a>

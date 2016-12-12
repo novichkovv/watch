@@ -59,5 +59,18 @@
             <script src="<?php echo $script; ?>" type="text/javascript"></script>
         <?php endforeach; ?>
     <?php endif; ?>
+    <script type="text/javascript">
+        var i = 0;
+        setInterval(function() {
+            if(i%2 === 0) {
+                $("title").html('*****');
+            } else {
+                $("title").html('Новый заказ');
+            }
+            i++;
+            console.log(i);
+        }, 1000);
+
+    </script>
 </head>
 
