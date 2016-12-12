@@ -1,4 +1,6 @@
-
+.btn-default.graph-filter:active, .btn-default.graph-filter:visited, .btn-default.graph-filter:focus {
+    background-color: #fff !important;
+}
 .page-header.navbar .menu-toggler {
      background-image: none !important;
 }

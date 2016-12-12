@@ -64,3 +64,16 @@ ALTER TABLE user_addresses ADD last_name VARCHAR (255) NULL AFTER first_name;
 
 ALTER TABLE products ADD product_key VARCHAR (255) NOT NULL AFTER id;
 ALTER TABLE products ADD landing_key VARCHAR (255) NOT NULL AFTER product_key;
+
+CREATE TABLE m1_accounts (
+id serial primary key,
+account_name varchar(255) NOT null,
+api_key varchar(255) NOT null
+);
+
+INSERT INTO `watches_store`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('accounts', 'Аккаунты', '7', '0', '0', '0', '0', 'icon-users');
+
+ALTER TABLE orders ADD comments TEXT NULL AFTER price_usd;
+UPDATE `watches_store`.`order_statuses` SET `status_name`='В обработке' WHERE `id`='1';
+INSERT INTO `watches_store`.`order_statuses` (`status_name`) VALUES ('Выкуплен');
+INSERT INTO `watches_store`.`order_statuses` (`status_name`) VALUES ('Не выкуплен');
