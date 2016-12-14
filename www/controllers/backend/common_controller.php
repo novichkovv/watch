@@ -34,6 +34,19 @@ class common_controller extends controller
                 exit;
                 break;
 
+            case "update_last_update":
+                $row['id'] = registry::get('user')['id'];
+                $row['last_update'] = date('Y-m-d H:i:s');
+                $this->model('system_users')->insert($row);
+                exit;
+                break;
+
+            case "get_new_approved_orders":
+                $new_approved_orders = $this->model('orders')->getNewApprovedOrders();
+                echo json_encode(array('status' => 1, 'new_approved_orders' => $new_approved_orders));
+                exit;
+                break;
+
         }
     }
 

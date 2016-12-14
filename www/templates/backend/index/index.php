@@ -247,6 +247,52 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
+        setTimeout(function(){
+            var params = {
+                'action': 'update_last_update',
+                'common': true,
+                'callback': function (msg) {
+                    $('title').html('Backend');
+                }
+            };
+            ajax(params);
+        }, 3000);
+
+        $(window).focus(function(){
+            setTimeout(function(){
+                var params = {
+                    'action': 'update_last_update',
+                    'common': true,
+                    'callback': function (msg) {
+                        $('title').html('Backend');
+                    }
+                };
+                ajax(params);
+            }, 3000);
+        });
+
+        setInterval(function() {
+            $("#stats_filter_form").submit();
+            var params = {
+                'action': 'get_new_approved_orders',
+                'common': true,
+                'callback': function (msg) {
+                    ajax_respond(msg,
+                        function (respond) { //success
+                            if(respond.new_approved_orders != 0) {
+                                $("title").html("(" + respond.new_approved_orders + ") Backend");
+                            } else {
+                                $("title").html("Backend");
+                            }
+                        },
+                        function (respond) { //fail
+                        }
+                    );
+                }
+            };
+            ajax(params);
+        }, 1000*60);
+
         $(".filter").change(function() {
             $(this).closest('form').submit();
         });

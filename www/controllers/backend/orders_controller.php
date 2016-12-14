@@ -9,6 +9,8 @@ class orders_controller extends controller
 {
     public function index()
     {
+        $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
+        $this->render('my_name', $my_account['account_name']);
         $this->render('products', $this->model('products')->getAll('product_name'));
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
         $this->view('orders' . DS . 'index');
@@ -18,6 +20,7 @@ class orders_controller extends controller
     {
         switch ($_REQUEST['action']) {
             case "get_orders":
+                $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
                 $params = [];
                 $params['table'] = 'orders o';
                 $params['select'] = [
@@ -44,6 +47,10 @@ class orders_controller extends controller
                     'as' => 'os',
                     'left' => true,
                     'on' => 'os.id = o.status_id'
+                ];
+                $params['where']['o.my_name'] = [
+                    'sign' => '=',
+                    'value' => $my_account['account_name']
                 ];
                 $params['order'] = 'o.create_date DESC';
                 echo json_encode($this->getDataTable($params));
