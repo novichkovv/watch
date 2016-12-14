@@ -10,12 +10,14 @@ class index_controller extends controller
     public function index()
     {
 //        header('Location: ' . SITE_DIR . 'orders/');
+        $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
+        $this->render('accounts', $this->model('m1_accounts')->getAll());
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.min.js']);
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.time.js']);
         $this->render('products', $this->model('products')->getAll());
-        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')), date('Y-m-d'));
-        $stats['today'] = $this->model('orders')->getTodayCount();
-        $stats['month'] = $this->model('orders')->getMonthCount();
+        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')), date('Y-m-d'), null, $my_account['account_name']);
+        $stats['today'] = $this->model('orders')->getTodayCount(null, $my_account['account_name']);
+        $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
         $this->render('stats', $stats);
         $this->view('index' . DS . 'index');
     }

@@ -9,7 +9,8 @@ class common_controller extends controller
 {
     public function index()
     {
-
+        $new_approved_orders = $this->model('orders')->getNewApprovedOrders();
+        $this->render('new_approved_orders', $new_approved_orders);
     }
 
     public function index_na()
@@ -39,10 +40,11 @@ class common_controller extends controller
     protected function render($key, $value)
     {
         $common_vars = registry::get('common_vars');
-        if(!$common_vars) {
+        if(!isset($common_vars)) {
             $common_vars = [];
         }
         $common_vars[$key] = $value;
+        registry::remove('common_vars');
         registry::set('common_vars', $common_vars);
     }
 }

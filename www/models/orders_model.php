@@ -16,6 +16,23 @@ class orders_model extends model
         return $this->get_all($stm);
     }
 
+    public function getNewApprovedOrders()
+    {
+        $stm = $this->pdo->prepare('
+            SELECT 
+                COUNT(o.id) qty
+            FROM
+                orders o
+                    JOIN
+                m1_accounts a ON o.my_name = a.account_name
+            WHERE
+                a.user_id = 75
+                    AND o.pay_date >= :last_update
+                    AND o.status_id = 2
+        ');
+        return $this->get_row($stm, ['last_update' => registry::get('user')['last_update']])['qty'];
+    }
+
     public function getOrderDailyStats($date_from, $date_to, $product_id = null, $my_name = null)
     {
         $stm = $this->pdo->prepare('

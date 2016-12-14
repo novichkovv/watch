@@ -30,8 +30,14 @@
         <div class="col-md-3">
             <select class="form-control filter" name="filter_name">
                 <option value="">Все</option>
-                <option value="nik">nik</option>
-                <option value="nov">nov</option>
+                <?php foreach ($accounts as $account): ?>
+                    <option value="<?php echo $account['account_name']; ?>"
+                    <?php if ($account['user_id'] == registry::get('user')['id']): ?>
+                        selected
+                    <?php endif; ?>>
+                        <?php echo $account['account_name']; ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="col-md-3">
