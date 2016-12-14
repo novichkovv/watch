@@ -22,6 +22,7 @@ class accounts_controller extends controller
     {
         switch ($_REQUEST['action']) {
             case "get_account_form":
+                $this->render('users', $this->model('system_users')->getAll());
                 if($_POST['id']) {
                     $this->render('account', $this->model('m1_accounts')->getById($_POST['id']));
                 }

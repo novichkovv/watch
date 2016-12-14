@@ -23,14 +23,12 @@ class orders_model extends model
                 DATE(create_date) as create_date,
                 SUM(1) as all_orders,
                 SUM(IF(status_id = 0, 1, 0)) AS unaccepted,
-          
                 SUM(IF(status_id = 1, 1, 0)) AS accepted,
                 SUM(IF(status_id = 2, 1, 0)) AS approved,
                 SUM(IF(status_id = 3, 1, 0)) AS declined
             FROM
                 orders
             WHERE
-         
                 create_date >= :date_from AND create_date <= :date_to
             ' . ($product_id ? ' AND product_id = :product_id' : '') . '
             ' . ($my_name ? ' AND my_name = :my_name' : '') . '
@@ -65,7 +63,7 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(o.status_id = 2, o.price, 0)) AS sum,
+                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
                 SUM(IF(o.status_id IN(2,1), 1, 0)) AS accepted,
                 SUM(IF(o.status_id = 2, 1, 0)) AS approved,
                 COUNT(o.id) total
@@ -74,7 +72,7 @@ class orders_model extends model
                     JOIN
                 products p ON p.id = o.product_id
             WHERE
-                DATE(create_date) = DATE(NOW())
+                DATE(o.create_date) = DATE(NOW())
             ' . ($product_id ? ' AND o.product_id = :product_id' : '') . '
             ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
         ');
@@ -92,14 +90,16 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(status_id = 2, price, 0)) AS sum,
-                SUM(IF(status_id = 3, 1, 0)) AS accepted,
-                SUM(IF(status_id = 2, 1, 0)) AS approved,
-                COUNT(id) total
+                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
+                SUM(IF(o.status_id = 3, 1, 0)) AS accepted,
+                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
+                COUNT(o.id) total
             FROM
-                orders
+                orders o
+                    JOIN
+                products p ON p.id = o.product_id
             WHERE
-                MONTH(create_date) = MONTH(NOW()) AND YEAR(create_date) = YEAR (NOW())
+                MONTH(o.create_date) = MONTH(NOW()) AND YEAR(o.create_date) = YEAR (NOW())
             ' . ($product_id ? ' AND product_id = :product_id' : '') . '
             ' . ($my_name ? ' AND my_name = :my_name' : '') . '
         ');

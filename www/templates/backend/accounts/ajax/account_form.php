@@ -22,6 +22,21 @@
                 <input data-require="1" type="text" name="account[api_key]" class="form-control" value="<?php echo $account['api_key']; ?>">
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-md-4">Пользователь *</label>
+            <div class="col-md-6">
+                <select class="form-control" name="account[user_id]">
+                    <?php foreach ($users as $user): ?>
+                        <option value="<?php echo $user['id']; ?>"
+                        <?php if ($account['user_id'] == $user['id']): ?>
+                            selected
+                        <?php endif; ?>>
+                            <?php echo $user['email']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <?php if ($account['id']): ?>
