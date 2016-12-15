@@ -40,14 +40,16 @@ class index_controller extends controller
         setcookie('visitor_id', $cookie, time() + 3600*24*90, "/");
         $visitor = [
             'ip'  => $_SERVER['REMOTE_ADDR'],
+            'session_id' => session_id(),
             'cookie' => $cookie,
             'product_id' => $product['id'],
             'account' => $_GET['w'],
             'click_id' => $_GET['s'],
             'create_date' => date('Y-m-d H:i:s')
         ];
-        $this->model('visitors')->insert($visitor);
+        $visitor_id = $this->model('visitors')->insert($visitor);
         $this->render('product', $product);
+        $this->render('visitor_id', $visitor_id);
         $this->render('dir', SITE_DIR . 'templates/frontend/landings/' . $product['landing_key'] . '/');
         $this->view_only('landings' . DS . $product['landing_key'] . DS . 'template');
     }

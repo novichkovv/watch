@@ -18,9 +18,9 @@
     <script type="text/javascript" src="<?php echo $dir; ?>js/init.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $dir; ?>css/roboto.css">
     <script src="<?php echo $dir; ?>js/jquery.js" type="text/javascript"></script>
-<!--    <script src="--><?php //echo $dir; ?><!--js/plugins.js" type="text/javascript"></script>-->
+    <script src="<?php echo $dir; ?>js/plugins.js" type="text/javascript"></script>
     
-<!--    <script src="--><?php //echo $dir; ?><!--js/detect.js" type="text/javascript"></script>-->
+    <script src="<?php echo $dir; ?>js/detect.js" type="text/javascript"></script>
 				</head>
 <!-- Facebook Pixel Code -->
 <script>
@@ -172,6 +172,7 @@
                 <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
                     <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
                     <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
+                        <input type="hidden" name="visitor_id" value="<?php echo $product['affiliate_id']; ?>"/>
                         <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
                         <input type="hidden" name="ref" value="<?php echo $product['webmaster_id']; ?>"/>
                         <input type="hidden" name="app_product_id" value="<?php echo $product['id']; ?>"/>
