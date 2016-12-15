@@ -78,7 +78,7 @@
                 <img src="<?php echo $dir; ?>img/tov-1.jpg" alt="Часы Richard Mille">
                 <div class="tov-spec">
                     <dl>
-                        <dt>Сборка:</dt>
+                        <dt>Страна:</dt>
                         <dd>Бельгия</dd>
                     </dl>
                     <dl>
