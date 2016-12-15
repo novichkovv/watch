@@ -22,6 +22,21 @@
     
     <script src="<?php echo $dir; ?>js/detect.js" type="text/javascript"></script>
 				</head>
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '<?php echo ($_GET['pixel'] ? $_GET['pixel'] : '1816280065250492'); ?>');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+               src="https://www.facebook.com/tr?id=<?php echo ($_GET['pixel'] ? $_GET['pixel'] : '1816280065250492'); ?>&ev=PageView&noscript=1"
+    /></noscript>
+<!-- DO NOT MODIFY -->
+<script src="<?php echo SITE_DIR; ?>js/frontend/script.js"></script>
     <body>
             <div class="main-wrap">
             <div class="section block-1">
@@ -149,10 +164,22 @@
                     <div class="old-cost col-2">9630р</div>
                     <div class="new-cost col-1">2890р</div>
                 </div>
-                <form action="http://reals-gooods.ru/rich-mille2/call.php" method="post" onsubmit="if(this.name.value==&#39;&#39;){alert(&#39;Введите Ваше имя&#39;);return false}if(this.phone.value==&#39;&#39;){alert(&#39;Введите Ваш номер телефона&#39;);return false}return true;">
+<!--                <form action="http://reals-gooods.ru/rich-mille2/call.php" method="post" onsubmit="if(this.name.value==&#39;&#39;){alert(&#39;Введите Ваше имя&#39;);return false}if(this.phone.value==&#39;&#39;){alert(&#39;Введите Ваш номер телефона&#39;);return false}return true;">-->
+<!--                    <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>-->
+<!--                    <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>-->
+<!--                    <div><button class="button">Заказать со скидкой</button></div>-->
+<!--                </form>-->
+                <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
                     <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
                     <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
-                    <div><button class="button">Заказать со скидкой</button></div>
+                        <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
+                        <input type="hidden" name="ref" value="<?php echo $product['webmaster_id']; ?>"/>
+                        <input type="hidden" name="app_product_id" value="<?php echo $product['id']; ?>"/>
+                        <input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+                        <input type="hidden" name="t" value="<?php echo $_GET['t']; ?>">
+                        <input type="hidden" name="w" value="<?php echo $_GET['w']; ?>">
+                        <input type="hidden" name="pixel" value="<?php echo $_GET['pixel']; ?>">
+                        <div><button class="button">Заказать со скидкой</button></div>
                 </form>
             </div>
         </div>

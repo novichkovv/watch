@@ -206,8 +206,11 @@
                     <div class="new-cost col-1">5190р</div>
                 </div>
                 <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
-                    <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
-                    <div><input type="text" name="phone" placeholder="Введите телефон" required="">
+                    <div>
+                        <input type="text" name="name" placeholder="Введите Ф.И.О" required="">
+                    </div>
+                    <div>
+                        <input type="text" name="phone" placeholder="Введите телефон" required="">
                         <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
                         <input type="hidden" name="ref" value="<?php echo $product['webmaster_id']; ?>"/>
                         <input type="hidden" name="app_product_id" value="<?php echo $product['id']; ?>"/>
@@ -215,6 +218,7 @@
                         <input type="hidden" name="t" value="<?php echo $_GET['t']; ?>">
                         <input type="hidden" name="w" value="<?php echo $_GET['w']; ?>">
                         <input type="hidden" name="pixel" value="<?php echo $_GET['pixel']; ?>">
+                    </div>
                     <div><button class="button">Заказать со скидкой</button></div>
                 </form>
             </div>
