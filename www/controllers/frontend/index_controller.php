@@ -32,6 +32,21 @@ class index_controller extends controller
     public function show()
     {
         $product = $this->model('products')->getByField('product_key', registry::get('route_parts')[0]);
+        if(!$_COOKIE['visitor_id']) {
+            $cookie = mktime() . rand();
+        } else {
+            $cookie = $_COOKIE['visitor_id'];
+        }
+        setcookie('visitor_id', $cookie, time() + 3600*24*90, "/");
+        $visitor = [
+            'ip'  => $_SERVER['REMOTE_ADDR'],
+            'cookie' => $cookie,
+            'product_id' => $product['id'],
+            'account' => $_GET['w'],
+            'click_id' => $_GET['s'],
+            'create_date' => date('Y-m-d H:i:s')
+        ];
+        $this->model('visitors')->insert($visitor);
         $this->render('product', $product);
         $this->render('dir', SITE_DIR . 'templates/frontend/landings/' . $product['landing_key'] . '/');
         $this->view_only('landings' . DS . $product['landing_key'] . DS . 'template');

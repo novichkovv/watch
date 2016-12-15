@@ -18,9 +18,9 @@
     <script type="text/javascript" src="<?php echo $dir; ?>js/init.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $dir; ?>css/roboto.css">
     <script src="<?php echo $dir; ?>js/jquery.js" type="text/javascript"></script>
-    <script src="<?php echo $dir; ?>js/plugins.js" type="text/javascript"></script>
+<!--    <script src="--><?php //echo $dir; ?><!--js/plugins.js" type="text/javascript"></script>-->
     
-    <script src="<?php echo $dir; ?>js/detect.js" type="text/javascript"></script>
+<!--    <script src="--><?php //echo $dir; ?><!--js/detect.js" type="text/javascript"></script>-->
 				</head>
 <!-- Facebook Pixel Code -->
 <script>
