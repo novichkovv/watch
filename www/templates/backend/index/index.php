@@ -84,7 +84,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-comments"></i>
+                                            <i class="fa fa-money"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -97,7 +97,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 red" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-bar-chart-o"></i>
+                                            <i class="fa fa-thumbs-o-up"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -106,10 +106,10 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 green" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i class="fa fa-spinner"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -119,7 +119,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
                                         <div class="visual">
                                             <i class="fa fa-globe"></i>
@@ -127,7 +127,19 @@
                                         <div class="details">
                                             <div class="number">
                                                 <span class="today total" data-counter="counterup" data-value="<?php echo $stats['today']['total']; ?>"><?php echo $stats['today']['total'] ? $stats['today']['total'] : 0; ?></span> </div>
-                                            <div class="desc"> Всего </div>
+                                            <div class="desc"> Заказов </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 yellow-saffron" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="visitors today" data-counter="counterup" data-value="<?php echo $visitors['today']['total']; ?>"><?php echo $visitors['today'] ?$visitors['today']['total'] : 0; ?></span> </div>
+                                            <div class="desc"> Посетителей </div>
                                         </div>
                                     </a>
                                 </div>
@@ -138,7 +150,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-comments"></i>
+                                            <i class="fa fa-money"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -151,7 +163,7 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 red" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-bar-chart-o"></i>
+                                            <i class="fa fa-thumbs-o-up"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -160,10 +172,10 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 green" href="#">
                                         <div class="visual">
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i class="fa fa-thumbs-o-down"></i>
                                         </div>
                                         <div class="details">
                                             <div class="number">
@@ -173,7 +185,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                     <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
                                         <div class="visual">
                                             <i class="fa fa-globe"></i>
@@ -182,6 +194,18 @@
                                             <div class="number">
                                                 <span class="month total" data-counter="counterup" data-value="<?php echo $stats['month']['total']; ?>"><?php echo $stats['month']['total'] ? $stats['month']['total'] : 0; ?></span> </div>
                                             <div class="desc"> Всего </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <a class="dashboard-stat dashboard-stat-v2 yellow-saffron" href="#">
+                                        <div class="visual">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                <span class="visitors month" data-counter="counterup" data-value="<?php echo $visitors['month']['total']; ?>"><?php echo $visitors['month'] ?$visitors['month']['total'] : 0; ?></span> </div>
+                                            <div class="desc"> Посетителей </div>
                                         </div>
                                     </a>
                                 </div>

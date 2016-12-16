@@ -39,6 +39,7 @@ class order_controller extends controller
         $order['create_date'] = date('Y-m-d H:i:s');
         $order['user_id'] = $user['id'];
         $order['click_id'] = $_POST['s'];
+        $order['visitor_id'] = $_POST['visitor_id'];
         $order['my_name'] = $_POST['w'];
         $order['t_field'] = $_POST['t'];
         $order['id'] = $this->model('orders')->insert($order);

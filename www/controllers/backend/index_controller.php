@@ -18,6 +18,9 @@ class index_controller extends controller
         $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')), date('Y-m-d'), null, $my_account['account_name']);
         $stats['today'] = $this->model('orders')->getTodayCount(null, $my_account['account_name']);
         $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
+        $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'));
+        $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'));
+        $this->render('visitors', $visitors);
         $this->render('stats', $stats);
         $this->view('index' . DS . 'index');
     }

@@ -172,7 +172,7 @@
                 <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
                     <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
                     <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
-                        <input type="hidden" name="visitor_id" value="<?php echo $product['affiliate_id']; ?>"/>
+                        <input type="hidden" name="visitor_id" value="<?php echo $visitor_id; ?>"/>
                         <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
                         <input type="hidden" name="ref" value="<?php echo $product['webmaster_id']; ?>"/>
                         <input type="hidden" name="app_product_id" value="<?php echo $product['id']; ?>"/>

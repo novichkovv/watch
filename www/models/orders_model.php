@@ -41,7 +41,7 @@ class orders_model extends model
                 SUM(1) as all_orders,
                 SUM(IF(status_id = 0, 1, 0)) AS unaccepted,
                 SUM(IF(status_id = 1, 1, 0)) AS accepted,
-                SUM(IF(status_id = 2, 1, 0)) AS approved,
+                SUM(IF(status_id IN (2,5,6), 1, 0)) AS approved,
                 SUM(IF(status_id = 3, 1, 0)) AS declined
             FROM
                 orders
@@ -81,8 +81,8 @@ class orders_model extends model
         $stm = $this->pdo->prepare('
             SELECT 
                 SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
-                SUM(IF(o.status_id IN(2,1), 1, 0)) AS accepted,
-                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
+                SUM(IF(o.status_id = 1, 1, 0)) AS accepted,
+                SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
                 COUNT(o.id) total
             FROM
                 orders o
@@ -109,7 +109,7 @@ class orders_model extends model
             SELECT 
                 SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
                 SUM(IF(o.status_id = 3, 1, 0)) AS accepted,
-                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
+                SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
                 COUNT(o.id) total
             FROM
                 orders o
@@ -130,21 +130,44 @@ class orders_model extends model
         return $this->get_row($stm, $terms);
     }
 
-    public function getPeriodCount($product_id, $my_name)
+    public function getVisitorsByProduct($product_id = null, $date_from = null, $date_to = null)
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(status_id = 2, price, 0)) AS unaccepted,
-                SUM(IF(status_id IN(2,1), 1, 0)) AS accepted,
-                SUM(IF(status_id = 2, 1, 0)) AS approved,
-                COUNT(id) total
+                *
             FROM
-                orders
-            WHERE
-                create_date BETWEEN :date_from AND :date_to
+                visitors v
+            WHERE 1
             ' . ($product_id ? ' AND product_id = :product_id' : '') . '
-            ' . ($my_name ? ' AND my_name = :my_name' : '') . '
-            GROUP BY DATE(create_date)
+            ' . ($date_from ? ' AND create_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND create_date >= :date_to' : '') . '
+            GROUP BY session_id
         ');
+        $terms = [];
+        if($product_id) {
+            $terms['product_id'] = $product_id;
+        }
+        if($date_from) {
+            $terms['date_from'] = $date_from;
+        }
+        if($product_id) {
+            $terms['date_to'] = $date_to;
+        }
+        if($terms) {
+            $tmp = $this->get_all($stm, $terms);
+        } else {
+            $tmp = $this->get_all($stm);
+        }
+        $res = [];
+        $res['total'] = 0;
+        foreach ($tmp as $item) {
+            $res['total'] ++;
+            if(!isset($res['products'][$item['product_id']])) {
+                $res['products'][$item['product_id']] = 1;
+            } else {
+                $res['products'][$item['product_id']] ++;
+            }
+        }
+        return $res;
     }
 }
