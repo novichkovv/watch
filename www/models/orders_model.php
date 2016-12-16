@@ -80,7 +80,7 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
+                SUM(IF(o.status_id IN (2,5,6), p.price, 0)) AS sum,
                 SUM(IF(o.status_id = 1, 1, 0)) AS accepted,
                 SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
                 COUNT(o.id) total
@@ -107,7 +107,7 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
+                SUM(IF(o.status_id IN (2,5,6), p.price, 0)) AS sum,
                 SUM(IF(o.status_id = 3, 1, 0)) AS accepted,
                 SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
                 COUNT(o.id) total
