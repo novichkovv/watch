@@ -118,7 +118,7 @@
                     <div class="old-cost">9630р</div>
                     <div class="new-cost col-1">2890р</div>
                 </div>
-                <div class="center"><a href="http://reals-gooods.ru/rich-mille2/#order" class="button">Заказать со скидкой</a></div>
+                <div class="center"><a href="#order" class="button">Заказать со скидкой</a></div>
             </div>
             <div class="section block-4">
                 <h2>Доставка и <span class="col-1">оплата</span></h2>
