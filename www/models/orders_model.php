@@ -130,7 +130,7 @@ class orders_model extends model
         return $this->get_row($stm, $terms);
     }
 
-    public function getVisitorsByProduct($product_id = null, $date_from = null, $date_to = null)
+    public function getVisitorsByProduct($product_id = null, $date_from = null, $date_to = null, $my_name = null)
     {
         $stm = $this->pdo->prepare('
             SELECT 
@@ -138,6 +138,7 @@ class orders_model extends model
             FROM
                 visitors v
             WHERE 1
+            ' . ($my_name ? ' AND account = :my_name' : '') . '
             ' . ($product_id ? ' AND product_id = :product_id' : '') . '
             ' . ($date_from ? ' AND create_date >= :date_from' : '') . '
             ' . ($date_to ? ' AND create_date >= :date_to' : '') . '
@@ -150,8 +151,11 @@ class orders_model extends model
         if($date_from) {
             $terms['date_from'] = $date_from;
         }
-        if($product_id) {
+        if($date_to) {
             $terms['date_to'] = $date_to;
+        }
+        if($my_name) {
+            $terms['my_name'] = $my_name;
         }
         if($terms) {
             $tmp = $this->get_all($stm, $terms);

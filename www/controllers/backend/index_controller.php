@@ -9,7 +9,6 @@ class index_controller extends controller
 {
     public function index()
     {
-//        header('Location: ' . SITE_DIR . 'orders/');
         $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
         $this->render('accounts', $this->model('m1_accounts')->getAll());
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.min.js']);
@@ -18,8 +17,8 @@ class index_controller extends controller
         $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')), date('Y-m-d'), null, $my_account['account_name']);
         $stats['today'] = $this->model('orders')->getTodayCount(null, $my_account['account_name']);
         $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
-        $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'));
-        $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'));
+        $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $my_account['account_name']);
+        $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
         $this->render('visitors', $visitors);
         $this->render('stats', $stats);
         $this->view('index' . DS . 'index');
@@ -32,6 +31,8 @@ class index_controller extends controller
                 $res = $this->model('orders')->getOrderDailyStats($_POST['filter_date_from'], $_POST['filter_date_to'], $_POST['filter_product_id'], $_POST['filter_name']);
                 $res['today'] = $this->model('orders')->getTodayCount($_POST['filter_product_id'], $_POST['filter_name']);
                 $res['month'] = $this->model('orders')->getMonthCount($_POST['filter_product_id'], $_POST['filter_name']);
+                $res['visitors']['today'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-d 00:00:00'), null, $_POST['filter_name']);
+                $res['visitors']['month'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
                 $res['status'] = 1;
                 echo json_encode($res);
                 exit;

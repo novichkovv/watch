@@ -343,6 +343,11 @@
                             for(var i in respond.month) {
                                 $(".month." + i).html(respond.month[i] ? respond.month[i] : 0);
                             }
+                            for(var i in respond.visitors) {
+                                console.log(i);
+                                $(".visitors." + i).html(respond.visitors[i]['total'] ? respond.visitors[i]['total'] : 0);
+                            }
+                            console.log(respond.visitors.month.total);
                             $(function() {
                                 var arr = respond.unaccepted;
                                 //{"2016, 10,09":"3","2016, 10,10":"8","2016, 10,11":"8","2016, 10,12":"10","2016, 10,13":"11","2016, 10,14":"10","2016, 10,15":"15","2016, 10,16":"4","2016, 10,17":"15","2016, 10,18":"16","2016, 10,19":"10","2016, 10,20":"7","2016, 10,21":"10","2016, 10,22":"5","2016, 10,23":"5","2016, 10,24":"5"};//<?php echo $graph; ?>;
