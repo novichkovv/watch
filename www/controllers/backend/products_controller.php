@@ -39,6 +39,7 @@ class products_controller extends controller
                     'left' => true,
                     'on' => 'p.cross_product_id = p2.id'
                 ];
+                $params['order'] = 'p.create_date DESC';
                 echo json_encode($this->getDataTable($params));
                 exit;
                 break;

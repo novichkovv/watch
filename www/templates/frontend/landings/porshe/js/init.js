@@ -8,7 +8,7 @@ $(function(){
     });
     $('.slider-cont').slick({
         infinite: true,
-        autoplay: false,
+        autoplay: true,
         dots: false,
         arrows: true,
         fade: false,
