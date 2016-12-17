@@ -548,6 +548,7 @@
             return false;
         });
         var stats = <?php echo json_encode($stats); ?>;
+        console.log(stats);
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var stat_id = $(this).attr("href").substring(1);
             var tooltip = $(this).attr('data-tooltip');
