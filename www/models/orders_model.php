@@ -141,7 +141,7 @@ class orders_model extends model
             ' . ($my_name ? ' AND account = :my_name' : '') . '
             ' . ($product_id ? ' AND product_id = :product_id' : '') . '
             ' . ($date_from ? ' AND create_date >= :date_from' : '') . '
-            ' . ($date_to ? ' AND create_date >= :date_to' : '') . '
+            ' . ($date_to ? ' AND create_date <= :date_to' : '') . '
             GROUP BY session_id
         ');
         $terms = [];
@@ -170,6 +170,87 @@ class orders_model extends model
                 $res['products'][$item['product_id']] = 1;
             } else {
                 $res['products'][$item['product_id']] ++;
+            }
+        }
+        return $res;
+    }
+
+    public function getCostApprovedStats($product_id = null, $date_from = null, $date_to = null, $my_name = null)
+    {
+        $product_id = 4;
+        if(!$date_from) {
+            $date_from = date('Y-m-d 00:00:00', strtotime(date('Y-m-d') . ' - 10 day'));
+        }
+        if(!$date_to) {
+            $date_to = date('Y-m-d H:i:s');
+        }
+        $stm = $this->pdo->prepare('
+            SELECT 
+                sum(p.price) earned,
+                c.spent,
+                c.reach reach,
+                c.results results,
+                p.price price,
+                p.id product_id,
+                p.product_name,
+                c.issue_date,
+                count(o.id) approved
+            FROM
+                orders o
+                    JOIN
+                products p ON p.id = o.product_id
+                    JOIN
+                costs c ON DATE(o.create_date) = c.issue_date
+                    AND c.product_id = p.id
+            WHERE
+                o.status_id IN (2 , 5, 6)
+            ' . ($my_name ? ' AND o.account = :my_name' : '') . '
+            ' . ($product_id ? ' AND p.id = :product_id' : '') . '
+            ' . ($date_from ? ' AND c.issue_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND c.issue_date <= :date_to' : '') . '
+            GROUP BY issue_date
+        ');
+        $terms = [];
+        if($product_id) {
+            $terms['product_id'] = $product_id;
+        }
+        if($date_from) {
+            $terms['date_from'] = $date_from;
+        }
+        if($date_to) {
+            $terms['date_to'] = $date_to;
+        }
+        if($my_name) {
+            $terms['my_name'] = $my_name;
+        }
+        if($terms) {
+//        echo $stm->getQuery($terms);
+            $tmp = $this->get_all($stm, $terms);
+        } else {
+            $tmp = $this->get_all($stm);
+        }
+        $stats = [];
+
+        $res = [];
+        if(!$product_id) {
+            foreach ($tmp as $item) {
+                $stats[$item['product_id']][$item['issue_date']] = $item;
+                for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
+                    $res[$item['product_id']]['spent'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] : 0;
+                    $res[$item['product_id']]['reach'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['reach'] ? $stats[date('Y-m-d', $i)]['reach']: 0;
+                    $res[$item['product_id']]['approved'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['approved'] ? $stats[date('Y-m-d', $i)]['approved'] : 0;
+                    $res[$item['product_id']]['accepted'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['accepted'] ? $stats[date('Y-m-d', $i)]['approved'] : 0;
+                    $res[$item['product_id']]['product_name'] = $stats[date('Y-m-d', $i)]['product_name'];
+                }
+            }
+        } else {
+            foreach ($tmp as $item) {
+                $stats[$item['issue_date']] = $item;
+            }
+            for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
+                $res['cpa'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['approved']) : 0);
+//                $res['cpe'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['earned']) : 0);
+                $res['revenue'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) - ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] :0);
             }
         }
         return $res;

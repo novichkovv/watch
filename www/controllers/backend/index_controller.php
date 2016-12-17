@@ -13,12 +13,16 @@ class index_controller extends controller
         $this->render('accounts', $this->model('m1_accounts')->getAll());
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.min.js']);
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.time.js']);
-        $this->render('products', $this->model('products')->getAll());
-        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')), date('Y-m-d'), null, $my_account['account_name']);
+        $products = $this->model('products')->getAll('create_date DESC');
+        $this->render('products', $products);
+        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), null, $my_account['account_name']);
         $stats['today'] = $this->model('orders')->getTodayCount(null, $my_account['account_name']);
         $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
         $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $my_account['account_name']);
         $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
+        $cost_stats = $this->model('orders')->getCostApprovedStats();
+        $stats['cpa'] = $cost_stats['cpa'];
+        $stats['revenue'] = $cost_stats['revenue'];
         $this->render('visitors', $visitors);
         $this->render('stats', $stats);
         $this->view('index' . DS . 'index');

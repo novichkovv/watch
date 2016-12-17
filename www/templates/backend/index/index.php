@@ -230,8 +230,6 @@
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-<!--                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>-->
-<!--                    <a href="javascript:;" class="reload" data-original-title="" title=""> </a>-->
                     <a href="javascript:;" class="fullscreen" data-original-title="" title=""> </a>
                     <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
                 </div>
@@ -264,10 +262,41 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <li class="active graph-2-filter">
+                                    <a data-tooltip="р. за апрув" href="#cpa" data-toggle="tab" aria-expanded="false"> Стоимость Заказа </a>
+                                </li>
+                                <li class="graph-2-filter">
+                                    <a data-tooltip="р." href="#revenue" data-toggle="tab" aria-expanded="false"> Прибыль </a>
+                                </li>
+<!--                                <li class="graph-2-filter">-->
+<!--                                    <a href="#tab_2_3" data-toggle="tab" aria-expanded="false"> Охвату </a>-->
+<!--                                </li>-->
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="demo-container">
+                                            <div id="cost_stats" class="demo-placeholder" style="height: 300px;">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
@@ -518,6 +547,127 @@
             ajax(params);
             return false;
         });
+        var stats = <?php echo json_encode($stats); ?>;
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var stat_id = $(this).attr("href").substring(1);
+            var tooltip = $(this).attr('data-tooltip');
+            show_stats(stats[stat_id], tooltip);
+        });
+        show_stats(stats['cpa'], "р. за апрув");
+
+
+
+        function show_stats(arr, tooltip) {
+            var chart_id = "#cost_stats";
+            var n = 0;
+            var d = [];
+            for(var i in arr)
+            {
+                d.push([new Date(i).getTime(), arr[i]]);
+                if(n == 0)var date_start = new Date(i).getTime();
+                n ++;
+            }
+            var date_end = new Date(i).getTime();
+
+            $.plot(chart_id, [{data: d}]  ,{
+                    xaxis: {
+                        min: date_start,
+                        max: date_end,
+                        mode: "time",
+                        tickSize: [1,"day"],//"<?php echo $period; ?>"],
+                        monthNames: [ "янв", "фев","мрт","апр","май","инь","иль","авг","сен","окт","ноя","дек"],
+                        tickLength: 0,
+                        axisLabel: 'Day',//'<?php echo ucfirst($period); ?>',
+                        axisLabelUseCanvas: true,
+                        axisLabelFontSizePixels: 11,
+                        axisLabelPadding: 5
+                    },
+                    colors: [
+                        "#41d62d",
+                        "#ff6b3d",
+                        "#faff5b"],
+                    series: {
+                        lines: {
+                            show: true,
+                            fill: false,
+                            fillColor: { colors: [ { opacity: 0.2 }, { opacity: 0.2 } ] },
+                            lineWidth: 1.5 },
+                        points: {
+                            show: true,
+                            radius: 2.5,
+                            fill: true,
+                            fillColor: "#ffffff",
+                            symbol: "circle",
+                            lineWidth: 1.1 }
+                    },
+                    grid: { hoverable: true, clickable: true },
+                    legend: {
+                        show: false
+                    }
+                }
+            );
+
+            function showTooltip(x, y, contents, areAbsoluteXY) {
+                var rootElt = 'body';
+
+                $('<div id="tooltip" class="chart-tooltip">' + contents + '</div>').css( {
+                    top: y - 50,
+                    left: x - 9,
+                    opacity: 0.9,
+                    position: 'absolute',
+                    'background-color':"#eee",
+                    padding: "10px 3px"
+                }).prependTo(rootElt).show();
+            }
+
+            var previousPoint = null;
+            $(chart_id).bind("plothover", function (event, pos, item) {
+                $("#x").text(pos.x.toFixed(2));
+                $("#y").text(pos.y.toFixed(2));
+
+                if ($("#placeholder").length > 0) {
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0].toFixed(2),
+                                y = item.datapoint[1].toFixed(2);
+                            var date = new Date(parseInt(x));
+                            var day = date.getDate();
+                            var month = [];
+                            month[0] = "Января";
+                            month[1] = "Февраля";
+                            month[2] = "Марта";
+                            month[3] = "Апреля";
+                            month[4] = "Мая";
+                            month[5] = "Июня";
+                            month[6] = "Июля";
+                            month[7] = "Августа";
+                            month[8] = "Сентября";
+                            month[9] = "Октября";
+                            month[10] = "Ноябя";
+                            month[11] = "Декабря";
+                            var m = month[date.getMonth()];
+                            showTooltip(item.pageX, item.pageY,
+                                (parseInt(day)<10 ? '0' + day : day) + " " + m +  ": <b>" + parseInt(y) + " " + tooltip + "</b>", false);
+                        }
+                    }
+                    else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                }
+            });
+            // Add the Flot version string to the footer
+
+            //$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+        };
+
+
+
+
+        // daily common
         $(function() {
             var arr = <?php echo json_encode($stats['unaccepted']); ?>;
             //{"2016, 10,09":"3","2016, 10,10":"8","2016, 10,11":"8","2016, 10,12":"10","2016, 10,13":"11","2016, 10,14":"10","2016, 10,15":"15","2016, 10,16":"4","2016, 10,17":"15","2016, 10,18":"16","2016, 10,19":"10","2016, 10,20":"7","2016, 10,21":"10","2016, 10,22":"5","2016, 10,23":"5","2016, 10,24":"5"};//<?php echo $graph; ?>;

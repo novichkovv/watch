@@ -9,6 +9,15 @@
     color: #e73d4a;
     display: none;
 }
+.dz-success-mark, .dz-error-mark, .dz-preview {
+    display: none;
+}
+.fill_td_input {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    margin: 0 !important;
+}
 .page-404-3 .error-404 {
     padding: 0 0 50px 50px !important;
 }
