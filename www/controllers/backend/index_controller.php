@@ -20,7 +20,7 @@ class index_controller extends controller
         $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
         $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $my_account['account_name']);
         $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
-        $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
+        $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), $my_account['account_name']);
         $stats['cpa'] = $cost_stats['cpa'];
         $stats['revenue'] = $cost_stats['revenue'];
         $this->render('visitors', $visitors);
