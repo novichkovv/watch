@@ -38,7 +38,7 @@ class index_controller extends controller
                 $res['month'] = $this->model('orders')->getMonthCount($_POST['filter_product_id'], $_POST['filter_name']);
                 $res['visitors']['today'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-d 00:00:00'), null, $_POST['filter_name']);
                 $res['visitors']['month'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
-                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
+                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_date_from'], $_POST['filter_date_to'], $_POST['filter_product_id'], $_POST['filter_name']);
                 $res['cpa'] = $cost_stats['cpa'];
                 $res['revenue'] = $cost_stats['revenue'];
                 $res['status'] = 1;
@@ -47,7 +47,7 @@ class index_controller extends controller
                 break;
 
             case "get_tab_stats":
-                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
+                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_date_from'], $_POST['filter_date_to'], $_POST['filter_product_id'], $_POST['filter_name']);
                 $res['cpa'] = $cost_stats['cpa'];
                 $res['revenue'] = $cost_stats['revenue'];
                 $res['status'] = 1;
