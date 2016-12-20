@@ -559,8 +559,7 @@
                 'callback': function (msg) {
                     ajax_respond(msg,
                         function (respond) { //success
-                            show_stats(respond.cpa, "р. за апрув");
-                            show_stats(respond.revenue, "р.");
+                            show_stats(respond['stat_id'], tooltip);
                         },
                         function (respond) { //fail
                         }
