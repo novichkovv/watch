@@ -49,7 +49,7 @@ class cost_controller extends controller
                             }
                             $row = str_getcsv($line);
                             if($row[8]) {
-                                if(!$checked_products[$row[2]] && !$costs[$row[2]]) {
+                                if(!$checked_products[0][$row[2]] && !$costs[$row[2]][0]) {
                                     if($product = $this->model('products')->getByField('product_key', $row[2])) {
                                         $costs[$row[2]][$row[0]] = [
                                             'reach' => $row[6],
@@ -61,9 +61,9 @@ class cost_controller extends controller
                                         ];
                                         $products[$row[2]] = $product['id'];
                                     } else {
-                                        $checked_products[$row[2]] = $row[2];
+                                        $checked_products[0][$row[2]] = $row[2];
                                     }
-                                } elseif($costs[$row[2]]) {
+                                } elseif($costs[$row[2]][0]) {
                                     $costs[$row[2]][$row[0]] = [
                                         'reach' => $row[6],
                                         'results' => $row[4],
