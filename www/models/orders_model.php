@@ -239,8 +239,6 @@ class orders_model extends model
         for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
             $res['cpa'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['approved']) : 0);
             $res['revenue'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) - ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] :0);
-            echo ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] : 0 ) . "\n";
-            echo ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) . "\n";
         }
 //        if(!$product_id) {
 //            foreach ($tmp as $item) {
