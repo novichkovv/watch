@@ -41,7 +41,7 @@
             </select>
         </div>
         <div class="col-md-3">
-            <input type="text" name="filter_date_from" class="filter form-control datepicker" value="<?php echo date('Y-m-d', strtotime(date('Y-m-d') . ' - 6 day')); ?>">
+            <input type="text" name="filter_date_from" class="filter form-control datepicker" value="<?php echo date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')); ?>">
         </div>
         <div class="col-md-3">
             <input type="text" name="filter_date_to" class="filter form-control datepicker" value="<?php echo date('Y-m-d'); ?>">
