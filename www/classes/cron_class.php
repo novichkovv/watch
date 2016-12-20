@@ -16,7 +16,7 @@ class cron_class extends base
             if($order['aff_order_id']) {
                 $orders[] = $order['aff_order_id'];
                 $order_ids[$order['aff_order_id']] = $order['id'];
-                if($order['status_id'] == 2) {
+                if(!$order['pay_date']) {
                     $approved[$order['aff_order_id']] = $order['id'];
                 }
             }
