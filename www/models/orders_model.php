@@ -178,7 +178,6 @@ class orders_model extends model
 
     public function getCostApprovedStats($product_id = null, $date_from = null, $date_to = null, $my_name = null)
     {
-        $product_id = 5;
         if(!$date_from) {
             $date_from = date('Y-m-d 00:00:00', strtotime(date('Y-m-d') . ' - 10 day'));
         }
