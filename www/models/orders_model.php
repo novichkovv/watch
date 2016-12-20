@@ -224,6 +224,7 @@ class orders_model extends model
             $terms['my_name'] = $my_name;
         }
         if($terms) {
+            $this->writeLog('test', $stm->getQuery($terms));
 //        echo $stm->getQuery($terms);
             $tmp = $this->get_all($stm, $terms);
         } else {
