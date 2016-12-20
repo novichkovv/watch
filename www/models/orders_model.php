@@ -234,14 +234,13 @@ class orders_model extends model
 
         $res = [];
         foreach ($tmp as $item) {
-            $stats[$item['product_id']][$item['issue_date']] = $item;
-            for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
-                $res[$item['product_id']]['spent'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] : 0;
-                $res[$item['product_id']]['reach'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['reach'] ? $stats[date('Y-m-d', $i)]['reach']: 0;
-                $res[$item['product_id']]['approved'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['approved'] ? $stats[date('Y-m-d', $i)]['approved'] : 0;
-                $res[$item['product_id']]['accepted'][date('Y,m,d', $i)] = $stats[date('Y-m-d', $i)]['accepted'] ? $stats[date('Y-m-d', $i)]['approved'] : 0;
-                $res[$item['product_id']]['product_name'] = $stats[date('Y-m-d', $i)]['product_name'];
-            }
+            $stats[$item['issue_date']] = $item;
+        }
+        for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
+            $res['cpa'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['approved']) : 0);
+            $res['revenue'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) - ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] :0);
+            echo ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] : 0 ) . "\n";
+            echo ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) . "\n";
         }
 //        if(!$product_id) {
 //            foreach ($tmp as $item) {
