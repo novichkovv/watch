@@ -285,7 +285,6 @@ class orders_model extends model
         $stm = $this->pdo->prepare('
             SELECT 
                 p.id,
-                p.product_name,
                 SUM(reach) reach,
                 SUM(results) results,
                 SUM(spent) spent,
@@ -309,6 +308,7 @@ class orders_model extends model
         $stm = $this->pdo->prepare('
             SELECT 
                 p.id,
+                p.product_name,
                 SUM(if(status_id IN (2,5,6), p.price, 0)) earned,
                 SUM(if(status_id IN (2,5,6), 1, 0)) approved,
                 SUM(if(status_id = 3, 1, 0)) declined,

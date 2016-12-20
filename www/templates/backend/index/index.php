@@ -327,7 +327,6 @@
                         <th>Посетило</th>
                         <th>Прибыль</th>
                         <th>CPA</th>
-
                     </tr>
                     </thead>
                     <tbody>
