@@ -547,7 +547,7 @@
             ajax(params);
             return false;
         });
-        var stats = JSON.parse(<?php echo json_encode($stats); ?>);
+        var stats = <?php echo json_encode($stats); ?>;
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var stat_id = $(this).attr("href").substring(1);
