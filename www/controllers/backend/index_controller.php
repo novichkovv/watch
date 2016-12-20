@@ -45,6 +45,15 @@ class index_controller extends controller
                 echo json_encode($res);
                 exit;
                 break;
+
+            case "get_tab_stats":
+                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
+                $res['cpa'] = $cost_stats['cpa'];
+                $res['revenue'] = $cost_stats['revenue'];
+                $res['status'] = 1;
+                echo json_encode($res);
+                exit;
+                break;
         }
     }
 

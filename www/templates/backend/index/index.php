@@ -377,7 +377,7 @@
                                 $(".visitors." + i).html(respond.visitors[i]['total'] ? respond.visitors[i]['total'] : 0);
                             }
                             show_stats(respond.cpa, "р. за апрув");
-                            show_stats(respond.revenue, "р. за апрув");
+                            show_stats(respond.revenue, "р.");
                             $(function() {
                                 var arr = respond.unaccepted;
                                 //{"2016, 10,09":"3","2016, 10,10":"8","2016, 10,11":"8","2016, 10,12":"10","2016, 10,13":"11","2016, 10,14":"10","2016, 10,15":"15","2016, 10,16":"4","2016, 10,17":"15","2016, 10,18":"16","2016, 10,19":"10","2016, 10,20":"7","2016, 10,21":"10","2016, 10,22":"5","2016, 10,23":"5","2016, 10,24":"5"};//<?php echo $graph; ?>;
@@ -553,11 +553,26 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var stat_id = $(this).attr("href").substring(1);
             var tooltip = $(this).attr('data-tooltip');
-            show_stats(stats[stat_id], tooltip);
-            console.log(stats[stat_id]);
-            console.log(tooltip);
-            console.log(stat_id);
-            console.log(stats);
+            var params = {
+                'action': 'get_tab_stats',
+                'get_from_form': 'stats_filter_form',
+                'callback': function (msg) {
+                    ajax_respond(msg,
+                        function (respond) { //success
+                            show_stats(respond.cpa, "р. за апрув");
+                            show_stats(respond.revenue, "р.");
+                        },
+                        function (respond) { //fail
+                        }
+                    );
+                }
+            };
+            ajax(params);
+//            show_stats(stats[stat_id], tooltip);
+//            console.log(stats[stat_id]);
+//            console.log(tooltip);
+//            console.log(stat_id);
+//            console.log(stats);
         });
         show_stats(stats['cpa'], "р. за апрув");
 
