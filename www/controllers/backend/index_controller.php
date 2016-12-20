@@ -20,7 +20,7 @@ class index_controller extends controller
         $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
         $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $my_account['account_name']);
         $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
-        $cost_stats = $this->model('orders')->getCostApprovedStats();
+        $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
         $stats['cpa'] = $cost_stats['cpa'];
         $stats['revenue'] = $cost_stats['revenue'];
         $this->render('visitors', $visitors);
@@ -32,11 +32,15 @@ class index_controller extends controller
     {
         switch ($_REQUEST['action']) {
             case "get_stats":
+
                 $res = $this->model('orders')->getOrderDailyStats($_POST['filter_date_from'], $_POST['filter_date_to'], $_POST['filter_product_id'], $_POST['filter_name']);
                 $res['today'] = $this->model('orders')->getTodayCount($_POST['filter_product_id'], $_POST['filter_name']);
                 $res['month'] = $this->model('orders')->getMonthCount($_POST['filter_product_id'], $_POST['filter_name']);
                 $res['visitors']['today'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-d 00:00:00'), null, $_POST['filter_name']);
                 $res['visitors']['month'] = $this->model('orders')->getVisitorsByProduct($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
+                $cost_stats = $this->model('orders')->getCostApprovedStats($_POST['filter_product_id'], date('Y-m-01 00:00:00'), null, $_POST['filter_name']);
+                $res['cpa'] = $cost_stats['cpa'];
+                $res['revenue'] = $cost_stats['revenue'];
                 $res['status'] = 1;
                 echo json_encode($res);
                 exit;
