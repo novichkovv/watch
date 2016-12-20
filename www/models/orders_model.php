@@ -267,4 +267,27 @@ class orders_model extends model
 //        exit;
         return $res;
     }
+
+    public function getProductsStats($product_id = null, $date_from = null, $date_to = null, $my_name = null)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT 
+                p.id,
+                product_name,
+                SUM(reach),
+                SUM(results),
+                SUM(spent),
+                AVG(relevance_score)
+            FROM
+                costs c
+                    JOIN
+                products p ON p.id = c.product_id
+            WHERE 1
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
+            ' . ($product_id ? ' AND p.id = :product_id' : '') . '
+            ' . ($date_from ? ' AND c.issue_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND c.issue_date <= :date_to' : '') . '
+            GROUP BY p.id
+        ');
+    }
 }

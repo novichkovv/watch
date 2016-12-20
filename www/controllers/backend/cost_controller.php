@@ -34,7 +34,9 @@ class cost_controller extends controller
     public function index_ajax()
     {
         switch ($_REQUEST['action']) {
+
             case "get_parsed_csv_table":
+                $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
                 $costs = [];
                 $checked_products = [];
                 $products = [];
@@ -54,7 +56,8 @@ class cost_controller extends controller
                                             'results' => $row[4],
                                             'spent' => $row[8],
                                             'relevance_score' => $row[9],
-                                            'product_id' => $product['id']
+                                            'product_id' => $product['id'],
+                                            'account' => $my_account['account_name']
                                         ];
                                         $products[$row[2]] = $product['id'];
                                     } else {
@@ -66,7 +69,8 @@ class cost_controller extends controller
                                         'results' => $row[4],
                                         'spent' => $row[8],
                                         'relevance_score' => $row[9],
-                                        'product_id' => $products[$row[2]]
+                                        'product_id' => $products[$row[2]],
+                                        'account' => $my_account['account_name']
                                     ];
                                 }
                             }
