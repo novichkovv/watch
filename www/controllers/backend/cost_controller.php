@@ -85,8 +85,8 @@ class cost_controller extends controller
             
             case "save_costs":
                 foreach ($_POST['cost'] as $date => $costs) {
-                    foreach ($costs as $cost) {
-                        if($id = $this->model('costs')->getByField('issue_date', $date)) {
+                    foreach ($costs as $product_id => $cost) {
+                        if($id = $this->model('costs')->getByFields(['issue_date' => $date, 'product_id' => $product_id])) {
                             $cost['id'] = $id;
                         }
                         $cost['create_date'] = date('Y-m-d H:i:s');
