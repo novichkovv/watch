@@ -296,7 +296,63 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-bar-chart font-green-haze"></i>
+                    <span class="caption-subject bold uppercase font-green-haze"> Продукты</span>
+                    <span class="caption-helper">Статистика</span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                    <a href="javascript:;" class="fullscreen" data-original-title="" title=""> </a>
+                    <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Продукт</th>
+                        <th>Охват</th>
+                        <th>Результат</th>
+                        <th>Потрачено</th>
+                        <th>Оценка</th>
+                        <th>Выручка</th>
+                        <th>Подтв</th>
+                        <th>Отказ</th>
+                        <th>Заказов</th>
+                        <th>Посетило</th>
+                        <th>Прибыль</th>
+                        <th>CPA</th>
 
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($product_stats as $product): ?>
+                        <tr>
+                            <td><?php echo $product['product_name']; ?></td>
+                            <td><?php echo $product['reach']; ?></td>
+                            <td><?php echo $product['results']; ?></td>
+                            <td><?php echo $product['spent']; ?></td>
+                            <td><?php echo $product['score']; ?></td>
+                            <td><?php echo $product['earned']; ?></td>
+                            <td><?php echo $product['approved']; ?></td>
+                            <td><?php echo $product['declined']; ?></td>
+                            <td><?php echo $product['total']; ?></td>
+                            <td><?php echo $product['visitors']; ?></td>
+                            <td><?php echo ($product['earned'] - $product['spent']); ?></td>
+                            <td><?php echo ($product['approved'] ? (($product['spent'] ? $product['spent'] : 0)/$product['approved']) : 0); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {

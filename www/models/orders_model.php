@@ -270,24 +270,97 @@ class orders_model extends model
 
     public function getProductsStats($product_id = null, $date_from = null, $date_to = null, $my_name = null)
     {
+        if($product_id) {
+            $terms['product_id'] = $product_id;
+        }
+        if($date_from) {
+            $terms['date_from'] = $date_from;
+        }
+        if($date_to) {
+            $terms['date_to'] = $date_to;
+        }
+        if($my_name) {
+            $terms['my_name'] = $my_name;
+        }
         $stm = $this->pdo->prepare('
             SELECT 
                 p.id,
-                product_name,
-                SUM(reach),
-                SUM(results),
-                SUM(spent),
-                AVG(relevance_score)
+                p.product_name,
+                SUM(reach) reach,
+                SUM(results) results,
+                SUM(spent) spent,
+                AVG(relevance_score) score
             FROM
                 costs c
                     JOIN
                 products p ON p.id = c.product_id
             WHERE 1
-            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
+            ' . ($my_name ? ' AND c.my_name = :my_name' : '') . '
             ' . ($product_id ? ' AND p.id = :product_id' : '') . '
             ' . ($date_from ? ' AND c.issue_date >= :date_from' : '') . '
             ' . ($date_to ? ' AND c.issue_date <= :date_to' : '') . '
             GROUP BY p.id
         ');
+        if($terms) {
+            $costs = $this->get_all($stm, $terms);
+        } else {
+            $costs = $this->get_all($stm);
+        }
+        $stm = $this->pdo->prepare('
+            SELECT 
+                p.id,
+                SUM(if(status_id IN (2,5,6), p.price, 0)) earned,
+                SUM(if(status_id IN (2,5,6), 1, 0)) approved,
+                SUM(if(status_id = 3, 1, 0)) declined,
+                COUNT(o.id) total
+            FROM
+                products p
+                    JOIN
+                orders o on o.product_id = p.id
+            WHERE 1
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
+            ' . ($product_id ? ' AND p.id = :product_id' : '') . '
+            ' . ($date_from ? ' AND o.create_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND o.create_date <= :date_to' : '') . '
+            GROUP BY p.id
+        ');
+        if($terms) {
+            $orders = $this->get_all($stm, $terms);
+        } else {
+            $orders = $this->get_all($stm);
+        }
+        $stm = $this->pdo->prepare('
+            SELECT 
+                product_id id,
+                COUNT(id) visitors
+            FROM
+                visitors
+            WHERE 1
+            ' . ($my_name ? ' AND account = :my_name' : '') . '
+            ' . ($product_id ? ' AND product_id = :product_id' : '') . '
+            ' . ($date_from ? ' AND create_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND create_date <= :date_to' : '') . '
+            GROUP BY product_id
+        ');
+        if($terms) {
+            $visitors = $this->get_all($stm, $terms);
+        } else {
+            $visitors = $this->get_all($stm);
+        }
+        $res = [];
+        foreach ($costs as $cost) {
+            $res[$cost['id']] = $cost;
+        }
+        foreach ($orders as $order) {
+            foreach ($order as $key => $value) {
+                $res[$order['id']][$key] = $value;
+            }
+        }
+        foreach ($visitors as $visitor) {
+            foreach ($visitor as $key => $value) {
+                $res[$visitor['id']][$key] = $value;
+            }
+        }
+        return $res;
     }
 }

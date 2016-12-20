@@ -23,6 +23,7 @@ class index_controller extends controller
         $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), $my_account['account_name']);
         $stats['cpa'] = $cost_stats['cpa'];
         $stats['revenue'] = $cost_stats['revenue'];
+        $this->render('product_stats', $this->model('orders')->getProductsStats());
         $this->render('visitors', $visitors);
         $this->render('stats', $stats);
         $this->view('index' . DS . 'index');
