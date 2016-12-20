@@ -559,7 +559,7 @@
                 'callback': function (msg) {
                     ajax_respond(msg,
                         function (respond) { //success
-                            show_stats(respond['stat_id'], tooltip);
+                            show_stats(respond[stat_id], tooltip);
                         },
                         function (respond) { //fail
                         }
