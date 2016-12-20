@@ -14,6 +14,7 @@
                 <td><input class="fill_td_input" type="text" name="cost[<?php echo $date; ?>][<?php echo $product_name; ?>][results]" value="<?php echo $cost['results']; ?>"></td>
                 <td><input class="fill_td_input" type="text" name="cost[<?php echo $date; ?>][<?php echo $product_name; ?>][spent]" value="<?php echo $cost['spent']; ?>"></td>
                 <td><input class="fill_td_input" type="text" name="cost[<?php echo $date; ?>][<?php echo $product_name; ?>][relevance_score]" value="<?php echo $cost['relevance_score']; ?>"></td>
+                <td><input class="fill_td_input" type="text" name="cost[<?php echo $date; ?>][<?php echo $product_name; ?>][my_name]" value="<?php echo $cost['my_name']; ?>"></td>
                 <td><button class="btn-xs btn-icon btn-default btn delete_cost" type="button"><i class="text-danger fa fa-trash"></i> </button> </td>
             </tr>
         <?php endforeach; ?>

@@ -57,7 +57,7 @@ class cost_controller extends controller
                                             'spent' => $row[8],
                                             'relevance_score' => $row[9],
                                             'product_id' => $product['id'],
-                                            'account' => $my_account['account_name']
+                                            'my_name' => $my_account['account_name']
                                         ];
                                         $products[$row[2]] = $product['id'];
                                     } else {
@@ -70,7 +70,7 @@ class cost_controller extends controller
                                         'spent' => $row[8],
                                         'relevance_score' => $row[9],
                                         'product_id' => $products[$row[2]],
-                                        'account' => $my_account['account_name']
+                                        'my_name' => $my_account['account_name']
                                     ];
                                 }
                             }
