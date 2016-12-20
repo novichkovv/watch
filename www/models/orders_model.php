@@ -204,7 +204,7 @@ class orders_model extends model
                 products p ON p.id = c.product_id
             WHERE
                 o.status_id IN (2 , 5, 6)
-            ' . ($my_name ? ' AND o.account = :my_name' : '') . '
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
             ' . ($product_id ? ' AND p.id = :product_id' : '') . '
             ' . ($date_from ? ' AND c.issue_date >= :date_from' : '') . '
             ' . ($date_to ? ' AND c.issue_date <= :date_to' : '') . '
