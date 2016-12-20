@@ -30,6 +30,7 @@ class orders_model extends model
                     AND o.pay_date >= :last_update
                     AND o.status_id = 2
         ');
+    $this->writeLog('test', $stm->getQuery(['last_update' => registry::get('user')['last_update']]));
         return $this->get_row($stm, ['last_update' => registry::get('user')['last_update']])['qty'];
     }
 
@@ -177,7 +178,7 @@ class orders_model extends model
 
     public function getCostApprovedStats($product_id = null, $date_from = null, $date_to = null, $my_name = null)
     {
-        $product_id = 4;
+        $product_id = 5;
         if(!$date_from) {
             $date_from = date('Y-m-d 00:00:00', strtotime(date('Y-m-d') . ' - 10 day'));
         }
@@ -196,12 +197,12 @@ class orders_model extends model
                 c.issue_date,
                 count(o.id) approved
             FROM
-                orders o
+                costs c
+                    LEFT JOIN
+                orders o ON DATE(o.create_date) = c.issue_date
+                    AND c.product_id = o.product_id
                     JOIN
-                products p ON p.id = o.product_id
-                    JOIN
-                costs c ON DATE(o.create_date) = c.issue_date
-                    AND c.product_id = p.id
+                products p ON p.id = c.product_id
             WHERE
                 o.status_id IN (2 , 5, 6)
             ' . ($my_name ? ' AND o.account = :my_name' : '') . '
@@ -247,12 +248,16 @@ class orders_model extends model
             foreach ($tmp as $item) {
                 $stats[$item['issue_date']] = $item;
             }
+//            print_r($stats);
             for($i = strtotime($date_from); $i <= strtotime($date_to); $i += 24*3600) {
                 $res['cpa'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['approved']) : 0);
-//                $res['cpe'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['approved'] ? ($stats[date('Y-m-d', $i)]['spent']/$stats[date('Y-m-d', $i)]['earned']) : 0);
                 $res['revenue'][date('Y,m,d', $i)] = ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) - ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] :0);
+                echo ($stats[date('Y-m-d', $i)]['spent'] ? $stats[date('Y-m-d', $i)]['spent'] : 0 ) . "\n";
+                echo ($stats[date('Y-m-d', $i)]['earned'] ? $stats[date('Y-m-d', $i)]['earned'] : 0 ) . "\n";
             }
         }
+//        print_r($res);
+//        exit;
         return $res;
     }
 }
