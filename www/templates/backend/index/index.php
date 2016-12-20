@@ -555,6 +555,7 @@
             show_stats(stats[stat_id], tooltip);
             console.log(stats[stat_id]);
             console.log(tooltip);
+            console.log(stat_id);
         });
         show_stats(stats['cpa'], "р. за апрув");
 
