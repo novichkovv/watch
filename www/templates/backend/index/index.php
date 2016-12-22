@@ -656,7 +656,8 @@
                         axisLabel: 'Day',//'<?php echo ucfirst($period); ?>',
                         axisLabelUseCanvas: true,
                         axisLabelFontSizePixels: 11,
-                        axisLabelPadding: 5
+                        axisLabelPadding: 5,
+                        ticks: [[0, "\u03c0/2"]]
                     },
                     colors: [
                         "#41d62d",
