@@ -7,11 +7,6 @@
  */
 class order_controller extends controller
 {
-    public function index()
-    {
-
-    }
-
     public function m1()
     {
         $this->writeLog('ORDERS_M1_PAGE_REQUESTS', $_POST);

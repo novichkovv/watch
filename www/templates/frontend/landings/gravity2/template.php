@@ -110,7 +110,7 @@
                             <strong>Оставьте заявку</strong><br>
                             и мы свяжемся с вами для уточнения деталей&nbsp;заказа
                         </p>
-                        <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
+                        <form action="<?php echo SITE_DIR; ?>order/" method="post" class="m1_form">
                             <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
                             <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
                             <input type="hidden" name="visitor_id" value="<?php echo $visitor_id; ?>"/>
