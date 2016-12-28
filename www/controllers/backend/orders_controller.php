@@ -69,7 +69,17 @@ class orders_controller extends controller
                 break;
 
             case "edit_order_info":
-                $this->model('users')->insert($_POST['user']);
+                $user_id = $this->model('users')->insert($_POST['user'], 'id');
+                $order = $_POST['order'];
+                $address = $_POST['address'];
+                $address['user_id'] = $user_id;
+                if(!$address['id']) {
+                    unset($address['id']);
+                    $address['create_date'] = date('Y-m-d H:i:s');
+                }
+                $address['id'] = $this->model('user_addresses')->insert($address, 'id');
+                $order['address_id'] = $address['id'];
+                $this->model('orders')->insert($order, 'id');
                 echo json_encode(array('status' => 1));
                 exit;
                 break;

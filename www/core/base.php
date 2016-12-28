@@ -99,11 +99,4 @@ class base
         return $this->api_instance;
     }
 
-    public function feed()
-    {
-        if(!$this->feed_instance) {
-            $this->feed_instance = new feed_class();
-        }
-        return $this->feed_instance;
-    }
 }

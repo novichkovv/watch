@@ -207,7 +207,7 @@ window._fbq.push(['track', 'PageView', {}]);
                     <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" class="imgsmall" src="<?php echo $dir; ?>img/22.jpg">
                     <p>Оплата</p>
                 </div>
-                <p class="revs">Мы не принимаем предоплату. Оплата производится только при получении товара!</p>
+                <p class="revs">Оплата может производиться как при получении товара, так и по предоплате, с использованием платежной системы <a href="https://www.payanyway.ru/">PayAnyWay</a></p>
             </div>
             <div class="star">    
                 <div class="star_one_desc">
@@ -245,8 +245,13 @@ window._fbq.push(['track', 'PageView', {}]);
         <div class="main-wrap">
             <div class="section">
                 <div class="billabong" style="text-align: center; font-size: 80px; line-height: 100px; padding: 20px 0 0;">ElaSlim</div>
-                <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" style="margin: -20px auto 0; display: block;" src="http://best-gooods.ru/lands-img/cop1-b-320.png">
+<!--                <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" style="margin: -20px auto 0; display: block;">-->
+                <div style="padding: 10px 50px; text-align: center;">
+                    ИП Глазырина А.Э<br>Санкт-Петербург, Ленинский пр-т 191к2-9<br>
+                    ИНН 784802011692
+                </div>
                 <p style="text-align: center; font-size: 14px; padding-bottom: 10px;"><a style="color: #888;" href="politics.html">Политика конфиденциальности</a></p>
+                <p style="text-align: center; font-size: 14px; padding-bottom: 10px;"><a style="color: #888;" href="<?php echo SITE_DIR; ?>oferta">Договор-Оферта</a></p>
             </div>
         </div>
         <script type="text/javascript" src="<?php echo $dir; ?>imgvideo/videogo.js"></script>   

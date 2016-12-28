@@ -76,6 +76,13 @@ class order_controller extends controller
 
     public function index()
     {
+        if(!$_POST['product_id'] && $_GET['landing']) {
+            $path = 'landings' . DS . $_GET['landing'] . DS;
+            $dir = SITE_DIR . 'templates/frontend/landings/' . $_GET['landing'] . '/';
+            $this->render('dir', $dir);
+            $this->view_only($path . 'template');
+            exit;
+        }
         $this->writeLog('ORDERS_M1_PAGE_REQUESTS', $_POST);
         $_GET['pixel'] = $_POST['pixel'];
         if(!$_POST['product_id']) {
@@ -107,23 +114,6 @@ class order_controller extends controller
         $order['status_id'] = 1;
         $order['id'] = $this->model('orders')->insert($order);
         $product = $this->model('products')->getById($order['product_id']);
-        $data = [];
-        $data['ref'] = $product['webmaster_id'];
-        $data['product_id'] = $product['affiliate_id'];
-        $data['phone'] = $_POST['phone'];
-        $data['name'] = $_POST['name'];
-        $data['ip'] = $this->get_ip();
-        $data['s'] = $_POST['s'];
-        $data['w'] = $_POST['w'];
-        $data['t'] = $_POST['t'];
-//        $res = m1_api_class::sendOrder($data);
-//        if($res['result'] == 'ok') {
-//            $order['aff_order_id'] = $res['id'];
-//            $order['status_id'] = 1;
-//            $this->model('orders')->insert($order);
-//        } else {
-//            $this->writeLog('ORDER_ERROR', 'Order not saved' . "\n" . print_r($data, 1) . "\n" . print_r($res, 1));
-//        }
         $path = 'landings' . DS . $product['success_landing_key'] . DS;
         $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
         if($product['cross_product_id']) {
