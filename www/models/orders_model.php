@@ -415,7 +415,6 @@ class orders_model extends model
         if($region_code) {
             $terms['region_code'] = $region_code;
         }
-        echo $stm->getQuery($terms);
         if($terms) {
             return $this->get_all($stm, $terms);
         } else {
