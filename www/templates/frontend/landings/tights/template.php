@@ -250,8 +250,11 @@ window._fbq.push(['track', 'PageView', {}]);
                     ИП Глазырина А.Э<br>Санкт-Петербург, Ленинский пр-т 191к2-9<br>
                     ИНН 784802011692
                 </div>
-                <p style="text-align: center; font-size: 14px; padding-bottom: 10px;"><a style="color: #888;" href="politics.html">Политика конфиденциальности</a></p>
-                <p style="text-align: center; font-size: 14px; padding-bottom: 10px;"><a style="color: #888;" href="<?php echo SITE_DIR; ?>oferta">Договор-Оферта</a></p>
+                <form method="post" action="http://backend.<?php echo DOMAIN; ?>docs/?document=oferta.docx">
+                    <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                        <button type="submit" style="background-color: #fff; border: none; color: #0a6aa1;">Договор-Оферта</button>
+                    </p>
+                </form>
             </div>
         </div>
         <script type="text/javascript" src="<?php echo $dir; ?>imgvideo/videogo.js"></script>   

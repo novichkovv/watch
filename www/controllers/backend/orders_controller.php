@@ -84,6 +84,47 @@ class orders_controller extends controller
                 exit;
                 break;
 
+            case "suggest_region":
+                $res = $this->model('orders')->fiasSuggest($_POST['val'], 1);
+                echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
+
+            case "suggest_county":
+                $res = $this->model('orders')->fiasSuggest($_POST['val'], 3, $_POST['region_code']);
+                echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
+
+            case "get_region":
+                $res = [];
+                $res['status'] = 1;
+                $res['region'] = $this->model('fias')->getByFields([
+                    'REGIONCODE' => $_POST['region_code'],
+                    'AOLEVEL' => 1
+                ]);
+                if($_POST['county_code']) {
+                    $res['county'] = $this->model('fias')->getByFields([
+                        'REGIONCODE' => $_POST['region_code'],
+                        'AREACODE' => $_POST['county_code'],
+                        'AOLEVEL' => 3
+                    ]);
+                }
+                echo json_encode($res);
+                exit;
+                break;
+
+            case "suggest_city":
+                $res = $this->model('orders')->citySuggest($_POST['val'], $_POST['region_code'], $_POST['county_code']);
+                echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
+
+            case "suggest_street":
+                $res = $this->model('orders')->fiasSuggest($_POST['val'], null, null, $_POST['parent']);
+                echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
         }
     }
 }

@@ -1,5 +1,7 @@
 {
     "require": {
-        "phpunit/phpunit": "5.5.*"
+        "phpunit/phpunit": "5.5.*",
+        "integrationmonitoring/moneta-php-sdk": "dev-master"
     }
+
 }

@@ -128,5 +128,236 @@
             ajax(params);
             return false;
         });
+
+        $("body").on("keyup", ".region-suggest", function () {
+            var $group = $(this).closest('.suggest-group');
+            var val = $(this).val();
+            var $container = $group.find('.suggest_container');
+            if(val.length > 2) {
+                console.log(val);
+                var values = {'val': val};
+                var params = {
+                    'action': 'suggest_region',
+                    'values': values,
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $container.html('');
+                                for(var i in respond.suggest) {
+                                    $container.append('' +
+                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-code="' + respond.suggest[i]['CODE'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '">' +
+                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] +
+                                        '</div>' +
+                                        '');
+                                }
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+
+                    }
+                };
+                ajax(params);
+            }
+        });
+
+        $("body").on("keyup", ".county-suggest", function () {
+            var $group = $(this).closest('.suggest-group');
+            var val = $(this).val();
+            var $container = $group.find('.suggest_container');
+            if(val.length > 2) {
+                var values = {'val': val};
+                var $region = $(".region-suggest");
+                var region_code = $region.val();
+                if(region_code) {
+                    values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
+                }
+                var params = {
+                    'action': 'suggest_county',
+                    'values': values,
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $container.html('');
+                                for(var i in respond.suggest) {
+                                    console.log(respond);
+                                    $container.append('' +
+                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '">' +
+                                        respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] +
+                                        '</div>' +
+                                        '');
+                                }
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+
+                    }
+                };
+                ajax(params);
+            }
+        });
+
+        $("body").on("keyup", ".city-suggest", function () {
+            var $group = $(this).closest('.suggest-group');
+            var val = $(this).val();
+            var $container = $group.find('.suggest_container');
+            if(val.length > 2) {
+                var values = {'val': val};
+                var $region = $(".region-suggest");
+                var region_code = $region.val();
+                if(region_code) {
+                    values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
+                }
+                var $county = $(".county-suggest");
+                if($county.val()) {
+                    values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
+                }
+                var params = {
+                    'action': 'suggest_city',
+                    'values': values,
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $container.html('');
+                                for(var i in respond.suggest) {
+                                    console.log(respond);
+                                    $container.append('' +
+                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
+                                        respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
+                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
+                                        '</div>' +
+                                        '');
+                                }
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+
+                    }
+                };
+                ajax(params);
+            }
+        });
+
+        $("body").on("keyup", ".street-suggest", function () {
+            var $group = $(this).closest('.suggest-group');
+            var val = $(this).val();
+            var $container = $group.find('.suggest_container');
+            if(val.length > 2) {
+                var values = {'val': val};
+                var $region = $(".region-suggest");
+                var region_code = $region.val();
+                if(region_code) {
+                    values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
+                }
+                var $county = $(".county-suggest");
+                if($county.val()) {
+                    values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
+                }
+                var $city = $(".city-suggest");
+                if($city.val()) {
+                    values.city_code = $city.closest('.suggest-group').find('.suggest-code').val();
+                    values.parent = $city.closest('.suggest-group').find('.suggest-guid').val();
+                }
+                var params = {
+                    'action': 'suggest_street',
+                    'values': values,
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $container.html('');
+                                for(var i in respond.suggest) {
+                                    $container.append('' +
+                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
+                                        respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
+                                        respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
+                                        '</div>' +
+                                        '');
+                                }
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+
+                    }
+                };
+                ajax(params);
+            }
+        });
+
+        $("body").on("click", ".suggest_item", function () {
+            var name = $(this).html();
+            var guid = $(this).attr('data-guid');
+            var parent = $(this).attr('data-parent');
+            var code = $(this).attr('data-code');
+            var region_code = $(this).attr('data-regioncode');
+            var county_code = $(this).attr('data-countycode');
+            var $group = $(this).closest('.suggest-group');
+            var $region = $('.region-suggest');
+            var $region_group = $region.closest('.suggest-group');
+            var $county = $('.county-suggest');
+            var $county_group = $county.closest('.suggest-group');
+            var postalcode = $(this).attr('data-postalcode');
+            if(postalcode) {
+                $("#zip-input").val(postalcode);
+            }
+            if($(this).closest(".suggest-group").find('.suggest').hasClass('county-suggest') && !$region.val()) {
+                var params = {
+                    'action': 'get_region',
+                    'values': {'region_code' : region_code},
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $region.val(respond.region['OFFNAME'] + ' ' + respond.region['SHORTNAME']);
+                                $region_group.find('.suggest-guid').val(respond.region['AOGUID'])
+                                $region_group.find('.suggest-code').val(respond.region['CODE'])
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+                    }
+                };
+                ajax(params);
+            }
+
+            if($(this).closest(".suggest-group").find('.suggest').hasClass('city-suggest') && (!$region.val() || !$county.val())) {
+                params = {
+                    'action': 'get_region',
+                    'values': {'region_code' : region_code, 'county_code': county_code},
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $region.val(respond.region['OFFNAME'] + ' ' + respond.region['SHORTNAME']);
+                                $region.closest('.suggest-group').find('.suggest-guid').val(respond.region['AOGUID']);
+                                $region.closest('.suggest-group').find('.suggest-code').val(respond.region['CODE']);
+                                if(undefined !== respond.county) {
+                                    $county.val(respond.county['OFFNAME'] + ' ' + respond.county['SHORTNAME']);
+                                    $county.closest('.suggest-group').find('.suggest-guid').val(respond.county['AOGUID']);
+                                    $county.closest('.suggest-group').find('.suggest-code').val(respond.county['AREACODE']);
+                                }
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+                    }
+                };
+                ajax(params);
+            }
+
+            $group.find('.suggest').val(name);
+            $group.find('.suggest-guid').val(guid);
+            $group.find('.suggest-parent').val(parent);
+            $group.find('.suggest-code').val(code);
+            $group.find('.suggest_container').html('');
+        });
+
+        $("body").on("keyup", ".suggest", function () {
+            var level = $(this).attr('data-level');
+            $(this).closest('.suggest-group').find('.suggest-input').val('');
+            for(var i = parseInt(level) + 1; i < 5; i++) {
+                $("[data-level='" + i + "']").closest('.suggest-group').find('.suggest-input, .suggest').val('');
+            }
+        });
     });
 </script>

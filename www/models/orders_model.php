@@ -363,4 +363,63 @@ class orders_model extends model
         }
         return $res;
     }
+
+    public function citySuggest($val, $region_code, $county_code)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                f1.CODE,
+                f1.AOGUID,
+                f1.OFFNAME,
+                f1.SHORTNAME,
+                IF(f1.AOLEVEL = 6, CONCAT(f2.OFFNAME, " ", f2.SHORTNAME), \'\') PARENTNAME,
+                f1.CITYCODE,
+                f1.REGIONCODE,
+                f1.CODE,
+                f1.AREACODE,
+                f1.POSTALCODE
+            FROM 
+                fias f1 join fias f2 ON f1.PARENTGUID = f2.AOGUID
+            WHERE
+                f1.OFFNAME LIKE "' . $val . '%" 
+            AND f1.AOLEVEL IN(4,6)
+            ' . ($region_code ? 'AND f1.REGIONCODE = "' . $region_code . '"' : '') . '
+            ' . ($county_code ? 'AND f1.AREACODE = "' . $county_code . '"' : '') . '
+            LIMIT 5
+        ');
+//        echo $stm->getQuery();
+        return $this->get_all($stm);
+    }
+
+    public function fiasSuggest($val, $level = null, $region_code = null, $parent = null)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                * 
+            FROM 
+                fias 
+            WHERE
+                OFFNAME LIKE "' . $val . '%" 
+            ' . ($level ? 'AND AOLEVEL = :level': '') . '
+            ' . ($region_code ? 'AND REGIONCODE = :region_code': '') . '
+            ' . ($parent ? 'AND PARENTGUID = :parent': '') . '
+            LIMIT 5
+        ');
+        $terms = [];
+        if($level) {
+            $terms['level'] = $level;
+        }
+        if($parent) {
+            $terms['parent'] = $parent;
+        }
+        if($region_code) {
+            $terms['region_code'] = $region_code;
+        }
+        echo $stm->getQuery($terms);
+        if($terms) {
+            return $this->get_all($stm, $terms);
+        } else {
+            return $this->get_all($stm);
+        }
+    }
 }
