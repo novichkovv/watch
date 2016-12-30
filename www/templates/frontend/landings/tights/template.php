@@ -199,15 +199,18 @@ window._fbq.push(['track', 'PageView', {}]);
                 <div class="star_one_desc">
                     <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" class="imgsmall" src="<?php echo $dir; ?>img/21.jpg">
                     <p>Доставка</p>
-                </div>
-                <p class="revs">Доставка <span class="col-va">#ElaSlim</span> возможна почтой и курьером. Стоимость доставки от 350 р. Оставьте заявку и оператор расскажет какая доставка будет удобнее именно для вас.</p>
+                    </div>
+
+                <p class="revs">Доставка <span class="col-va">#ElaSlim</span> возможна почтой и курьером или в один из <a target="_blank" href="<?php echo SITE_DIR; ?>info/pvz/">пунктов выдачи</a> . Стоимость доставки от 350 р. Оставьте заявку и оператор расскажет какая доставка будет удобнее именно для вас.</p>
+                <div style="margin-left: 20px; font-size: 12px;"><a href="#info">Подробнее..</a></div>
             </div>
             <div class="star">    
                 <div class="star_one_desc">
                     <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" class="imgsmall" src="<?php echo $dir; ?>img/22.jpg">
                     <p>Оплата</p>
                 </div>
-                <p class="revs">Оплата может производиться как при получении товара, так и по предоплате, с использованием платежной системы <a href="https://www.payanyway.ru/">PayAnyWay</a></p>
+                <p class="revs">Оплата может производиться как при получении товара, так и по предоплате, с использованием платежной системы <a target="_blank"  href="https://www.payanyway.ru/">PayAnyWay</a></p>
+                <div style="margin-left: 20px; font-size: 12px;"><a href="#info">Подробнее..</a></div>
             </div>
             <div class="star">    
                 <div class="star_one_desc">
@@ -215,7 +218,7 @@ window._fbq.push(['track', 'PageView', {}]);
                     <p>Гарантии</p>
                 </div>
                 <p class="revs">Вы вправе отказаться от покупки в течение 14 дней с момента получения заказа, независимо от причины возврата.</p>
-            </div>
+                <div style="margin-left: 20px; font-size: 12px;"><a href="#info">Подробнее..</a></div> </div>
         </div>
 
 
@@ -243,16 +246,29 @@ window._fbq.push(['track', 'PageView', {}]);
             </div>
         </div>            
         <div class="main-wrap">
-            <div class="section">
+            <div id="info" class="section" style="text-align: center;">
                 <div class="billabong" style="text-align: center; font-size: 80px; line-height: 100px; padding: 20px 0 0;">ElaSlim</div>
-<!--                <img alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" style="margin: -20px auto 0; display: block;">-->
+                <img src="<?php echo SITE_DIR; ?>images/payanyway.gif" alt="Нервущиеся колготки ElaSlim" title="Нервущиеся колготки ElaSlim" style="display: inline;">
+                <img src="<?php echo SITE_DIR; ?>images/webmoney.png" style="display: inline;">
+                <img src="<?php echo SITE_DIR; ?>images/visamaster.png" style="display: inline; height: 100px;">
                 <div style="padding: 10px 50px; text-align: center;">
                     ИП Глазырина А.Э<br>Санкт-Петербург, Ленинский пр-т 191к2-9<br>
-                    ИНН 784802011692
+                    ИНН 784802011692<br>
+                    Тел: 8(926)333-57-08<br>
+                    Email: novichkovv@bk.ru<br>
                 </div>
                 <form method="post" action="http://backend.<?php echo DOMAIN; ?>docs/?document=oferta.docx">
                     <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
-                        <button type="submit" style="background-color: #fff; border: none; color: #0a6aa1;">Договор-Оферта</button>
+                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/oferta/" style="background-color: #fff; border: none; color: #0a6aa1;">Договор-Оферта</a>
+                    </p>
+                    <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/payment/" style="background-color: #fff; border: none; color: #0a6aa1;">Порядок Оплаты</a>
+                    </p>
+                    <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/geo/" style="background-color: #fff; border: none; color: #0a6aa1;">География Доставки</a>
+                    </p>
+                    <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/pvz/" style="background-color: #fff; border: none; color: #0a6aa1;">Пункты Самовывоза</a>
                     </p>
                 </form>
             </div>
