@@ -387,7 +387,7 @@ class orders_model extends model
             ' . ($county_code ? 'AND f1.AREACODE = "' . $county_code . '"' : '') . '
             LIMIT 5
         ');
-//        echo $stm->getQuery();
+        echo $stm->getQuery();
         return $this->get_all($stm);
     }
 

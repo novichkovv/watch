@@ -116,7 +116,6 @@ class orders_controller extends controller
 
             case "suggest_city":
                 $res = $this->model('orders')->citySuggest($_POST['val'], $_POST['region_code'], $_POST['county_code']);
-                print_r($res);
                 echo json_encode(array('status' => 1, 'suggest' => $res));
                 exit;
                 break;
