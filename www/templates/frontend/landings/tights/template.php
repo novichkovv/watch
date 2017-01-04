@@ -201,7 +201,7 @@ window._fbq.push(['track', 'PageView', {}]);
                     <p>Доставка</p>
                     </div>
 
-                <p class="revs">Доставка <span class="col-va">#ElaSlim</span> возможна почтой и курьером или в один из <a target="_blank" href="<?php echo SITE_DIR; ?>info/pvz/">пунктов выдачи</a> . Стоимость доставки от 350 р. Оставьте заявку и оператор расскажет какая доставка будет удобнее именно для вас.</p>
+                <p class="revs">Доставка <span class="col-va">#ElaSlim</span> возможна почтой и курьером или в один из <a target="_blank" href="<?php echo SITE_DIR; ?>info/pvz/">пунктов выдачи</a> . Стоимость доставки от 200 р. Оставьте заявку и оператор расскажет какая доставка будет удобнее именно для вас.</p>
                 <div style="margin-left: 20px; font-size: 12px;"><a href="#info">Подробнее..</a></div>
             </div>
             <div class="star">    
