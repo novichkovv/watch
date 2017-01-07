@@ -265,7 +265,7 @@ window._fbq.push(['track', 'PageView', {}]);
                         <a target="_blank"  href="<?php echo SITE_DIR; ?>info/payment/" style="background-color: #fff; border: none; color: #0a6aa1;">Порядок Оплаты</a>
                     </p>
                     <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
-                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/geo/" style="background-color: #fff; border: none; color: #0a6aa1;">География Доставки</a>
+                        <a target="_blank"  href="<?php echo SITE_DIR; ?>info/geo/" style="background-color: #fff; border: none; color: #0a6aa1;">География и Сроки Доставки</a>
                     </p>
                     <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
                         <a target="_blank"  href="<?php echo SITE_DIR; ?>info/pvz/" style="background-color: #fff; border: none; color: #0a6aa1;">Пункты Самовывоза</a>
