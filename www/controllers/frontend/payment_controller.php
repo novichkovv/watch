@@ -31,7 +31,7 @@ class payment_controller extends controller
                 $payment = new payment_class();
                 $order = [];
                 $order['id'] = 134;
-                $order['sum'] = 100;
+                $order['sum'] = 10;
                 $order['user_id'] = 123;
                 $payment->makeRequest($payment->generateParams($order));
                 exit;
