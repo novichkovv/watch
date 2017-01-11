@@ -9,95 +9,55 @@ class payment_controller extends controller
 {
     public function index()
     {
-        $payment_systems = [
-            2 => 'mir',
-            4 => 'visa',
-            3 => 'amex',
-            5 => 'mastercard' ,
-            6 => 'maesrto'
-        ];
-        if(empty($_GET['order_id'])) {
-            header('Location: ' . SITE_DIR);
-            exit;
-        }
-        if(isset($_POST['pay_btn'])) {
-            $order = $this->model('orders')->getOrder($_POST['order_id']);
-            if(!$order) {
-                throw new Exception('Incorrect Order');
-            }
-            $price = $this->getRate($order['price']);
-            $params = [
-                'intent' => 'sale',
-                'payer' => [
-                    "payment_method" => "credit_card",
-                    "funding_instruments" => [
-                        [
-                            'credit_card' => [
-                                'number' => str_replace(' ', '', $_POST['cc_number']),
-                                'type' => $payment_systems[$_POST['cc_number'][0]],
-                                "expire_month" => $_POST['cc_month'],
-                                "expire_year" => '20' . $_POST['cc_year'],
-                                "cvv2" => $_POST['cc_cvv'],
-                                "first_name" => array_shift(explode(' ', $_POST['cc_name'])),
-                                "last_name" => array_pop(explode(' ', $_POST['cc_name'])),
-                            ]
-                        ]
-                    ]
-                ],
-                'transactions' => [
-                    [
-                        "amount" => [
-                            "total" => $price,
-                            "currency" => "USD",
-                            "details" => [
-                                "subtotal" => $price,
-                                "tax" => "0.00",
-                                "shipping" => "0.00"
-                             ]
-                        ],
-                        'description' => $_POST['order_id']
-                    ]
-                ]
-            ];
-            $api = new paypal_api_class();
-            $res = $api->sendPaymentRequest($params);
-            if($res['state'] == 'approved') {
-                header('Location: ' . SITE_DIR . 'payment/success/?order_id=' . $_POST['order_id']);
+
+    }
+
+    public function methods()
+    {
+        $payment = new payment_class();
+        $order = [];
+        $order['id'] = 134;
+        $order['sum'] = 100.00;
+        $order['user_id'] = 123;
+        $this->render('params', $payment->generateParams($order));
+        $this->render('methods', $this->model('payment_methods')->getByField('active', 1, true, 'sort_order'));
+        $this->view('payment' . DS . 'methods');
+    }
+
+    public function methods_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "get_payment_url":
+                $payment = new payment_class();
+                $order = [];
+                $order['id'] = 134;
+                $order['sum'] = 100;
+                $order['user_id'] = 123;
+                $payment->makeRequest($payment->generateParams($order));
                 exit;
-            } else {
-                if($res['name'] = 'VALIDATION_ERROR') {
-                    $this->
-                }
-                print_r($res);
-            }
-            exit;
+                break;
         }
-
-        $this->render('order_id', $_GET['order_id']);
-        $order = $this->model('orders')->getById($_GET['order_id']);
-        $this->render('order', $order);
-        $price = $this->getRate($order['price']);
-        $this->render('price', $price);
-        $this->view('payment' . DS . 'form');
     }
 
-    private function getRate($price)
+    public function success()
     {
-        $current = json_decode(file_get_contents('https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDTHB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=')
-            , true);
-        $rate = $current['query']['results']['rate']['Bid'];
-        if(!$rate) {
-            $rate = 30;
-        }
-        $price_usd = round($price/$rate, 2);
-        if(!$price_usd) {
-            throw new Exception('No USD');
-        }
-        return $price_usd;
+        $this->view('payment' . DS . 'success');
     }
 
-    public function index_na()
+    public function success_na()
     {
-        $this->index();
+        $this->success();
     }
+
+    public function methods_na_ajax()
+    {
+        $this->methods_ajax();
+    }
+
+    public function methods_na()
+    {
+        $this->methods();
+    }
+
+
 }

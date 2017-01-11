@@ -387,7 +387,6 @@ class orders_model extends model
             ' . ($county_code ? 'AND f1.AREACODE = "' . $county_code . '"' : '') . '
             LIMIT 5
         ');
-        echo $stm->getQuery();
         return $this->get_all($stm);
     }
 
@@ -420,5 +419,21 @@ class orders_model extends model
         } else {
             return $this->get_all($stm);
         }
+    }
+
+    public function houseSuggest($num, $auguid)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                * 
+            FROM 
+                fias_houseint 
+            WHERE
+                INTSTART <= :num AND INTEND >= :num
+                AND AOGUID = :auguid
+            LIMIT 5
+            
+        ');
+        return $this->get_all($stm, ['auguid' => $auguid, 'num' => $num]);
     }
 }

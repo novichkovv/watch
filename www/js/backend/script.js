@@ -464,6 +464,142 @@ function get_from_form(selector)
     return res;
 }
 
+function crud(params)
+{
+    if(undefined === params) {
+        params = {};
+    }
+    if(undefined === params.prefix) {
+        params.prefix = '';
+    }
+    var defaults = {
+        data_table: params.prefix + 'get_table',
+        add_btn: "#" + params.prefix + "add_btn",
+        edit_btn: "." + params.prefix + "edit_btn",
+        save_btn: "#" + params.prefix + "save_btn",
+        form: "#" + params.prefix + "form",
+        form_container: "#" + params.prefix + "form_container",
+        get_form_action: params.prefix + "get_form",
+        save_form_action: params.prefix + "save_form",
+        form_modal: "#" + params.prefix + "form_modal",
+        delete_modal: "#" + params.prefix + "delete_modal",
+        delete_btn: "." + params.prefix + "delete_btn",
+        delete_submit_btn: "#" + params.prefix + "delete_btn",
+        get_form_callback: function() {
+
+        },
+        save_success_callback: function() {
+            Notifier.success('Успешно!');
+            $(params.form_modal).modal('hide');
+            if(params.data_table) {
+                ajax_datatable(params.data_table);
+            }
+        },
+        save_fail_callback: function() {
+            Notifier.danger('Неудачно!');
+        },
+        delete_callback: function () {
+            Notifier.success('Успешно!');
+            $(params.delete_modal).modal('hide');
+            if(params.data_table) {
+                ajax_datatable(params.data_table);
+            }
+        }
+    };
+
+    for(var i in defaults) {
+        if(undefined === params[i]) {
+            params[i] = defaults[i];
+        }
+    }
+
+    if(params.data_table) {
+        ajax_datatable(params.data_table);
+    }
+
+    $("body").on("click", params.delete_btn, function () {
+        var id = $(this).attr('data-id');
+        $(params.delete_submit_btn).attr('data-id', id);
+    });
+
+    $("body").on("click", params.delete_submit_btn, function () {
+        var id = $(this).attr('data-id');
+        var p = {
+            'action': 'delete_item',
+            'values': {id: id},
+            'callback': function (msg) {
+                ajax_respond(msg,
+                    function (respond) { //success
+                        params.delete_callback(respond);
+                    },
+                    function (respond) { //fail
+                    }
+                );
+            }
+        };
+        ajax(p);
+    });
+
+    $(params.add_btn).click(function() {
+        var p = {
+            'action': params.get_form_action,
+            'callback': function (msg) {
+                ajax_respond(msg,
+                    function (respond) { //success
+                        $(params.form_container).html(respond.template);
+                        params.get_form_callback(respond);
+                    },
+                    function (respond) { //fail
+                    }
+                );
+            }
+        };
+        ajax(p);
+    });
+
+    $("body").on('click', params.edit_btn, function() {
+        var id = $(this).attr('data-id');
+        var p = {
+            'action': params.get_form_action,
+            'values': {'id': id},
+            'callback': function (msg) {
+                ajax_respond(msg,
+                    function (respond) { //success
+                        $(params.form_container).html(respond.template);
+                        params.get_form_callback(respond);
+                    },
+                    function (respond) { //fail
+                    }
+                );
+            }
+        };
+        ajax(p);
+    });
+
+    $("body").on("submit", params.form, function (e) {
+        e.preventDefault();
+        var form_id = $(this).attr('id');
+        console.log(form_id);
+        if(validate(form_id)) {
+            var p = {
+                'action': params.save_form_action,
+                'get_from_form': form_id,
+                'callback': function (msg) {
+                    ajax_respond(msg,
+                        function (respond) { //success
+                            params.save_success_callback(respond);
+                        },
+                        function (respond) { //fail
+                            params.save_fail_callback(respond);
+                        }
+                    );
+                }
+            };
+            ajax(p);
+        }
+        return false;
+    });
+}
 
 function round(x)
 {

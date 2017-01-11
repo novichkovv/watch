@@ -1,3 +1,15 @@
+.td-input  {
+    margin: 0;
+    font: inherit;
+    height: 24px;
+    width: 100%;
+    border: none !important;
+    min-width: 10px !important;
+}
+.input-td {
+    padding: 0 !important;
+}
+
 .btn-default.graph-filter:active, .btn-default.graph-filter:visited, .btn-default.graph-filter:focus {
     background-color: #fff !important;
 }

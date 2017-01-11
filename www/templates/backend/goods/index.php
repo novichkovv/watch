@@ -20,46 +20,46 @@
             <div class="portlet-body custom-datatable" style="overflow-x: auto;">
                 <table class="table table-bordered" id="get_goods_list">
                     <thead>
-                    <tr>
-                        <td>
-                            <input type="text" data-sign="=" placeholder="Поиск" name="o.id" class="form-control filter-field">
-                        </td>
-                        <td>
-                            <select data-sign="=" class="form-control filter-field filter-select" name="o.product_id">
-                                <option value="">Все Товары</option>
-                                <?php foreach ($products as $product): ?>
-                                    <option value="<?php echo $product['id']; ?>"><?php echo $product['product_name']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
-                        <td>
-                            <select data-sign="=" name="o.status_id" class="form-control filter-field filter-select">
-                                <option value="">Все</option>
-                                <option value="0">Не принят</option>
-                                <?php foreach ($order_statuses as $status): ?>
-                                    <option value="<?php echo $status['id']; ?>">
-                                        <?php echo $status['status_name']; ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
-                        <td>
-                            <input data-sign="like" type="text" placeholder="Поиск" name="u.user_name" class="form-control filter-field">
-                        </td>
-                        <td>
-                            <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
-                        </td>
-                        <td>
-                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field" value="<?php echo $my_name; ?>">
-                        </td>
-                        <td>
-                            <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td>-->
+<!--                            <input type="text" data-sign="=" placeholder="Поиск" name="g.id" class="form-control filter-field">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <select data-sign="=" class="form-control filter-field filter-select" name="o.product_id">-->
+<!--                                <option value="">Все Товары</option>-->
+<!--                                --><?php //foreach ($products as $product): ?>
+<!--                                    <option value="--><?php //echo $product['id']; ?><!--">--><?php //echo $product['product_name']; ?><!--</option>-->
+<!--                                --><?php //endforeach; ?>
+<!--                            </select>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <select data-sign="=" name="o.status_id" class="form-control filter-field filter-select">-->
+<!--                                <option value="">Все</option>-->
+<!--                                <option value="0">Не принят</option>-->
+<!--                                --><?php //foreach ($order_statuses as $status): ?>
+<!--                                    <option value="--><?php //echo $status['id']; ?><!--">-->
+<!--                                        --><?php //echo $status['status_name']; ?>
+<!--                                    </option>-->
+<!--                                --><?php //endforeach; ?>
+<!--                            </select>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <input data-sign="like" type="text" placeholder="Поиск" name="u.user_name" class="form-control filter-field">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field" value="--><?php //echo $my_name; ?><!--">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                    </tr>-->
                     <tr>
                         <th>Продукт</th>
                         <th>Статус</th>

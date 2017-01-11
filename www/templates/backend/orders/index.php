@@ -100,6 +100,17 @@
                     ajax_respond(msg,
                         function (respond) { //success
                             $("#order_modal_container").html(respond.template);
+                            var options = {
+                                serviceUrl:'http://ahunter.ru/site/suggest/address',
+                                params: { output: "json" },
+                                noCache: true,
+                                triggerSelectOnValidInput: false,
+                                paramName: "query",
+                                maxHeight: 500
+                            };
+
+//запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
+                            $('#autocomplete').autocomplete( options );
                         },
                         function (respond) { //fail
                         }
@@ -129,15 +140,151 @@
             return false;
         });
 
-        $("body").on("keyup", ".region-suggest", function () {
-            var $group = $(this).closest('.suggest-group');
-            var val = $(this).val();
-            var $container = $group.find('.suggest_container');
-            if(val.length > 2) {
-                console.log(val);
+
+
+        var suggest = {
+            init: function () {
+                $("body").on("keyup.region_suggest", ".region-suggest", function () {suggest.region_suggest(this)});
+                $("body").on("keyup.city_suggest", ".city-suggest", function() {suggest.city_suggest(this)});
+                $("body").on("keyup.county_suggest", ".county-suggest", function () {suggest.county_suggest(this);});
+                $("body").on("keyup.street_suggest", ".street-suggest", function () {suggest.street_suggest(this);});
+                $("body").on("keyup.house_suggest", ".house-suggest", function () {suggest.house_suggest(this);});
+            },
+            region_suggest: function(obj) {
+                var $group = $(obj).closest('.suggest-group');
+                var val = $(obj).val();
+                var $container = $group.find('.suggest_container');
+                if(val.length > 2) {
+                    $("body").unbind('keyup.city_suggest');
+                    var values = {'val': val};
+                    var params = {
+                        'action': 'suggest_region',
+                        'values': values,
+                        'callback': function (msg) {
+                            ajax_respond(msg,
+                                function (respond) { //success
+                                    $container.html('');
+                                    for(var i in respond.suggest) {
+                                        $container.append('' +
+                                            '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-code="' + respond.suggest[i]['CODE'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '">' +
+                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] +
+                                            '</div>' +
+                                            '');
+                                    }
+                                    $("body").on("keyup.region_suggest", ".region-suggest", function () {suggest.region_suggest(this)});
+                                },
+                                function (respond) { //fail
+                                }
+                            );
+
+                        }
+                    };
+                    ajax(params);
+                }       
+            },
+            city_suggest: function(obj) {
+                var $group = $(obj).closest('.suggest-group');
+                var val = $(obj).val();
+                var $container = $group.find('.suggest_container');
+                if(val.length > 2) {
+                    $("body").unbind('keyup.city_suggest');
+                    var values = {'val': val};
+                    var $region = $(".region-suggest");
+                    var region_code = $region.val();
+                    if(region_code) {
+                        values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
+                    }
+                    var $county = $(".county-suggest");
+                    if($county.val()) {
+                        values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
+                    }
+                    var params = {
+                        'action': 'suggest_city',
+                        'values': values,
+                        'callback': function (msg) {
+                            ajax_respond(msg,
+                                function (respond) { //success
+                                    $container.html('');
+                                    for(var i in respond.suggest) {
+                                        $container.append('' +
+                                            '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
+                                            respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
+                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
+                                            '</div>' +
+                                            '');
+                                    }
+                                    $("body").on("keyup.city_suggest", ".city-suggest", function() {suggest.city_suggest(this)});
+                                },
+                                function (respond) { //fail
+                                }
+                            );
+
+                        }
+                    };
+                    ajax(params);
+                }
+            },
+            street_suggest: function(obj) {
+                var $group = $(obj).closest('.suggest-group');
+                var val = $(obj).val();
+                var $container = $group.find('.suggest_container');
+                if(val.length > 2) {
+                    $("body").unbind('keyup.street_suggest');
+                    var values = {'val': val};
+                    var $region = $(".region-suggest");
+                    var region_code = $region.val();
+                    if(region_code) {
+                        values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
+                    }
+                    var $county = $(".county-suggest");
+                    if($county.val()) {
+                        values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
+                    }
+                    var $city = $(".city-suggest");
+                    if($city.val()) {
+                        values.city_code = $city.closest('.suggest-group').find('.suggest-code').val();
+                        values.parent = $city.closest('.suggest-group').find('.suggest-guid').val();
+                    }
+                    var params = {
+                        'action': 'suggest_street',
+                        'values': values,
+                        'callback': function (msg) {
+                            ajax_respond(msg,
+                                function (respond) { //success
+                                    $container.html('');
+                                    for(var i in respond.suggest) {
+                                        $container.append('' +
+                                            '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
+                                            respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
+                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
+                                            '</div>' +
+                                            '');
+                                    }
+                                    $("body").on("keyup.street_suggest", ".street-suggest", function() {suggest.street_suggest(this)});
+                                },
+                                function (respond) { //fail
+                                }
+                            );
+
+                        }
+                    };
+                    ajax(params);
+                }
+            },
+            house_suggest: function (obj) {
+                var $group = $(obj).closest('.suggest-group');
+                var val = $(obj).val();
                 var values = {'val': val};
+                var $street = $(".street-suggest");
+                if($street.val()) {
+                    values.parent = $street.closest('.suggest-group').find('.suggest-guid').val();
+                } else {
+                    return;
+                }
+                var $container = $group.find('.suggest_container');
+                $("body").unbind('keyup.house_suggest');
                 var params = {
-                    'action': 'suggest_region',
+                    'action': 'suggest_house',
                     'values': values,
                     'callback': function (msg) {
                         ajax_respond(msg,
@@ -145,11 +292,12 @@
                                 $container.html('');
                                 for(var i in respond.suggest) {
                                     $container.append('' +
-                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-code="' + respond.suggest[i]['CODE'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '">' +
-                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] +
+                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['HOUSEGUID'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
+                                        respond.suggest[i]['HOUSENUM'] + ' ' + respond.suggest[i]['BUILDNUM'] +
                                         '</div>' +
                                         '');
                                 }
+                                $("body").on("keyup.house_suggest", ".house-suggest", function() {suggest.house_suggest(this)});
                             },
                             function (respond) { //fail
                             }
@@ -159,7 +307,11 @@
                 };
                 ajax(params);
             }
-        });
+        };
+
+
+
+        suggest.init();
 
         $("body").on("keyup", ".county-suggest", function () {
             var $group = $(this).closest('.suggest-group');
@@ -184,94 +336,6 @@
                                     $container.append('' +
                                         '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '">' +
                                         respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] +
-                                        '</div>' +
-                                        '');
-                                }
-                            },
-                            function (respond) { //fail
-                            }
-                        );
-
-                    }
-                };
-                ajax(params);
-            }
-        });
-
-        $("body").on("keyup", ".city-suggest", function () {
-            var $group = $(this).closest('.suggest-group');
-            var val = $(this).val();
-            var $container = $group.find('.suggest_container');
-            if(val.length > 2) {
-                var values = {'val': val};
-                var $region = $(".region-suggest");
-                var region_code = $region.val();
-                if(region_code) {
-                    values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
-                }
-                var $county = $(".county-suggest");
-                if($county.val()) {
-                    values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
-                }
-                var params = {
-                    'action': 'suggest_city',
-                    'values': values,
-                    'callback': function (msg) {
-                        ajax_respond(msg,
-                            function (respond) { //success
-                                $container.html('');
-                                for(var i in respond.suggest) {
-                                    console.log(respond);
-                                    $container.append('' +
-                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
-                                        respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
-                                            respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
-                                        '</div>' +
-                                        '');
-                                }
-                            },
-                            function (respond) { //fail
-                            }
-                        );
-
-                    }
-                };
-                ajax(params);
-            }
-        });
-
-        $("body").on("keyup", ".street-suggest", function () {
-            var $group = $(this).closest('.suggest-group');
-            var val = $(this).val();
-            var $container = $group.find('.suggest_container');
-            if(val.length > 2) {
-                var values = {'val': val};
-                var $region = $(".region-suggest");
-                var region_code = $region.val();
-                if(region_code) {
-                    values.region_code = $region.closest('.suggest-group').find('.suggest-code').val();
-                }
-                var $county = $(".county-suggest");
-                if($county.val()) {
-                    values.county_code = $county.closest('.suggest-group').find('.suggest-code').val();
-                }
-                var $city = $(".city-suggest");
-                if($city.val()) {
-                    values.city_code = $city.closest('.suggest-group').find('.suggest-code').val();
-                    values.parent = $city.closest('.suggest-group').find('.suggest-guid').val();
-                }
-                var params = {
-                    'action': 'suggest_street',
-                    'values': values,
-                    'callback': function (msg) {
-                        ajax_respond(msg,
-                            function (respond) { //success
-                                $container.html('');
-                                for(var i in respond.suggest) {
-                                    $container.append('' +
-                                        '<div class="suggest_item" data-guid="' + respond.suggest[i]['AOGUID'] + '" data-regioncode="' + respond.suggest[i]['REGIONCODE'] + '" data-countycode="' +
-                                        respond.suggest[i]['AREACODE'] + '" data-code="' + respond.suggest[i]['AREACODE'] + '" data-postalcode="' + respond.suggest[i]['POSTALCODE'] + '">' +
-                                        respond.suggest[i]['OFFNAME'] + ' ' + respond.suggest[i]['SHORTNAME'] + (respond.suggest[i]['PARENTNAME'] ? ' ' + respond.suggest[i]['PARENTNAME'] : '') +
                                         '</div>' +
                                         '');
                                 }

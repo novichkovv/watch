@@ -13,6 +13,7 @@ class orders_controller extends controller
         $this->render('my_name', $my_account['account_name']);
         $this->render('products', $this->model('products')->getAll('product_name'));
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
+        $this->addScript(SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js');
         $this->view('orders' . DS . 'index');
     }
 
@@ -122,6 +123,12 @@ class orders_controller extends controller
 
             case "suggest_street":
                 $res = $this->model('orders')->fiasSuggest($_POST['val'], null, null, $_POST['parent']);
+                echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
+
+            case "suggest_house":
+                $res = $this->model('orders')->houseSuggest($_POST['val'], $_POST['parent']);
                 echo json_encode(array('status' => 1, 'suggest' => $res));
                 exit;
                 break;
