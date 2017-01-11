@@ -17,7 +17,7 @@ class payment_controller extends controller
         $payment = new payment_class();
         $order = [];
         $order['id'] = 134;
-        $order['sum'] = 100.00;
+        $order['sum'] = 10.00;
         $order['user_id'] = 123;
         $this->render('params', $payment->generateParams($order));
         $this->render('methods', $this->model('payment_methods')->getByField('active', 1, true, 'sort_order'));
