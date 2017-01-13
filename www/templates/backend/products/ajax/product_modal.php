@@ -37,6 +37,23 @@
                     </div>
                 </div>
             </div>
+<!--            <div class="portlet-body">-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Товары</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <select name="product[goods][]" class="form-control select2me" multiple>-->
+<!--                            --><?php //foreach ($goods as $good): ?>
+<!--                                <option value="--><?php //echo $good['id']; ?><!--"-->
+<!--                                --><?php //if ($product['goods'][$good['id']] == $good['id']): ?>
+<!--                                    selected-->
+<!--                                --><?php //endif; ?><!-->-->
+<!--                                    --><?php //echo $good['good_name']; ?>
+<!--                                </option>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="portlet-body">
                 <div class="form-group">
                     <label class="control-label col-md-4">Ключ Лендинга 2</label>
@@ -114,3 +131,9 @@
         <input type="hidden" name="product[id]" value="<?php echo $product['id']; ?>">
     <?php endif; ?>
 </form>
+<script type="text/javascript">
+    $ = jQuery.noConflict();
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
+</script>

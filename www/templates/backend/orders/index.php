@@ -18,6 +18,13 @@
                 </div>
             </div>
             <div class="portlet-body custom-datatable" style="overflow-x: auto;">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Адрес</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="address" id="autocomplete" autocomplete="off">
+                    </div>
+
+                </div>
                 <table class="table table-bordered" id="get_orders">
                     <thead>
                     <tr>
@@ -90,6 +97,17 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function() {
+        var options = {
+            serviceUrl:'http://ahunter.ru/site/suggest/address',
+            params: { output: "json" },
+            noCache: true,
+            triggerSelectOnValidInput: false,
+            paramName: "query",
+            maxHeight: 500
+        };
+
+//запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
+        $('#autocomplete').autocomplete( options );
         ajax_datatable('get_orders');
         $("body").on("click", ".show_order", function () {
             var id = $(this).attr('data-id');
@@ -100,17 +118,7 @@
                     ajax_respond(msg,
                         function (respond) { //success
                             $("#order_modal_container").html(respond.template);
-                            var options = {
-                                serviceUrl:'http://ahunter.ru/site/suggest/address',
-                                params: { output: "json" },
-                                noCache: true,
-                                triggerSelectOnValidInput: false,
-                                paramName: "query",
-                                maxHeight: 500
-                            };
 
-//запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
-                            $('#autocomplete').autocomplete( options );
                         },
                         function (respond) { //fail
                         }

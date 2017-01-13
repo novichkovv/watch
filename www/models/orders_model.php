@@ -436,4 +436,26 @@ class orders_model extends model
         ');
         return $this->get_all($stm, ['auguid' => $auguid, 'num' => $num]);
     }
+
+    public function getOrderGoods($order_id)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                g.*,
+                o.price order_price,
+                p.price as product_price,
+                o.id id,
+                o.good_id,
+                o.product_id
+            FROM 
+                order_goods o 
+                    JOIN
+                goods g ON g.id = o.good_id
+                    LEFT JOIN
+                products p ON p.id = o.product_id
+            WHERE
+                o.order_id = :order_id
+        ');
+        return $this->get_all($stm, array('order_id' => $order_id));
+    }
 }

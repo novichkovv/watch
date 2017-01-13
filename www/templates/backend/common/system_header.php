@@ -28,6 +28,8 @@
     <link href="<?php echo SITE_DIR; ?>css/backend/assets/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo SITE_DIR; ?>css/backend/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="<?php echo SITE_DIR; ?>css/backend/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo SITE_DIR; ?>js/libs/select2/select2.css" rel="stylesheet" type="text/css"/>
+<!--    <link href="--><?php //echo SITE_DIR; ?><!--js/libs/select2/select2-bootstrap.css" rel="stylesheet" type="text/css"/>-->
     <link href="<?php echo SITE_DIR; ?>css/backend/style.css" rel="stylesheet" type="text/css"/>
     <?php if ($styles): ?>
         <?php foreach ($styles as $style): ?>
@@ -57,8 +59,10 @@
     <script src="<?php echo SITE_DIR; ?>css/backend/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>css/backend/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>css/backend/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="<?php echo SITE_DIR; ?>js/libs/select2/select2.min.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/backend/notifier.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/backend/script.js" type="text/javascript"></script>
+
     <?php if ($scripts): ?>
         <?php foreach ($scripts as $script): ?>
             <script src="<?php echo $script; ?>" type="text/javascript"></script>

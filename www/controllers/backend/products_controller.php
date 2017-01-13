@@ -45,6 +45,7 @@ class products_controller extends controller
                 break;
 
             case "get_product_modal_form":
+                $this->render('goods', $this->model('goods')->getAll('good_name'));
                 $this->render('products', $this->model('products')->getAll());
                 $product = $this->model('products')->getById($_POST['id']);
                 $this->render('product', $product);

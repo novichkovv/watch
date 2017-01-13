@@ -115,6 +115,31 @@
                             <input type="text" name="good[price]" class="form-control" value="<?php echo $good['price']; ?>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Вес</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[weight]" class="form-control" value="<?php echo $good['weight']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Длина</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[length]" class="form-control" value="<?php echo $good['length']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Ширина</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[width]" class="form-control" value="<?php echo $good['width']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Высота</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[height]" class="form-control" value="<?php echo $good['height']; ?>">
+                        </div>
+                    </div>
+
                     <?php if (!empty($goog['id'])): ?>
                         <div class="form-group">
                             <label class="control-label col-md-3">Дата</label>
@@ -122,7 +147,9 @@
                                 <input disabled type="text" class="form-control" value="<?php echo $good['create_date']; ?>">
                             </div>
                         </div>
+
                     <?php endif; ?>
+                    <input type="hidden" value="<?php echo $good['id']; ?>" name="good[id]">
                 </div>
             </div>
         </form>
