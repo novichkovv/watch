@@ -40,9 +40,11 @@ class orders_controller extends controller
                     </a>")'
                 ];
                 $params['join']['products p'] = [
+                    'left' => true,
                     'on' => 'p.id = o.product_id',
                 ];
                 $params['join']['users u'] = [
+                    'left' => true,
                     'on' => 'u.id = o.user_id'
                 ];
                 $params['join']['order_statuses'] = [
