@@ -59,7 +59,7 @@ class payment_controller extends controller
             $order['payment_status_id'] = 1;
             $order['pay_date'] = date('Y-m-d H:i:s');
             $order['status_id'] = 1;
-            $this->model('orders')->insert($order);
+            $this->model('orders')->insert($order, 2);
             header('Content-Type: text/html; charset=utf-8');
             echo 'SUCCESS';
             exit;
