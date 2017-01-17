@@ -57,7 +57,8 @@ class orders_controller extends controller
                 ];
                 $params['where']['o.my_name'] = [
                     'sign' => '=',
-                    'value' => $my_account['account_name']
+                    'value' => $my_account['account_name'],
+                    'left' => true
                 ];
                 $params['order'] = 'o.create_date DESC';
                 echo json_encode($this->getDataTable($params));
