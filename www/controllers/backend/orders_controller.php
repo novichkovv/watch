@@ -55,11 +55,11 @@ class orders_controller extends controller
                     'left' => true,
                     'on' => 'ps.id = o.status_id'
                 ];
-                $params['where']['o.my_name'] = [
-                    'sign' => '=',
-                    'value' => $my_account['account_name'],
-                    'left' => true
-                ];
+//                $params['where']['o.my_name'] = [
+//                    'sign' => '=',
+//                    'value' => $my_account['account_name'],
+//                    'left' => true
+//                ];
                 $params['order'] = 'o.create_date DESC';
                 echo json_encode($this->getDataTable($params));
                 exit;
