@@ -52,6 +52,7 @@ class payment_controller extends controller
 
     public function pay()
     {
+        $this->writeLog('test', $_POST);
         if($_POST['MNT_TRANSACTION_ID']) {
             $order = $this->model('orders')->getById($_POST['MNT_TRANSACTION_ID']);
             $order['paid_amount'] = $_POST['MNT_AMOUNT'];
