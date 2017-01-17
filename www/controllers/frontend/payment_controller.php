@@ -74,10 +74,14 @@ class payment_controller extends controller
 
     public function success()
     {
-        $order = $this->model('orders')->getById($_GET['MNT_TRANSACTION_ID']);
-        if($order['payment_status_id'] != 1) {
-            $order['payment_status_id'] = 7;
-            $this->model('orders')->insert($order);
+        if(!empty($_GET['MNT_TRANSACTION_ID'])) {
+            $order = $this->model('orders')->getById($_GET['MNT_TRANSACTION_ID']);
+            if($order['payment_status_id'] != 1) {
+                $order['payment_status_id'] = 7;
+                print_r($order);
+                exit;
+                $this->model('orders')->insert($order);
+            }
         }
         $this->view_only('payment' . DS . 'success');
     }
