@@ -26,6 +26,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3">Название для Корзины</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[short_name]" class="form-control" value="<?php echo $good['short_name']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3">Группа</label>
                         <div class="col-md-7">
                             <select name="good[group_id]" id="group_select" class="form-control">

@@ -13,6 +13,7 @@ class orders_controller extends controller
         $this->render('my_name', $my_account['account_name']);
         $this->render('products', $this->model('products')->getAll('product_name'));
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
+        $this->render('payment_statuses', $this->model('order_statuses')->getAll('id'));
         $this->addScript(SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js');
         $this->view('orders' . DS . 'index');
     }
@@ -28,8 +29,8 @@ class orders_controller extends controller
                     'o.id',
                     'p.product_name',
                     'IF(os.id IS NULL, "Не Принят", os.status_name)',
+                    'IF(ps.id IS NULL, "Нет данных", ps.status_name)',
                     'u.user_name',
-                    'u.phone',
                     'o.my_name',
                     'o.create_date',
                     'o.comments',
@@ -48,6 +49,11 @@ class orders_controller extends controller
                     'as' => 'os',
                     'left' => true,
                     'on' => 'os.id = o.status_id'
+                ];
+                $params['join']['payment_statuses'] = [
+                    'as' => 'ps',
+                    'left' => true,
+                    'on' => 'ps.id = o.status_id'
                 ];
                 $params['where']['o.my_name'] = [
                     'sign' => '=',

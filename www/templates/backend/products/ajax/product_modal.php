@@ -37,23 +37,23 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="portlet-body">-->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label col-md-4">Товары</label>-->
-<!--                    <div class="col-md-6">-->
-<!--                        <select name="product[goods][]" class="form-control select2me" multiple>-->
-<!--                            --><?php //foreach ($goods as $good): ?>
-<!--                                <option value="--><?php //echo $good['id']; ?><!--"-->
-<!--                                --><?php //if ($product['goods'][$good['id']] == $good['id']): ?>
-<!--                                    selected-->
-<!--                                --><?php //endif; ?><!-->-->
-<!--                                    --><?php //echo $good['good_name']; ?>
-<!--                                </option>-->
-<!--                            --><?php //endforeach; ?>
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Товары</label>
+                    <div class="col-md-6">
+                        <select name="product[goods][]" class="form-control select2me" multiple>
+                            <?php foreach ($goods as $good): ?>
+                                <option value="<?php echo $good['id']; ?>"
+                                <?php if (isset($product['goods'][$good['id']])): ?>
+                                    selected
+                                <?php endif; ?>><?php echo $product['goods'][$good['id']]; ?>
+                                    <?php echo $good['good_name']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="portlet-body">
                 <div class="form-group">
                     <label class="control-label col-md-4">Ключ Лендинга 2</label>

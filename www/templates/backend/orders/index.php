@@ -51,8 +51,15 @@
                             </select>
                         </td>
                         <td>
-                            <input data-sign="like" type="text" placeholder="Поиск" name="u.user_name" class="form-control filter-field">
-                        </td>
+                            <select data-sign="=" name="o.payment_status_id" class="form-control filter-field filter-select">
+                                <option value="">Все</option>
+                                <option value="0">Нет данных</option>
+                                <?php foreach ($payment_statuses as $status): ?>
+                                    <option value="<?php echo $status['id']; ?>">
+                                        <?php echo $status['status_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>                        </td>
                         <td>
                             <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
                         </td>
@@ -71,7 +78,7 @@
                         <th>#</th>
                         <th>Продукт</th>
                         <th>Статус</th>
-                        <th>Имя</th>
+                        <th>Статус платежа</th>
                         <th>Телефон</th>
                         <th>My Name</th>
                         <th>Дата Создания</th>

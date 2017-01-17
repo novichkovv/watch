@@ -48,6 +48,9 @@ class products_controller extends controller
                 $this->render('goods', $this->model('goods')->getAll('good_name'));
                 $this->render('products', $this->model('products')->getAll());
                 $product = $this->model('products')->getById($_POST['id']);
+                foreach ($this->model('product_goods')->getByField('product_id', $product['id'], true) as $item) {
+                    $product['goods'][$item['good_id']] = $item['good_id'];
+                }
                 $this->render('product', $product);
                 $template = $this->fetch('products' . DS . 'ajax' . DS . 'product_modal');
                 echo json_encode(array('status' => 1, 'template' => $template));
@@ -56,10 +59,19 @@ class products_controller extends controller
 
             case "edit_product_info":
                 $product = $_POST['product'];
+                $goods = $product['goods'];
+                unset($product['goods']);
                 if(!$product['id']) {
                     $product['create_date'] = date('Y-m-d H:i:s');
                 }
-                $this->model('products')->insert($product);
+                $product['id'] = $this->model('products')->insert($product);
+                $this->model('product_goods')->delete('product_id', $product['id']);
+                foreach ($goods as $good) {
+                    $this->model('product_goods')->insert([
+                        'product_id' => $product['id'],
+                        'good_id' => $good
+                    ]);
+                }
                 echo json_encode(array('status' => 1));
                 exit;
                 break;

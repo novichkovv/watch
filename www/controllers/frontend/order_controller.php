@@ -122,6 +122,7 @@ class order_controller extends controller
         }
         $order = $this->model('orders')->getById($_GET['id']);
         $product = $this->model('products')->getById($order['product_id']);
+        $this->render('product_goods', $this->model('products')->getProductGoods($product['id']));
         $order_goods = [];
         $total_sum = 0;
         foreach ($this->model('order_goods')->getByField('order_id', $order['id'], true) as $item) {
