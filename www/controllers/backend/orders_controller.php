@@ -55,7 +55,7 @@ class orders_controller extends controller
                 $params['join']['payment_statuses'] = [
                     'as' => 'ps',
                     'left' => true,
-                    'on' => 'ps.id = o.status_id'
+                    'on' => 'ps.id = o.payment_status_id'
                 ];
 //                $params['where']['o.my_name'] = [
 //                    'sign' => '=',
