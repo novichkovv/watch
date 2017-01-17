@@ -210,7 +210,7 @@ class orders_controller extends controller
                 $api = new b2_api_class();
                 $params = [];
                 foreach ($_POST['order_goods'] as $order_good) {
-                    print_r($order_good);
+//                    print_r($order_good);
                     $good = $this->model('goods')->getById($order_good['good_id']);
                     if(!$params['weight']) {
                         $params['weight'] = $good['weight'];
@@ -248,8 +248,7 @@ class orders_controller extends controller
 //                zip=190000&weight=1001&x=121&y=1&z=1&type=+post&price=1000&price_assess=1000&region=77&allpost=1
                 $params['type'] = '+post';
 //                $params['region'] = B2_API_REGION;
-//                $params['allpost'] = 1;
-
+                $params['allpost'] = 1;
                 $params['zip'] = $_POST['address']['zip'];
                 print_r($params);
                 print_r($api->getRates($params));

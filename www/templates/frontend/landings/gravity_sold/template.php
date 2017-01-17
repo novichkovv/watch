@@ -51,7 +51,7 @@
             <form method="post">
                 <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
                 <a href="<?php echo SITE_DIR; ?>order/cart/?id=<?php echo $order['id']; ?>" class="payment_btn"><b style="font-size: 32px;">790р</b> ОПЛАТИТЬ СЕЙЧАС</a><br>
-                <a href="<?php echo SITE_DIR; ?>payment/later/?id=<?php echo $order_id; ?>" class="muted_btn"><b style="font-size: 27px;">1090р</b> ОПЛАТИТЬ ПРИ ПОЛУЧЕНИИ</a>
+                <a href="<?php echo SITE_DIR; ?>order/later/?id=<?php echo $order['id']; ?>" class="muted_btn"><b style="font-size: 27px;">1090р</b> ОПЛАТИТЬ ПРИ ПОЛУЧЕНИИ</a>
             </form>
 <!--            <a href="#delivery" class="button-m"></a></div>-->
         </div>

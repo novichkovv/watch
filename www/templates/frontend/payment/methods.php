@@ -1,8 +1,16 @@
 
 <div id="payment-block">
+    <div class="text-center">Всего <?php echo $count; ?>
+        <?php if ($count == 1): ?>
+            товар
+        <?php elseif (in_array($count, [2,3,4])): ?>
+                товара
+        <?php else: ?>
+                товаров
+        <?php endif; ?>
+         на сумму <?php echo $sum; ?> рублей включая доставку</div>
     <h2 class="text-center">Выберите способ оплаты</h2>
     <?php foreach ($methods as $method): ?>
-
         <form method="post" action="https://www.payanyway.ru/assistant.htm">
             <?php foreach ($params as $k => $param): ?>
                 <input type="hidden" name="<?php echo $k; ?>" value="<?php echo $param; ?>">

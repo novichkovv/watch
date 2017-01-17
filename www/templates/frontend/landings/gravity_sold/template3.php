@@ -8,7 +8,7 @@
     <meta name="keywords" content="распродажа духов, распродажа парфюм, купить парфюмы со скидкой, ликвидация склада парфюм">
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link media="all" href="<?php echo SITE_DIR; ?>templates/frontend/landings/parfum_sold/index.css" type="text/css" rel="stylesheet">
+    <link media="all" href="<?php echo $dir; ?>css/index.css" type="text/css" rel="stylesheet">
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -47,7 +47,7 @@
 <body style="background-color: #e9e8e9;">
 <div class="page">
     <header>
-        <img src="<?php echo SITE_DIR; ?>templates/frontend/landings/parfum_sold/1.jpg" alt="">
+        <img src="<?php echo $dir; ?>img/1.jpg" alt="">
     </header>
     <div>
 

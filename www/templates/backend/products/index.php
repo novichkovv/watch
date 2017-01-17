@@ -1,4 +1,4 @@
-<h3 class="page-title"> Заказы
+<h3 class="page-title"> Продукты
     <small></small>
 </h3>
 <div class="row">
@@ -7,12 +7,12 @@
             <div class="portlet-title">
                 <div class="caption font-dark">
                     <i class="icon-basket font-dark"></i>
-                    <span class="caption-subject bold uppercase"> Список Товаров</span>
+                    <span class="caption-subject bold uppercase"> Список Продуктов</span>
                 </div>
                 <div class="actions">
                     <div class="btn-group btn-group-devided">
                         <a id="add_product" href="#product_modal" data-toggle="modal" class="btn green btn-outline">
-                            <i class="fa fa-plus"></i> Добавить Товар
+                            <i class="fa fa-plus"></i> Добавить Продукт
                         </a>
                     </div>
                 </div>
@@ -106,4 +106,3 @@
         });
     });
 </script>
-http://watch19.ru/api/m1/?web_total=65&lead_date=2016-01-01&w=postback&s=w97VFPEULUEQ58I0H8GM327I&order_id=135452&status=approved

@@ -9,67 +9,139 @@ class order_controller extends controller
 {
     public function index()
     {
-        if(!$_POST['product_id'] && $_GET['landing']) {
+        if($_GET['landing']) {
             $path = 'landings' . DS . $_GET['landing'] . DS;
             $dir = SITE_DIR . 'templates/frontend/landings/' . $_GET['landing'] . '/';
             $this->render('dir', $dir);
             $this->view_only($path . 'template');
             exit;
         }
-        $_GET['pixel'] = $_POST['pixel'];
-        if(!$_POST['product_id']) {
-            $this->writeLog('ORDER_ERROR', 'M1 No Product_id' . "\n" . print_r($_POST, 1));
+        if($_GET['id']) {
+            $order = $this->model('orders')->getById($_GET['id']);
+            $product = $this->model('products')->getById($order['product_id']);
+            $path = 'landings' . DS . $product['success_landing_key'] . DS;
+            $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
+            if($product['cross_product_id']) {
+                $this->render('product', $this->model('products')->getById($product['cross_product_id']));
+                $this->render('w', $_POST['w']);
+                $this->render('s', $_POST['s']);
+                $this->render('t', $_POST['t']);
+            }
+            $this->render('order', $order);
+            $this->render('pixel', $_POST['pixel']);
+            $this->render('dir', $dir);
+            $this->view_only($path . 'template');
+            exit;
         }
-        if(!$_POST['name']) {
-            $this->writeLog('ORDER_ERROR', 'M1 No name' . "\n" . print_r($_POST, 1));
-        }
-        if(!$_POST['phone']) {
-            $this->writeLog('ORDER_ERROR', 'M1 No phone' . "\n" . print_r($_POST, 1));
-        }
-        $user = [];
-        $user['user_name'] = $_POST['name'];
-        $user['phone'] = $_POST['phone'];
-        if(!$tmp = $this->model('users')->getByFields($user)) {
-            $user['create_date'] = date('Y-m-d H:i:s');
-            $user['id'] = $this->model('users')->insert($user);
-        } else {
-            $user = $tmp;
-        }
-        $product = $this->model('products')->getById($_POST['app_product_id']);
-        $order = [];
-        $order['product_id'] = $_POST['app_product_id'];
-        $order['create_date'] = date('Y-m-d H:i:s');
-        $order['user_id'] = $user['id'];
-        $order['click_id'] = $_POST['s'];
-        $order['visitor_id'] = $_POST['visitor_id'];
-        $order['my_name'] = $_POST['w'];
-        $order['t_field'] = $_POST['t'];
-        $order['status_id'] = 1;
-        $order['price'] = $product['price'];
-        $order['id'] = $this->model('orders')->insert($order);
-        $_SESSION['order'] = $order;
 
-        $path = 'landings' . DS . $product['success_landing_key'] . DS;
-        $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
-        if($product['cross_product_id']) {
-            $this->render('product', $this->model('products')->getById($product['cross_product_id']));
-            $this->render('w', $_POST['w']);
-            $this->render('s', $_POST['s']);
-            $this->render('t', $_POST['t']);
+        if($_POST['phone']) {
+            $_GET['pixel'] = $_POST['pixel'];
+            if(!$_POST['name']) {
+                $this->writeLog('ORDER_ERROR', 'M1 No name' . "\n" . print_r($_POST, 1));
+            }
+            if(!$_POST['phone']) {
+                $this->writeLog('ORDER_ERROR', 'M1 No phone' . "\n" . print_r($_POST, 1));
+            }
+            $user = [];
+            $user['user_name'] = $_POST['name'];
+            $user['phone'] = $_POST['phone'];
+            if(!$tmp = $this->model('users')->getByFields($user)) {
+                $user['create_date'] = date('Y-m-d H:i:s');
+                $user['id'] = $this->model('users')->insert($user);
+            } else {
+                $user = $tmp;
+            }
+            $product = $this->model('products')->getById($_POST['app_product_id']);
+            $order = [];
+            $order['product_id'] = $_POST['app_product_id'];
+            $order['create_date'] = date('Y-m-d H:i:s');
+            $order['user_id'] = $user['id'];
+            $order['click_id'] = $_POST['s'];
+            $order['visitor_id'] = $_POST['visitor_id'];
+            $order['my_name'] = $_POST['w'];
+            $order['t_field'] = $_POST['t'];
+            $order['status_id'] = 1;
+            $order['price'] = $product['price'];
+            $order['id'] = $this->model('orders')->insert($order);
+            $path = 'landings' . DS . $product['success_landing_key'] . DS;
+            $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
+            if($product['cross_product_id']) {
+                $this->render('product', $this->model('products')->getById($product['cross_product_id']));
+                $this->render('w', $_POST['w']);
+                $this->render('s', $_POST['s']);
+                $this->render('t', $_POST['t']);
+            }
+            $this->render('order', $order);
+            $this->render('pixel', $_POST['pixel']);
+            $this->render('dir', $dir);
+//            $this->view_only($path . 'template');
+            header('Location: ' . SITE_DIR . 'order/?id=' . $order['id']);
+            exit;
         }
-        $this->render('order', $order);
-        $this->render('pixel', $_POST['pixel']);
-        $this->render('dir', $dir);
-        $this->view_only($path . 'template');
     }
 
     public function cart()
     {
+        if(isset($_POST['save_cart_btn'])) {
+            $order = $this->model('orders')->getById($_GET['id']);
+            $this->model('order_goods')->delete('order_id', $order['id']);
+            $fail_goods = [];
+            $total = 0;
+            $goods = [];
+            $product = $this->model('products')->getById($order['product_id']);
+            $mark_first_row = true;
+            foreach ($_POST['good'] as $good_id => $quantity) {
+                $goods[$good_id] = $this->model('goods')->getById($good_id);
+                if($quantity > $goods[$good_id]['quantity']) {
+                    $fail_goods[$good_id] = $goods[$good_id]['quantity'];
+                } else {
+                    for($i = 0; $i < $quantity; $i ++) {
+                        $order_good = [
+                            'order_id' => $order['id'],
+                            'good_id' => $good_id,
+                            'product_id' => $order['product_id'],
+                            'create_date' => date('Y-m-d H:i:s')
+                        ];
+                        $order_good['price'] = $mark_first_row ? $product['price_discount_1'] : $product['price_discount_2'];
+                        $mark_first_row = false;
+                        $this->model('order_goods')->insert($order_good);
+                        $goods[$good_id]['quantity'] --;
+                        $this->model('goods')->insert($goods[$good_id]);
+                    }
+                    $total += $product['price_discount_2'];
+                }
+            }
+            if($fail_goods) {
+                $total += 690;
+                $this->render('fail_goods', $fail_goods);
+                $this->render('total', $total);
+            } else {
+                header('Location: ' . SITE_DIR . 'payment/methods/?id=' . $order['id']);
+                exit;
+            }
+        }
         $order = $this->model('orders')->getById($_GET['id']);
         $product = $this->model('products')->getById($order['product_id']);
+        $order_goods = [];
+        $total_sum = 0;
+        foreach ($this->model('order_goods')->getByField('order_id', $order['id'], true) as $item) {
+            if(!isset($order_goods[$item['good_id']])) {
+                $order_goods[$item['good_id']]['quantity'] = 0;
+            }
+            $order_goods[$item['good_id']]['quantity'] ++;
+            $total_sum += $item['price'];
+        }
+        $this->render('total_sum', $total_sum + $product['price_delivery']);
+        $this->render('order_goods', $order_goods);
+        if($order['payment_status_id'] != 2) {
+            $order['payment_status_id'] = 2;
+            $this->model('orders')->insert($order);
+        }
+
         $path = 'landings' . DS . $product['success_landing_key'] . DS;
         $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
         $this->render('order', $order);
+        $this->render('product', $product);
         $this->render('pixel', $_POST['pixel']);
         $this->render('dir', $dir);
         $this->view_only($path . 'template2');
@@ -78,6 +150,26 @@ class order_controller extends controller
     public function cart_na()
     {
         $this->cart();
+    }
+
+    public function later()
+    {
+        $order = $this->model('orders')->getById($_GET['id']);
+        $order['payment_status_id'] = 3;
+        $this->model('orders')->insert($order);
+        $product = $this->model('products')->getById($order['product_id']);
+        $path = 'landings' . DS . $product['success_landing_key'] . DS;
+        $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
+        $this->render('order', $order);
+        $this->render('product', $product);
+        $this->render('pixel', $_POST['pixel']);
+        $this->render('dir', $dir);
+        $this->view_only($path . 'template3');
+    }
+
+    public function later_na()
+    {
+        $this->later();
     }
 
     public function m1()

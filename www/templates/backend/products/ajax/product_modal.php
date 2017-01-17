@@ -81,27 +81,51 @@
                     </div>
                 </div>
             </div>
-            <div class="portlet-body">
-                <div class="form-group">
-                    <label class="control-label col-md-4">ID товара в партнерке</label>
-                    <div class="col-md-6">
-                        <input type="text" name="product[affiliate_id]" class="form-control" value="<?php echo $product['affiliate_id']; ?>">
-                    </div>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="form-group">
-                    <label class="control-label col-md-4">Webmaster ID</label>
-                    <div class="col-md-6">
-                        <input type="text" name="product[webmaster_id]" class="form-control" value="<?php echo $product['webmaster_id']; ?>">
-                    </div>
-                </div>
-            </div>
+<!--            <div class="portlet-body">-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">ID товара в партнерке</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" name="product[affiliate_id]" class="form-control" value="--><?php //echo $product['affiliate_id']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="portlet-body">-->
+<!--                <div class="form-group">-->
+<!--                    <label class="control-label col-md-4">Webmaster ID</label>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" name="product[webmaster_id]" class="form-control" value="--><?php //echo $product['webmaster_id']; ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="portlet-body">
                 <div class="form-group">
                     <label class="control-label col-md-4">Цена</label>
                     <div class="col-md-6">
                         <input type="text" name="product[price]" class="form-control" value="<?php echo $product['price']; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Цена со скидкой</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[price_discount_1]" class="form-control" value="<?php echo $product['price_discount_1']; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Цена со скидкой 2</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[price_discount_2]" class="form-control" value="<?php echo $product['price_discount_2']; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Цена доставки</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[price_delivery]" class="form-control" value="<?php echo $product['price_delivery']; ?>">
                     </div>
                 </div>
             </div>

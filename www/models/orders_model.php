@@ -458,4 +458,22 @@ class orders_model extends model
         ');
         return $this->get_all($stm, array('order_id' => $order_id));
     }
+
+    public function getReservedGoods()
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                og.good_id,
+                og.order_id
+            FROM 
+                order_goods og
+                    JOIN
+                orders o ON og.order_id = o.id
+                    WHERE
+                o.payment_status_id = 2
+                    AND
+                og.create_date < NOW() - INTERVAL 30 MINUTE
+        ');
+        return $this->get_all($stm);
+    }
 }

@@ -1,0 +1,195 @@
+/* ::::: http://aromat-discount.ru/design/Flavor24_mobile/css/main.css ::::: */
+
+html, body { margin: 0px; padding: 0px; height: 100%; }
+body { background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(34, 34, 34); font-family: "Ubuntu",sans-serif; }
+* { box-sizing: border-box; }
+.page { width: 100%; max-width: 500px; margin: 0px auto; overflow: hidden; }
+.main-title { text-align: center; color: rgb(136, 136, 136); }
+header img { width: 100%; }
+header p { margin: 10px 5px; }
+.quote { text-align: center; font-size: 1.5em; position: relative; font-weight: bold; color: rgb(240, 72, 92); line-height: 1; }
+.quote::before { content: ""; display: block; width: 50px; height: 50px; background: transparent url('quote.png') no-repeat scroll 0% 0%; opacity: 0.3; position: absolute; top: 0px; float: left; }
+.quote span { display: block; position: relative; left: 10%; }
+.author { text-align: right; font-style: italic; margin-top: -5px; margin-right: 15px; }
+.question { font-weight: bold; text-align: center; margin-top: 15px; }
+.timer { border: 10px solid rgb(238, 238, 238); margin: 15px; }
+.timer .title { color: rgb(240, 72, 92); text-align: center; }
+.timer .quantity { color: rgb(153, 153, 153); text-align: center; }
+.timer .quantity span { font-weight: bold; font-size: 1.2em; color: rgb(240, 72, 92); }
+.timer-container { width: 280px; margin: 0px auto; }
+.timer-container > span { width: 54px; height: 54px; border-radius: 50%; margin: 5px; line-height: 54px; background-color: rgb(238, 238, 238); display: inline-block; text-align: center; font-size: 1.6em; font-weight: bold; }
+.time-labels { width: 280px; margin: 0px auto; }
+.time-label { width: 60px; display: inline-block; margin: 2px; font-size: 12px; text-align: center; }
+.item { width: 90%; margin: 15px auto; max-width: 400px; padding: 10px 4% 20px; border: 1px solid rgb(238, 238, 238); position: relative; }
+.item .title { margin-bottom: 5px; margin-right: 60px; }
+.item .vol { font-weight: bold; color: rgb(170, 170, 170); position: absolute; margin-top: 0px; }
+.item::after { content: ""; display: block; clear: both; height: 10px; }
+.item img { width: 100%; }
+.item_list { padding: 0px; list-style: outside none none; color: rgb(102, 102, 102); }
+.item_list li { margin-bottom: 8px; }
+.item_list span { font-weight: bold; }
+.price-block { float: left; margin-top: 14px; text-align: right; width: 40%; }
+.old-price { margin: 0px; opacity: 0.8; }
+.old-price span { position: relative; }
+.old-price span::before { content: ""; display: block; position: absolute; top: 8px; left: 0px; width: 100%; height: 2px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; transform: rotate(-10deg); }
+.price { margin: 0px; font-weight: bold; color: rgb(240, 72, 92); font-size: 1.4em; }
+.btn { padding: 10px 0px 12px; color: rgb(255, 255, 255); width: 50%; background: rgb(39, 32, 34) none repeat scroll 0% 0%; border: medium none; margin-top: 15px; text-align: center; border-radius: 2px; text-decoration: none; font-weight: bold; display: inline-block; }
+.item .btn { float: right; }
+.label { position: absolute; top: 0px; right: 0px; }
+.orderform, .orderform2 { width: 100%; height: 100%; position: fixed; background: rgba(39, 32, 34, 0.96) none repeat scroll 0% 0%; top: 0px; left: 100%; overflow: hidden; color: rgb(255, 255, 255); }
+.orderform form { width: 80%; margin: 0px auto; max-width: 350px; }
+.orderform h3 { margin-top: 15%; text-align: center; }
+.orderform2 h2 { margin-top: 15%; text-align: center; }
+.field { display: table; margin-bottom: 15px; }
+.field input { padding: 10px; border-width: medium medium 1px; border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(255, 255, 255); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; background: transparent none repeat scroll 0% 0%; display: table-cell; color: rgb(255, 255, 255); }
+.field span { display: table-cell; text-align: right; width: 30%; }
+.orderform .btn { background: rgb(240, 72, 92) none repeat scroll 0% 0%; display: block; margin: 45px auto; padding: 10px 20px; width: 80%; }
+.orderform p { max-width: 300px; margin: 0px auto; }
+.gift-block { text-align: center; margin: 10px; border: 15px solid rgb(238, 238, 238); padding: 20px 15px; }
+.gift-block h2 { text-transform: uppercase; font-weight: bold; color: rgb(240, 72, 92); }
+.close { position: absolute; display: inline-block; right: 15px; top: 15px; width: 50px; height: 50px; overflow: hidden; }
+.close:hover::before, .close:hover::after { opacity: 0.8; }
+.close::before, .close::after { content: ""; position: absolute; height: 1px; width: 100%; top: 50%; left: 0px; margin-top: -1px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; }
+.close::before { transform: rotate(45deg); }
+.close::after { transform: rotate(-45deg); }
+.close.hairline::before, .close.hairline::after { height: 1px; }
+.footer { color: rgb(255, 255, 255); background: rgb(34, 34, 34) none repeat scroll 0% 0%; text-align: center; padding: 8px 15px; }
+/* ::::: https://fonts.googleapis.com/css?family=Ubuntu:400,300,700&subset=latin,cyrillic ::::: */
+
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('x_edmnknkultk57alvvbvxjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+460-52F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('nbf2d6y3abowfkbm-9hcwbjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('cdlilwqst01wnakqzbtzkhjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+1F00-1FFF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('7k0rmqcn8efxqs6schurzrjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+370-3FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('wtcvfjhwxkxx4x0kus1korjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+100-24F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Ubuntu Light"), local("Ubuntu-Light"), url('_aijtyevf54tkvdly-dlnftxra8tvwticgirnjhmvjw.woff2') format("woff2");
+	unicode-range: U+0-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('odszji8yqnw8v2xpulzjo_eszw2xoq-xsnqo47m55da.woff2') format("woff2");
+	unicode-range: U+460-52F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('iq9vjx1umasknigywyycxveszw2xoq-xsnqo47m55da.woff2') format("woff2");
+	unicode-range: U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('wkvqmvwsfw_kkeau9slq2_eszw2xoq-xsnqo47m55da.woff2') format("woff2");
+	unicode-range: U+1F00-1FFF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('gyatqxuikkqjyja1snpdlveszw2xoq-xsnqo47m55da.woff2') format("woff2");
+	unicode-range: U+370-3FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('wu5iuha-xnkdbvqrwqzag_eszw2xoq-xsnqo47m55da.woff2') format("woff2");
+	unicode-range: U+100-24F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Ubuntu"), url('sdgtilo5qrsfwu6yc11axg.woff2') format("woff2");
+	unicode-range: U+0-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('oxrpyim05jry_0rfieq_orjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+460-52F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('4z2u46_rrlofkohswjg3vxjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('2vawvxeaxhvkfcncbcqcyrjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+1F00-1FFF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('m-ii49wh_tyynojqylgtmbjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+370-3FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('nsltvfqot-rvwgthhnkejhjtnkitppoi_ivcxxdnrsc.woff2') format("woff2");
+	unicode-range: U+100-24F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url('0ihfxul2emph0rojezvraftxra8tvwticgirnjhmvjw.woff2') format("woff2");
+	unicode-range: U+0-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+a.link-readmore {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: rgb(34, 34, 34);
+	display: block;
+	text-align: center;
+	margin-top: 15px;
+}
+ul.item_list li {
+	display: none;
+}
