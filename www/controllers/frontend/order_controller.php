@@ -18,6 +18,8 @@ class order_controller extends controller
         }
         if($_GET['id']) {
             $order = $this->model('orders')->getById($_GET['id']);
+            $order['status'] = 2;
+            $this->model('orders')->insert($order);
             $product = $this->model('products')->getById($order['product_id']);
             $path = 'landings' . DS . $product['success_landing_key'] . DS;
             $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
@@ -63,18 +65,6 @@ class order_controller extends controller
             $order['status_id'] = 1;
             $order['price'] = $product['price'];
             $order['id'] = $this->model('orders')->insert($order);
-            $path = 'landings' . DS . $product['success_landing_key'] . DS;
-            $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
-            if($product['cross_product_id']) {
-                $this->render('product', $this->model('products')->getById($product['cross_product_id']));
-                $this->render('w', $_POST['w']);
-                $this->render('s', $_POST['s']);
-                $this->render('t', $_POST['t']);
-            }
-            $this->render('order', $order);
-            $this->render('pixel', $_POST['pixel']);
-            $this->render('dir', $dir);
-//            $this->view_only($path . 'template');
             header('Location: ' . SITE_DIR . 'order/?id=' . $order['id']);
             exit;
         }
@@ -134,10 +124,9 @@ class order_controller extends controller
         }
         $this->render('total_sum', $total_sum + $product['price_delivery']);
         $this->render('order_goods', $order_goods);
-        if($order['payment_status_id'] != 2) {
-            $order['payment_status_id'] = 2;
-            $this->model('orders')->insert($order);
-        }
+        $order['payment_status_id'] = 2;
+        $order['status_id'] = 3;
+        $this->model('orders')->insert($order);
 
         $path = 'landings' . DS . $product['success_landing_key'] . DS;
         $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
