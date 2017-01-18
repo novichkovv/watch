@@ -470,7 +470,7 @@ class orders_model extends model
                     JOIN
                 orders o ON og.order_id = o.id
                     WHERE
-                o.payment_status_id = 2
+                o.payment_status_id IN(2,3,4)
                     AND
                 og.create_date < NOW() - INTERVAL 30 MINUTE
         ');
