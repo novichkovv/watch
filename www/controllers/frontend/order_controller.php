@@ -18,7 +18,7 @@ class order_controller extends controller
         }
         if($_GET['id']) {
             $order = $this->model('orders')->getById($_GET['id']);
-            $order['status'] = 2;
+            $order['status_id'] = 2;
             $this->model('orders')->insert($order);
             $product = $this->model('products')->getById($order['product_id']);
             $path = 'landings' . DS . $product['success_landing_key'] . DS;
