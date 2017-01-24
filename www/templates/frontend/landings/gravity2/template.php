@@ -18,6 +18,7 @@
     <script src="<?php echo $dir; ?>js/jquery.js" type="text/javascript"></script>
     <script src="<?php echo $dir; ?>js/plugins.js" type="text/javascript"></script>
     <script src="<?php echo $dir; ?>js/detect.js" type="text/javascript"></script>
+    <script src="<?php echo SITE_DIR; ?>js/common/common.js" type="text/javascript"></script>
 </head>
     <body>
             <div class="main-wrap">
@@ -110,7 +111,7 @@
                         </p>
                         <form action="<?php echo SITE_DIR; ?>order/" method="post" class="m1_form">
                             <div><input type="text" name="name" placeholder="Введите Имя" required=""></div>
-                            <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
+                            <div><input type="text" id="phone" name="phone" placeholder="Введите телефон" required=""></div>
                             <input type="hidden" name="visitor_id" value="<?php echo $visitor_id; ?>"/>
                             <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
                             <input type="hidden" name="ref" value="<?php echo $product['webmaster_id']; ?>"/>
@@ -150,4 +151,16 @@
                     </form>
                 </div>
         </div>
-    </body></html>
+        <script type="text/javascript">
+            $ = jQuery.noConflict();
+            $(document).ready(function () {
+                $("#phone").focus(function() {
+                    if ($(this).val() == '') {
+                        $(this).val('+7');
+                    }
+                });
+                $("#phone").mask("+79999999999");
+            });
+        </script>
+    </body>
+</html>
