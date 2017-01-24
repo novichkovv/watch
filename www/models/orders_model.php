@@ -25,7 +25,6 @@ class orders_model extends model
                 orders o
             WHERE
                 o.create_date >= :last_update
-                AND o.status_id = 2
         ');
     $this->writeLog('test', $stm->getQuery(['last_update' => registry::get('user')['last_update']]));
         return $this->get_row($stm, ['last_update' => registry::get('user')['last_update']])['qty'];

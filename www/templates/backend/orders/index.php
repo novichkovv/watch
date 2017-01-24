@@ -64,7 +64,7 @@
                             <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
                         </td>
                         <td>
-                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field" value="<?php echo $my_name; ?>">
+                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field" value="">
                         </td>
                         <td>
                             <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
