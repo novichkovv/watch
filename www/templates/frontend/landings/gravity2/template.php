@@ -5,7 +5,7 @@
     
     <meta name="viewport" content="width=480">
     <meta name="description" content="Уникальная новинка - чехол для телефона, который крепится к любой поверхности!">
-    <meta name="keywords" content="чехол для айфона, чехол для самсунг, антигравитационный чехол, чехол для iPhone, чехол для samsung, купить чехол для телефона">
+    <meta name="keywords" content="чехол для айфона, антигравитационный чехол, чехол для iPhone, купить чехол для телефона">
     
     <link rel="icon" href="http://reals-gooods.ru/antigravitycase1/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://reals-gooods.ru/antigravitycase1/favicon.ico" type="image/x-icon">
@@ -26,11 +26,10 @@
                     <div class="models">
                         <h4>Для смартфонов:</h4>
                         <ul>
-                            <li>iPhone 5, 6, 6+, 7, 7+</li>
-                            <li>samsung note 5</li>
-                            <li>samsung s6</li>
-                            <li>samsung edge 6+</li>
-                            <li>samsung edge now s7</li>
+                            <li>iPhone 5</li>
+                            <li>iPhone 5s</li>
+                            <li>iPhone 6</li>
+                            <li>iPhone 6s</li>
                         </ul>
                     </div>
                     <div class="cost">
@@ -90,11 +89,10 @@
                     <div class="models">
                         <h4>Для смартфонов:</h4>
                         <ul>
-                            <li>iPhone 5, 6, 6+, 7, 7+</li>
-                            <li>samsung note 5</li>
-                            <li>samsung s6</li>
-                            <li>samsung edge 6+</li>
-                            <li>samsung edge now s7</li>
+                            <li>iPhone 5</li>
+                            <li>iPhone 5s</li>
+                            <li>iPhone 6</li>
+                            <li>iPhone 6s</li>
                         </ul>
                     </div>
                     <div class="cost">
@@ -111,7 +109,7 @@
                             и мы свяжемся с вами для уточнения деталей&nbsp;заказа
                         </p>
                         <form action="<?php echo SITE_DIR; ?>order/" method="post" class="m1_form">
-                            <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
+                            <div><input type="text" name="name" placeholder="Введите Имя" required=""></div>
                             <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
                             <input type="hidden" name="visitor_id" value="<?php echo $visitor_id; ?>"/>
                             <input type="hidden" name="product_id" value="<?php echo $product['affiliate_id']; ?>"/>
@@ -126,11 +124,30 @@
                     </div>
                 </div>
             </div>
-            <div class="section footer">
-                <div class="center">
-                    <img class="mob-vis" src="<?php echo $dir; ?>img/cop1-b-320.png" alt="copyright">
-<p style="text-align: center"><a style="color: inherit;" href="http://reals-gooods.ru/antigravitycase1/politics.html" target="_blank">Политика конфиденциальности</a></p><p></p>
+                <div id="info" class="section footer" style="text-align: center;">
+                    <img src="<?php echo SITE_DIR; ?>images/payanyway.gif" style="display: inline;">
+                    <img src="<?php echo SITE_DIR; ?>images/webmoney.png" style="display: inline;">
+                    <img src="<?php echo SITE_DIR; ?>images/visamaster.png" style="display: inline; height: 100px;">
+                    <div style="padding: 10px 50px; text-align: center;">
+                        ИП Глазырина А.Э<br>Санкт-Петербург, Ленинский пр-т 191к2-9<br>
+                        ИНН 784802011692<br>
+                        Тел: 8(926)333-57-08<br>
+                        Email: novichkovv@bk.ru<br>
+                    </div>
+                    <form method="post" action="http://backend.<?php echo DOMAIN; ?>docs/?document=oferta.docx">
+                        <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                            <a target="_blank"  href="<?php echo SITE_DIR; ?>info/oferta/" style="background-color: #fff; border: none; color: #0a6aa1;">Договор-Оферта</a>
+                        </p>
+                        <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                            <a target="_blank"  href="<?php echo SITE_DIR; ?>info/payment/" style="background-color: #fff; border: none; color: #0a6aa1;">Порядок Оплаты</a>
+                        </p>
+                        <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                            <a target="_blank"  href="<?php echo SITE_DIR; ?>info/geo/" style="background-color: #fff; border: none; color: #0a6aa1;">География и Сроки Доставки</a>
+                        </p>
+                        <p style="text-align: center; font-size: 14px; padding-bottom: 10px;">
+                            <a target="_blank"  href="<?php echo SITE_DIR; ?>info/pvz/" style="background-color: #fff; border: none; color: #0a6aa1;">Пункты Самовывоза</a>
+                        </p>
+                    </form>
                 </div>
-            </div>
         </div>
     </body></html>
