@@ -23,12 +23,9 @@ class orders_model extends model
                 COUNT(o.id) qty
             FROM
                 orders o
-                    JOIN
-                m1_accounts a ON o.my_name = a.account_name
             WHERE
-                a.user_id = 75
-                    AND o.pay_date >= :last_update
-                    AND o.status_id = 2
+                o.create_date >= :last_update
+                AND o.status_id = 2
         ');
     $this->writeLog('test', $stm->getQuery(['last_update' => registry::get('user')['last_update']]));
         return $this->get_row($stm, ['last_update' => registry::get('user')['last_update']])['qty'];
