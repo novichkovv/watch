@@ -30,7 +30,7 @@ class order_controller extends controller
                 $this->render('t', $_POST['t']);
             }
             $this->render('order', $order);
-            $this->render('pixel', $_POST['pixel']);
+            $this->render('pixel', $_GET['pixel']);
             $this->render('dir', $dir);
             $this->view_only($path . 'template');
             exit;
@@ -65,7 +65,7 @@ class order_controller extends controller
             $order['status_id'] = 1;
             $order['price'] = $product['price'];
             $order['id'] = $this->model('orders')->insert($order);
-            header('Location: ' . SITE_DIR . 'order/?id=' . $order['id']);
+            header('Location: ' . SITE_DIR . 'order/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
             exit;
         }
     }
