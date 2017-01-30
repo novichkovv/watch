@@ -1,0 +1,575 @@
+/*reset*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b,
+u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header, menu, nav, output, ruby, section,
+summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; outline: 0;}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section, main {display: block;}
+
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+img{max-width: 100%; height: auto;}
+a{text-decoration: underline;}
+a:hover{cursor: pointer;}
+
+*::-webkit-input-placeholder {color: #a9a9a9; opacity: 1;}
+*:-moz-placeholder {color: #a9a9a9; opacity: 1;}
+*::-moz-placeholder {color: #a9a9a9; opacity: 1;}
+*:-ms-input-placeholder {color: #a9a9a9; opacity: 1;}
+*{margin: 0; padding: 0;}
+*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+button,input{outline: none;}
+
+/* Default settings*/
+
+.hidden{display: none;}
+.clear{clear: both;height: 0px;}
+.invis{display: none;}
+.left{float: left;}
+.right{float: right;}
+.center{text-align: center;}
+.clearfix:after{content: '';display: block;clear: both;}
+
+/* font-family: "GothamProRegular"; */
+@font-face {
+    font-family: "GothamProRegular";
+    src: url("../fonts/GothamProRegular/GothamProRegular.eot");
+    src: url("../fonts/GothamProRegular/GothamProRegular.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProRegular/GothamProRegular.woff") format("woff"),
+        url("../fonts/GothamProRegular/GothamProRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProBold"; */
+@font-face {
+    font-family: "GothamProBold";
+    src: url("../fonts/GothamProBold/GothamProBold.eot");
+    src: url("../fonts/GothamProBold/GothamProBold.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProBold/GothamProBold.woff") format("woff"),
+        url("../fonts/GothamProBold/GothamProBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProBlack"; */
+@font-face {
+    font-family: "GothamProBlack";
+    src: url("../fonts/GothamProBlack/GothamProBlack.eot");
+    src: url("../fonts/GothamProBlack/GothamProBlack.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProBlack/GothamProBlack.woff") format("woff"),
+        url("../fonts/GothamProBlack/GothamProBlack.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProItalic"; */
+@font-face {
+    font-family: "GothamProItalic";
+    src: url("../fonts/GothamProItalic/GothamProItalic.eot");
+    src: url("../fonts/GothamProItalic/GothamProItalic.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProItalic/GothamProItalic.woff") format("woff"),
+        url("../fonts/GothamProItalic/GothamProItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProMedium"; */
+@font-face {
+    font-family: "GothamProMedium";
+    src: url("../fonts/GothamProMedium/GothamProMedium.eot");
+    src: url("../fonts/GothamProMedium/GothamProMedium.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProMedium/GothamProMedium.woff") format("woff"),
+        url("../fonts/GothamProMedium/GothamProMedium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProLight"; */
+@font-face {
+    font-family: "GothamProLight";
+    src: url("../fonts/GothamProLight/GothamProLight.eot");
+    src: url("../fonts/GothamProLight/GothamProLight.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProLight/GothamProLight.woff") format("woff"),
+        url("../fonts/GothamProLight/GothamProLight.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProMediumItalic"; */
+@font-face {
+    font-family: "GothamProMediumItalic";
+    src: url("../fonts/GothamProMediumItalic/GothamProMediumItalic.eot");
+    src: url("../fonts/GothamProMediumItalic/GothamProMediumItalic.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProMediumItalic/GothamProMediumItalic.woff") format("woff"),
+        url("../fonts/GothamProMediumItalic/GothamProMediumItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProLightItalic"; */
+@font-face {
+    font-family: "GothamProLightItalic";
+    src: url("../fonts/GothamProLightItalic/GothamProLightItalic.eot");
+    src: url("../fonts/GothamProLightItalic/GothamProLightItalic.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProLightItalic/GothamProLightItalic.woff") format("woff"),
+        url("../fonts/GothamProLightItalic/GothamProLightItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProBoldItalic"; */
+@font-face {
+    font-family: "GothamProBoldItalic";
+    src: url("../fonts/GothamProBoldItalic/GothamProBoldItalic.eot");
+    src: url("../fonts/GothamProBoldItalic/GothamProBoldItalic.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProBoldItalic/GothamProBoldItalic.woff") format("woff"),
+        url("../fonts/GothamProBoldItalic/GothamProBoldItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "GothamProBlackItalic"; */
+@font-face {
+    font-family: "GothamProBlackItalic";
+    src: url("../fonts/GothamProBlackItalic/GothamProBlackItalic.eot");
+    src: url("../fonts/GothamProBlackItalic/GothamProBlackItalic.eot-#iefix")format("embedded-opentype"),
+        url("../fonts/GothamProBlackItalic/GothamProBlackItalic.woff") format("woff"),
+        url("../fonts/GothamProBlackItalic/GothamProBlackItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+
+/*Site settings*/
+h1,h2,h3,h4,h5,h6, b, strong{font-family: "GothamProBold"; font-weight: normal;}
+i{font-family: "GothamProItalic"; font-weight: normal;}
+
+.opacity-75{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+    filter: alpha(opacity=75);
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    opacity: 0.75;
+}
+.shadow-text{
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+.shadow-55{
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow:    0px 1px 2px 0px rgba(0, 0, 0, 0.55);
+    box-shadow:         0px 1px 2px 0px rgba(0, 0, 0, 0.55);
+}
+.border-5{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.animate {
+    -webkit-transition: all 0.3s;
+    -moz-transition:    all 0.3s;
+    -o-transition:      all 0.3s;
+    -ms-transition:     all 0.3s;
+    transition:         all 0.3s;
+}
+.col-1{color: #fcdb38;} 
+.col-2{color: #fff;}
+.col-3{color: #222;}
+
+/*structure*/
+html{
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+body{
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'GothamProRegular', "Arial", "Helvetica", sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+    background: #fff;
+    color: #222;
+    font-weight: normal;
+}
+.main-wrap{
+    position: relative;
+    width: 480px;
+    margin: 0px auto;
+}
+.section{
+    position: relative;
+    padding: 60px 20px;
+}
+h2{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    font-size: 34px;
+    line-height: 1.2em;
+    text-align: center;
+    text-transform: uppercase;
+}
+h2.line:after{
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    margin: 10px auto 0;
+    background: #fcdb38;
+}
+h2>small{
+    display: inline-block;
+    font-weight: 400;
+    font-size: 20px;
+}
+.button{
+    position: relative;
+    display: block;
+    width: 360px;
+    height: 80px;
+    margin: 0 auto;
+    outline: none;
+    border: 0;
+    background: #fdc107; 
+    background: -moz-linear-gradient(top,  #fdc107 0%, #fcdb38 100%);
+    background: -webkit-linear-gradient(top,  #fdc107 0%,#fcdb38 100%); 
+    background: linear-gradient(to bottom,  #fdc107 0%,#fcdb38 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdc107', endColorstr='#fcdb38',GradientType=0 );
+    border-bottom: 3px solid #a27804;
+    font-family: "GothamProBold";
+    font-weight: normal;
+    font-size: 22px;
+    color: #111;
+    line-height: 78px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+    cursor: pointer;   
+    top: 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.center .button{
+    margin: 0px auto;
+}
+input[type="text"]{
+    display: block;
+    position: relative;
+    width: 360px;
+    height: 76px;
+    padding-left: 30px;
+    line-height: 76px;
+    border: 1px solid rgba(0,0,0,0.4);
+    background: #fff;
+   -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-family: 'GothamProRegular', "Arial", "Helvetica", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    color: #222;
+}
+.sale{
+    position: absolute;
+    line-height: 1em;
+    font-size: 48px;
+    text-align: center;
+    color: #fcdb38;
+}
+.countbox{
+    position: relative;
+    width: 345px;
+    padding-top: 10px;
+    padding: 0;
+    margin:0 auto;
+    line-height: 1.2; 
+    font-size: 36px; 
+    font-weight: 300; 
+    text-align: center; 
+    color: #fff;
+}
+.countbox .countbox-num{
+    position: relative;
+    float: left; 
+    height: 71px;
+}
+.countbox .countbox-space{
+    float: left; 
+    width: 24px; 
+    height: 71px; 
+    line-height: 68px; 
+    font-size: 30px;
+}
+.countbox .countbox-space:before{content: '\003A'; font-weight: 400; }
+.countbox-hours1,.countbox-hours2,.countbox-mins1,.countbox-mins2, .countbox-secs1, .countbox-secs2{
+    position: relative; 
+    float: left;
+    width: 45px;
+    height: 71px;
+    margin: 0 2px; 
+    line-height: 71px;
+    text-align: center;
+    z-index:1; 
+    font-weight: 700; 
+    background: url(../img/timer-bg.png) 0 0 no-repeat;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+.countbox-hours-text,.countbox-mins-text,.countbox-secs-text{
+    position: absolute;
+    width: 100px; 
+    height: 14px;
+    margin-top: 78px;
+    font-size: 14px; 
+}
+
+.old-cost{
+    text-decoration: line-through;
+}
+.block-1{
+    height: 670px;
+    padding-top: 252px;
+    background: url(../img/bg-1.jpg) top center no-repeat #09070c;
+}
+.block-1 .sale{
+    left: 84px;
+    margin-top: -2px;
+}
+.block-1 .cost{
+    position: relative;
+    padding: 140px 0 80px 30px;
+    font-family: "GothamProBold";
+}
+.block-1 .cost .old-cost{
+    font-size: 30px;
+    line-height: 1em;
+}
+.block-1 .cost .new-cost{
+    font-size: 48px;
+    line-height: 1.2em;
+}
+.block-1 .timer{
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    color: #fff;
+}
+.block-1 .timer>p{
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+.block-1 form{
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.block-1 form>div{
+    padding-bottom: 15px;
+}
+.block-2{
+    height: 474px;
+    background: url(../img/tov-2.jpg) center top no-repeat;
+}
+.block-3{
+    background: url(../img/tov-1.jpg) center 140px no-repeat;
+}
+.block-3 .tov-spec{
+    position: relative;
+    padding-top: 430px;
+}
+.block-3 .tov-spec dl{
+    padding: 8px 0;
+}
+.block-3 .tov-spec dl:nth-child(even){
+    margin: 5px 0;
+    background: #f3f3f3;
+}
+.block-3 .tov-spec dt, .block-3 .tov-spec dd{
+    position: relative;
+    display: inline-block;
+    width: 52%;
+    vertical-align: middle;
+}
+.block-3 .tov-spec dd{
+    font-weight: normal;
+}
+.block-3 .tov-spec dt{
+    width: 44%;
+    padding-left: 15px;
+    font-family: "GothamProBold";
+}
+.block-3 .cost{
+    position: relative;
+    font-weight: 700;
+    font-size: 42px;
+    padding-bottom: 40px;
+}
+.block-3 .cost>div{
+    position: relative;
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.block-6 ul{
+    position: relative;
+    padding: 80px 0 20px;
+}
+.block-6 ul li{
+    position: relative;
+    float: left;
+    width: 50%;
+    padding: 0 20px 40px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4em;
+}
+.block-6 ul li:before{
+    content: '';
+    position: relative;
+    display: block;
+    width: 122px;
+    height: 125px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background: url(../img/deliv.jpg) no-repeat;
+}
+.block-6 ul li:nth-child(1):before{
+    background-position: 0 0;
+}
+.block-6 ul li:nth-child(2):before{
+    background-position: -122px 0;
+}
+.block-6 ul li:nth-child(3):before{
+    background-position: -244px 0;
+}
+.block-6 ul li:nth-child(4):before{
+    background-position: -366px 0;
+}
+.block-6 ul li>p:before{
+    content: '';
+    display: block;
+    width: 30%;
+    height: 2px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    background: #ffd53a;
+}
+.block-4 ul{
+    position: relative;
+    padding-top: 40px;
+}
+.block-4 ul li{
+    position: relative;
+    padding-left: 160px;
+    padding-bottom: 40px;
+    font-size: 16px;
+}
+.block-4 ul li:before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 128px;
+    height: 128px;
+    left: 0;
+    top: 6px;
+    background: url(../img/deliv-bg.png) no-repeat;
+}
+.block-4 ul li:last-child{
+    padding-bottom: 0;
+}
+.block-4 ul li:nth-child(1):before{
+    background-position: 0 0;
+}
+.block-4 ul li:nth-child(2):before{
+    background-position: -128px 0;
+}
+.block-4 ul li:nth-child(3):before{
+    background-position: -256px 0;
+}
+.block-4 ul li h3{
+    font-size: 20px;
+    line-height: 1.4em;
+    text-transform: uppercase;
+}
+.block-5{
+    padding: 50px 20px;
+    background: url(../img/bg-2.jpg) top center no-repeat;
+    color: #fff;
+}
+.block-5 h2{
+    color: #fff;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    background: url(../img/rew-h2.png) center bottom no-repeat;
+}
+.block-5 .rew-cont{
+    position: relative;
+    overflow: hidden;
+}
+.block-5 .rew-item{
+    position: relative;
+    float: left;
+    margin: 0 20px;
+}
+.block-5 .rew-item>img{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.block-5 .rew-item>h4{
+    padding: 25px 0;
+    text-align: center;
+    color: #fcdb38;
+    font-size: 19px;
+    line-height: 1em;
+}
+.block-5 .rew-item>p{
+    font-size: 18px;
+    line-height: 1.4em;
+    text-align: justify;
+}
+.block-5 .slick-arrow{
+    display: inline-block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 99;
+    top: 50px;
+    background: url(../img/arr-slider.png) no-repeat;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    -webkit-transition: all 0.2s;
+    -moz-transition:    all 0.2s;
+    -o-transition:      all 0.2s;
+    -ms-transition:     all 0.2s;
+    transition:         all 0.2s;
+ }
+ .block-5 .slick-arrow:hover{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9; 
+ }
+.block-5 .slick-prev{
+    left: 70px;
+    background-position: 0 0;
+}
+.block-5 .slick-next{
+    background-position: -32px 0;
+    right: 70px;
+}
+.end{
+    height: auto;
+    padding-bottom: 40px;
+}

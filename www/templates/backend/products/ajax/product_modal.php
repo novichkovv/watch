@@ -81,22 +81,22 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="portlet-body">-->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label col-md-4">ID товара в партнерке</label>-->
-<!--                    <div class="col-md-6">-->
-<!--                        <input type="text" name="product[affiliate_id]" class="form-control" value="--><?php //echo $product['affiliate_id']; ?><!--">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="portlet-body">-->
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label col-md-4">Webmaster ID</label>-->
-<!--                    <div class="col-md-6">-->
-<!--                        <input type="text" name="product[webmaster_id]" class="form-control" value="--><?php //echo $product['webmaster_id']; ?><!--">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">ID товара в партнерке</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[affiliate_id]" class="form-control" value="<?php echo $product['affiliate_id']; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Webmaster ID</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[webmaster_id]" class="form-control" value="<?php echo $product['webmaster_id']; ?>">
+                    </div>
+                </div>
+            </div>
             <div class="portlet-body">
                 <div class="form-group">
                     <label class="control-label col-md-4">Цена</label>
