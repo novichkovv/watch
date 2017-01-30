@@ -183,7 +183,7 @@
                     <div class="old-cost col-2">9960р</div>
                     <div class="new-cost col-1">2990р</div>
                 </div>
-                <form action="<?php echo SITE_DIR; ?>order/m1/" method="post" class="m1_form">
+                <form action="<?php echo SITE_DIR; ?>order/m1/" id="order" method="post" class="m1_form">
                     <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>
                     <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>
                     <input type="hidden" name="visitor_id" value="<?php echo $visitor_id; ?>"/>
