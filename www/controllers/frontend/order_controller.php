@@ -69,7 +69,10 @@ class order_controller extends controller
             $order['id'] = $this->model('orders')->insert($order);
             $params = [
                 'tel' => $_POST['phone'],
-                'client' => $_POST['name']
+                'client' => $_POST['name'],
+                'foreign_value' => $order['id'],
+                'code' => $product['affiliate_id'],
+                'ip' => $_SERVER['REMOTE_ADDR']
             ];
             $ml_api = new ml_api_class();
             $ml_api->addLead($params);

@@ -45,18 +45,17 @@ class ml_api_class extends base
     public function addLead($params)
     {
         $params['ip'] = 1;
-        $params['code'] = 'qy6apbtke';
         $params['traffic_type'] = 0;
         $this->makeApiCall('order.add', $params, 2);
     }
 
     public function getOrderList($params)
     {
-        $this->makeApiCall('order.list', $params, 2);
+        $this->makeApiCall('order.list', $params);
     }
 
     public function getOrderInfo($order)
     {
-        
+
     }
 }
