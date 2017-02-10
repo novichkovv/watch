@@ -25,6 +25,7 @@ class payment_controller extends controller
             $order['status_id'] = 4;
             $order['payment_status_id'] = 4;
         }
+        $order['last_status_update'] = date('Y-m-d H:i:s');
         $this->model('orders')->insert($order);
         $product = $this->model('products')->getById($order['product_id']);
         $order['sum'] = 0;

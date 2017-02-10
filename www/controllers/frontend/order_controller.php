@@ -18,7 +18,8 @@ class order_controller extends controller
         }
         if($_GET['id']) {
             $order = $this->model('orders')->getById($_GET['id']);
-            $order['status_id'] = 2;
+            $order['status_id'] = 8;
+            $order['last_status_update'] = date('Y-m-d H:i:s');
             $this->model('orders')->insert($order);
             $product = $this->model('products')->getById($order['product_id']);
             $path = 'landings' . DS . $product['success_landing_key'] . DS;
@@ -63,8 +64,15 @@ class order_controller extends controller
             $order['my_name'] = $_POST['w'];
             $order['t_field'] = $_POST['t'];
             $order['status_id'] = 1;
+            $order['last_status_update'] = date('Y-m-d H:i:s');
             $order['price'] = $product['price'];
             $order['id'] = $this->model('orders')->insert($order);
+            $params = [
+                'tel' => $_POST['phone'],
+                'client' => $_POST['name']
+            ];
+            $ml_api = new ml_api_class();
+            $ml_api->addLead($params);
             header('Location: ' . SITE_DIR . 'order/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
             exit;
         }
@@ -125,6 +133,7 @@ class order_controller extends controller
         $this->render('total_sum', $total_sum + $product['price_delivery']);
         $this->render('order_goods', $order_goods);
         $order['payment_status_id'] = 2;
+        $order['last_status_update'] = date('Y-m-d H:i:s');
         $order['status_id'] = 3;
         $this->model('orders')->insert($order);
 
@@ -145,7 +154,9 @@ class order_controller extends controller
     public function later()
     {
         $order = $this->model('orders')->getById($_GET['id']);
+        $order['status_id'] = 9;
         $order['payment_status_id'] = 3;
+        $order['last_status_update'] = date('Y-m-d H:i:s');
         $this->model('orders')->insert($order);
         $product = $this->model('products')->getById($order['product_id']);
         $path = 'landings' . DS . $product['success_landing_key'] . DS;

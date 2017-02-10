@@ -7,6 +7,15 @@
  */
 class cron_class extends base
 {
+    public function updateMLInfo()
+    {
+        $ml_api = new ml_api_class();
+        foreach ($ml_api->getOrderList([]) as $item) {
+
+        }
+    }
+
+
     public function update_order_statuses()
     {
         $orders = [];

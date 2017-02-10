@@ -7,6 +7,12 @@
  */
 class api_controller extends controller
 {
+    public function ml()
+    {
+        $this->writeLog('test', $_POST);
+        $this->writeLog('test', $_GET);
+    }
+
     public function __construct()
     {
 

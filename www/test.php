@@ -2,7 +2,7 @@
 require_once 'config.php';
 require_once CORE_DIR . 'autoload.php';
 $api = new sms_api_class();
-print_r($api->send_sms('79263335708', 'Тест'));
+print_r($api->send_sms('79038236333', 'Ваш Заказ находится в Пункте Выдачи, Москва, пр.Шокальского, д.61 пав. 15'));
 
 /**
 $kab = '{"addresses":[{"codes":{"kladr_actual":"500240000720000","kladr_detected":"500240000720000","kladr_pure":"50024000072"},"cover":[{"in":"обл Московская"},{"out":","},{"in":"р-н Орехово-Зуевский"},{"out":","},{"in":"д Кабаново (Горское с\/п"},{"out":"),"},{"in":"164"},{"out":"-"},{"in":"19"}],"fields":[{"c":"50","cover":"обл Московская","level":"Region","name":"Московская","ns":1.00,"ts":1.00,"type":"обл"},{"c":"024","cover":"р-н Орехово-Зуевский","level":"District","name":"Орехово-Зуевский","ns":1.00,"ts":1.00,"type":"р-н"},{"level":"City"},{"c":"072","cover":"д Кабаново (Горское с\/п","level":"Place","name":"Кабаново (Горское с\/п)","ns":1.00,"ts":1.00,"type":"д"},{"level":"Street"},{"c":"0001","cover":"164","level":"House","name":"164","ns":1.00,"ts":0.00,"type":"дом"},{"level":"Building"},{"level":"Structure"},{"cover":"19","level":"Flat","name":"19","ns":0.50,"ts":0.00,"type":"кв"},{"level":"Zip","name":"142664","type":"Индекс"}],"geo_data":{"max":{"lat":55.7607011,"lon":38.9489613},"mid":{"lat":55.7508754,"lon":38.9300545},"min":{"lat":55.7409974,"lon":38.9114513},"object_level":"Place","rel":100},"pretty":"обл Московская, р-н Орехово-Зуевский, д Кабаново (Горское с\/п), дом 164, кв 19","quality":{"canonic_fields":3,"detected_fields":3,"precision":100,"recall":100,"verified_numeric_fields":1,"warnings":"ChildIsSkipped|"}}],"check_info":{"alts":1,"query":"обл Московская, р-н Орехово-Зуевский, д Кабаново (Горское с\/п), 164-19","time":28},"request_process_time":28}';

@@ -2,32 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: asus1
- * Date: 28.12.2016
- * Time: 12:23
+ * Date: 08.02.2017
+ * Time: 21:26
  */
-class b2_api_class extends base
+class ml_api_class extends base
 {
-    public function getStoreInfo()
-    {
-        return $this->makeApiCall('INFO_STORE');
-    }
-
-    public function getZipInfo($zip)
-    {
-        return $this->makeApiCall('INFO_ZIP', ['zip' => $zip]);
-    }
-
-    public function getRates($params)
-    {
-        return $this->makeApiCall('TARIF', $params);
-    }
-
-    public function makeApiCall($func, array $params = array(), $url = '', $method = 'GET') {
-        $params['func'] = $func;
-        $params['client'] = B2_API_CLIENT;
-        $params['key'] = B2_API_KEY;
-        $url = B2_API_URL . $url . ($method == 'GET' ? '?' . http_build_query($params) : '');
-        echo $url;
+    public function makeApiCall($func, array $params = array(), $api = 1, $method = 'POST') {
+        $params['api_key'] = ($api == 1 ? ML_AD_API_KEY : ML_WM_API_KEY);
+        $params['format'] = 'json';
+        $url = ML_API_URL . $func . ($method == 'GET' ? '?' . http_build_query($params) : '');
         $headers = array(
             "User-Agent: php-tutorial/1.0",
         );
@@ -58,15 +41,21 @@ class b2_api_class extends base
         return json_decode($response, true);
     }
 
-    public function getOrderStatus()
+    public function addLead($params)
     {
-
+        $params['ip'] = 1;
+        $params['code'] = '8mjs856wu';
+        $params['traffic_type'] = 0;
+        $this->makeApiCall('order.add', $params, 2);
     }
 
-    public function uploadOrder($order)
+    public function getOrderList($params)
     {
-        $params = [
+        $this->makeApiCall('order.list', $params, 2);
+    }
 
-        ];
+    public function getOrderInfo($order)
+    {
+        
     }
 }

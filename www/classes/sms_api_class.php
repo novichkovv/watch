@@ -10,7 +10,6 @@ class sms_api_class extends base
     public function send_sms($to, $text)
     {
         $url = SMS_API_URL . 'sms/send';
-        echo $url;
         return $this->makeApiCall($url, [
             'to' => $to,
             'text' => $text
