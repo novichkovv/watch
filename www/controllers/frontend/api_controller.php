@@ -80,4 +80,9 @@ class api_controller extends controller
         ));
         exit;
     }
+
+    public function ml_na()
+    {
+        $this->ml();
+    }
 }
