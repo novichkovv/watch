@@ -20,7 +20,6 @@ class cron_class extends base
 //            print_r($orders[$item['foreign_value']]);
             $order_id = $item['foreign_value'];
             if(isset($orders[$order_id]) && $orders[$order_id]['cc_status_id'] != $item['status_num']) {
-                print_r($item);
 //                print_r($item);
                 switch ($item['status_num']) {
                     case "1":
@@ -32,7 +31,6 @@ class cron_class extends base
                         $this->model('orders')->insert($order);
                         break;
                     case "2":
-                        echo 1;
                         $address = [
                             'user_id' => $orders[$order_id]['user_id'],
                             'phone' => $item['tel'],
@@ -128,6 +126,14 @@ class cron_class extends base
                             'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments']
                         ];
                         $this->model('orders')->insert($order);
+                        if($order_goods = $this->model('orders_goods')->getByField('order_id', $order_id, true)) {
+                            foreach ($order_goods as $order_good) {
+                                $good = $this->model('goods')->getById($order_good['id']);
+                                $good['quantity'] ++;
+                                $this->model('goods')->insert($good);
+                            }
+                            $this->model('order_goods')->delete('order_id', $order_id);
+                        }
                         break;
                         break;
 
@@ -140,6 +146,14 @@ class cron_class extends base
                             'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments']
                         ];
                         $this->model('orders')->insert($order);
+                        if($order_goods = $this->model('orders_goods')->getByField('order_id', $order_id, true)) {
+                            foreach ($order_goods as $order_good) {
+                                $good = $this->model('goods')->getById($order_good['id']);
+                                $good['quantity'] ++;
+                                $this->model('goods')->insert($good);
+                            }
+                            $this->model('order_goods')->delete('order_id', $order_id);
+                        }
                         break;
                         break;
                 }
