@@ -151,6 +151,12 @@
                             <input type="text" name="good[ml_id]" class="form-control" value="<?php echo $good['ml_id']; ?>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Номер накладной</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[consignment_note]" class="form-control" value="<?php echo $good['consignment_note']; ?>">
+                        </div>
+                    </div>
 
                     <?php if (!empty($goog['id'])): ?>
                         <div class="form-group">

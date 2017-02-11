@@ -9,34 +9,32 @@ class cron_class extends base
 {
     public function updateMLInfo()
     {
+//        error_reporting(E_ALL);
         $orders = $this->model('orders')->id_array()->getAll('create_date DESC', 100);
         $ml_api = new ml_api_class();
 //        print_r($ml_api->getOrderListLastUpdate([]));
         foreach ($ml_api->getOrderListLastUpdate([]) as $item) {
-//            print_r($item);
+
 //            echo $item['status'];
 //            echo $item['foreign_value'];
 //            print_r($orders[$item['foreign_value']]);
-            if(isset($orders[$item['foreign_value']]) && $orders[$item['foreign_value']]['cc_status_id'] != $item['status_num']) {
+            $order_id = $item['foreign_value'];
+            if(isset($orders[$order_id]) && $orders[$order_id]['cc_status_id'] != $item['status_num']) {
                 print_r($item);
+//                print_r($item);
                 switch ($item['status_num']) {
                     case "1":
                         $order = [
-                            'id' => $item['foreign_value'],
+                            'id' => $order_id,
                             'cc_status_id' => 1,
-                            'comments' => ($orders[$item['foreign_language']]['comments'] ? $orders[$item['foreign_language']]['comments'] . '<br>' : '') . $item['comments']
+                            'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments']
                         ];
-                        print_r($order);
+                        $this->model('orders')->insert($order);
                         break;
                     case "2":
-                        $order = [
-                            'id' => $item['foreign_value'],
-                            'cc_status_id' => 2,
-                            'comments' => ($orders[$item['foreign_language']]['comments'] ? $orders[$item['foreign_language']]['comments'] . '<br>' : '') . $item['comments'],
-                            'status_id' => 9,
-                        ];
+                        echo 1;
                         $address = [
-                            'user_id' => $orders[$item['foreign_language']]['user_id'],
+                            'user_id' => $orders[$order_id]['user_id'],
                             'phone' => $item['tel'],
                             'first_name' => $item['client'],
 //                            'middle_name' => ,
@@ -55,14 +53,94 @@ class cron_class extends base
 //                            'address' => ,
 //                            'comments' => ,
                         ];
-                        if($orders[$item['foreign_language']]['address_id']){
-                            $address['id'] = $orders[$item['foreign_language']]['address_id'];
+                        if($orders[$order_id]['address_id']){
+                            $address['id'] = $orders[$order_id]['address_id'];
                         } else {
                             $address['create_date'] = date('Y-m-d H:i:s');
                         }
-                        $order_goods = [
-                            'order_goods'
-                        ]
+
+                        $address['id'] = $this->model('user_addresses')->insert($address);
+                        $order = [
+                            'id' => $order_id,
+                            'cc_status_id' => 2,
+                            'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments'],
+                            'status_id' => 9,
+                            'address_id' => $address['id'],
+                            'delivery_price' => $item['shipping_price']
+
+                        ];
+                        $this->model('orders')->insert($order);
+                        $this->model('order_goods')->delete('order_id', $order_id);
+                        $goods = [];
+                        foreach ($item['products'] as $g) {
+                            $product = $g;
+                            $good = $this->model('goods')->getByField('ml_id', $product['product_id']);
+                            $good['quantity'] --;
+                            for ($i = 0; $i < $product['count']; $i++) {
+                                $order_goods = [
+                                    'order_id' => $order_id,
+                                    'good_id' => $good['id'],
+                                    'product_id' => $orders[$order_id]['product_id'],
+                                    'price' => $product['price'],
+                                    'create_date' => date('Y-m-d H:i:s')
+                                ];
+                                if($this->model('order_goods')->insert($order_goods)) {
+                                    $this->model('goods')->insert($good);
+                                }
+                            }
+                        }
+                        switch ($item['delivery_type']) {
+                            case "Почта России":
+                                $delivery_type_id = 3;
+                                break;
+                            case "Курьер Мск, Спб":
+                                $delivery_type_id = 2;
+                                break;
+                            default:
+                                $delivery_type_id = 3;
+                                break;
+                        }
+                        $delivery_time = 0;
+                        if($item['desired_delivery_time']) {
+                            $delivery_time = date('H', $item['desired_delivery_time']) > 14 ? 1 : 2;
+                        }
+                        $parcel = [
+                            'order_id' => $order_id,
+                            'address_id' => $orders[$order_id]['address_id'],
+                            'delivery_type_id' => $delivery_type_id,
+                            'delivery_date' => $item['desired_delivery_date'],
+                            'delivery_interval' => $delivery_time,
+                            'comments' => '',
+                            'create_date' => date('Y-m-d H:i:s')
+                        ];
+                        $this->model('parcels')->insert($parcel);
+                        break;
+
+                    case "3":
+
+
+                    case "4":
+                        $order = [
+                            'id' => $order_id,
+                            'cc_status_id' => 4,
+                            'cc_cancel_status_id' => $item['cancel_reason'],
+                            'status_id' => 10,
+                            'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments']
+                        ];
+                        $this->model('orders')->insert($order);
+                        break;
+                        break;
+
+                    case "5":
+                        $order = [
+                            'id' => $order_id,
+                            'cc_status_id' => 5,
+                            'cc_cancel_status_id' => $item['cancel_reason'],
+                            'status_id' => 10,
+                            'comments' => ($orders[$order_id]['comments'] ? $orders[$order_id]['comments'] . '<br>' : '') . $item['comments']
+                        ];
+                        $this->model('orders')->insert($order);
+                        break;
                         break;
                 }
             }
