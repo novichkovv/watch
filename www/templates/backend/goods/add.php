@@ -145,6 +145,12 @@
                             <input type="text" name="good[height]" class="form-control" value="<?php echo $good['height']; ?>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">ID в Кол Центре</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[ml_id]" class="form-control" value="<?php echo $good['ml_id']; ?>">
+                        </div>
+                    </div>
 
                     <?php if (!empty($goog['id'])): ?>
                         <div class="form-group">

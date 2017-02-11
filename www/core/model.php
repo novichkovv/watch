@@ -9,11 +9,19 @@ class model extends base
 {
     public $table;
     protected $pdo;
+    protected $id_array;
+
     function __construct($table, $db = null, $user = null, $password = null)
     {
         $this->pdo = db_connect_singleton::getInstance($db ? $db : DB_NAME)->pdo;
         $this->table = $table;
         $this->init();
+    }
+
+    public function id_array()
+    {
+        $this->id_array = true;
+        return $this;
     }
 
     /**
@@ -32,8 +40,14 @@ class model extends base
             $stm->setFetchMode(PDO::FETCH_NUM);
         }
         $res = array();
-        while($row = $stm->fetch())
-            $res[] = $row;
+        if(!$this->id_array) {
+            while($row = $stm->fetch())
+                $res[] = $row;
+        } else {
+            while($row = $stm->fetch())
+                $res[$row['id']] = $row;
+            $this->id_array = false;
+        }
         return $res;
     }
 
