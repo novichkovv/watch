@@ -245,11 +245,11 @@ function ajax_datatable(id, display_records, options)
         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
             if ( aData[5] == "Подтвержден" )
             {
-                $('td', nRow).css('background-color', '#C5FFCD');
+                $('td', nRow).css('background-color', '#e1ffe6');
             }
             else if ( aData[3] == "Отказ в КЦ" )
             {
-                $('td', nRow).css('background-color', '#ffb2b2');
+                $('td', nRow).css('background-color', '#ffe6e1');
             }
             else if ( aData[3] == "3" )
             {
