@@ -10,126 +10,128 @@ class cron_class extends base
     public function sendParcels()
     {
         $parcels = $this->model('parcels')->getParcelsToSend();
-        $csv = '"Номер накладной";"Номер посылки";"Номер клиента";"Дата заказа";"Индекс";"Город";"Адрес";"ФИО";"Телефон мобильный";"Телефон дополнительный";"e-mail";"Вес посылки";"Полная стоимость доставки";"Стоимость доставки к оплате";"Артикул";"Товар";"Кол-во ед. товара";"Полная стоимость ед. товара";"Стоимость ед. товара к оплате";"Вес товара";"Тип доставки";"Доставка авиа";"Хрупкий товар";"Оценочная стоимость посылки";"Код b2c";"Условия доставки";"Упаковка";"Отправитель";"Дата доставки";"Интервал доставки";"Комментарии";"Частичный отказ"' . "\r\n";
-        foreach ($parcels as $parcel) {
-            $csv .= '"' . $parcel['consignment_note'] . '";';
-            $csv .= '"' . $parcel['parcel_id'] . '";';
-            $csv .= '"' . $parcel['user_id'] . '";';
-            $csv .= '"' . $parcel['create_date'] . '";';
-            $csv .= '"' . $parcel['zip'] . '";';
-            $csv .= '"' . $parcel['city'] . '";';
-            $csv .= '"' . $parcel['street'] . ', ' . $parcel['house'] . ', ' . $parcel['flat'] . '";';
-            $csv .= '"' . $parcel['first_name'] . '";';
-            $csv .= '"' . $parcel['phone'] . '";';
-            $csv .= ';';
-            $csv .= '"' . $parcel['email'] . '";';
-            $weight = 0;
-            $goods = [];
-            $fragile = '';
-            $estimate_cost = 0;
-            foreach ($parcel['goods'] as $good) {
-                if($good['fragile']) {
-                    $fragile = 'да';
-                }
-                if(!$goods[$good['id'] . $good['price']]) {
-                    $goods[$good['id'] . $good['price']] = $good;
-                    $goods[$good['id'] . $good['price']]['quantity'] = 1;
-                } else {
-                    $goods[$good['id'] . $good['price']]['quantity'] ++;
-                }
-                $weight += $good['weight'];
-                $estimate_cost += $good['price'];
-            }
-            $first_good = array_shift($goods);
-            if(!in_array($parcel['delivery_type_id'], [1,2])) {
-                $estimate_cost += $parcel['delivery_price'];
-            }
-            $weight /= 1000;
-            $csv .= '"' . $weight . '";';
-            $csv .= '"' . $parcel['delivery_price'] . '";';
-            $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $parcel['delivery_price'] : 0) . '";';
-            $csv .= '"' . $first_good['stock_number'] . '";';
-            $csv .= '"' . $first_good['good_name'] . '";';
-            $csv .= '"' . $first_good['quantity'] . '";';
-            $csv .= '"' . $first_good['price'] . '";';
-            $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $first_good['price'] : 0) . '";';
-            $csv .= '"' . $first_good['weight']/1000 . '";';
-            $csv .= '"' . $parcel['type_name'] . '";';
-            $csv .= ';';
-            $csv .= '"' . $fragile . '";';
-            $csv .= '"' . $estimate_cost . '";';
-            $csv .= ';';
-            $csv .= ';';
-            $csv .= '"' . $first_good['package'] . '";';
-            $csv .= ';';
-            $csv .= '"' . ($parcel['delivery_date'] != '0000-00-00' ? $parcel['delivery_date'] : '') . '";';
-            $csv .= '"' . ($parcel['delivery_interval'] ? ($parcel['delivery_interval'] == 1 ? '1-я половина' : '2-я половина') : '') . '";';
-            $csv .= '"' . $parcel['comments'] . '";';
-            $csv .= '"' . ($parcel['partial_decline'] ? 'да' : '') . '"' . "\r\n";
-            foreach ($goods as $good) {
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= '"' . $good['stock_number'] . '";';
-                $csv .= '"' . $good['good_name'] . '";';
-                $csv .= '"' . $good['quantity'] . '";';
-                $csv .= '"' . $good['price'] . '";';
-                $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $good['price'] : 0) . '";';
-                $csv .= '"' . $good['weight']/1000 . '";';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= '"' . $good['package'] . '";';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= ';';
-                $csv .= '' . "\r\n";
-            }
-        }
-        $file_name = mktime() . '.csv';
-        $name = ROOT_DIR . 'tmp' . DS . 'parcels' . DS . $file_name;
-        $file_url = SITE_DIR . 'tmp/parcels/' . $file_name;
-        file_put_contents($name, $csv);
-        foreach ($parcels as $parcel) {
-            $row = [
-                'id' => $parcel['parcel_id'],
-                'status_id' => 1,
-                'filename' => $file_name
-            ];
-            $this->model('parcels')->insert($row);
-            $order = [
-                'id' => $parcel['order_id'],
-                'status_id' => 11,
-                'last_status_update' => date('Y-m-d H:i:s')
-            ];
-            $this->model('orders')->insert($order);
-        }
-        $b2_api = new b2_api_class();
-        $res = $b2_api->upload($file_url);
-        print_r($res);
-        if(!$res['flag_error']) {
+        if($parcels) {
+            $csv = '"Номер накладной";"Номер посылки";"Номер клиента";"Дата заказа";"Индекс";"Город";"Адрес";"ФИО";"Телефон мобильный";"Телефон дополнительный";"e-mail";"Вес посылки";"Полная стоимость доставки";"Стоимость доставки к оплате";"Артикул";"Товар";"Кол-во ед. товара";"Полная стоимость ед. товара";"Стоимость ед. товара к оплате";"Вес товара";"Тип доставки";"Доставка авиа";"Хрупкий товар";"Оценочная стоимость посылки";"Код b2c";"Условия доставки";"Упаковка";"Отправитель";"Дата доставки";"Интервал доставки";"Комментарии";"Частичный отказ"' . "\r\n";
             foreach ($parcels as $parcel) {
+                $csv .= '"' . $parcel['consignment_note'] . '";';
+                $csv .= '"' . $parcel['parcel_id'] . '";';
+                $csv .= '"' . $parcel['user_id'] . '";';
+                $csv .= '"' . $parcel['create_date'] . '";';
+                $csv .= '"' . $parcel['zip'] . '";';
+                $csv .= '"' . $parcel['city'] . '";';
+                $csv .= '"' . $parcel['street'] . ', ' . $parcel['house'] . ', ' . $parcel['flat'] . '";';
+                $csv .= '"' . $parcel['first_name'] . '";';
+                $csv .= '"' . $parcel['phone'] . '";';
+                $csv .= ';';
+                $csv .= '"' . $parcel['email'] . '";';
+                $weight = 0;
+                $goods = [];
+                $fragile = '';
+                $estimate_cost = 0;
+                foreach ($parcel['goods'] as $good) {
+                    if($good['fragile']) {
+                        $fragile = 'да';
+                    }
+                    if(!$goods[$good['id'] . $good['price']]) {
+                        $goods[$good['id'] . $good['price']] = $good;
+                        $goods[$good['id'] . $good['price']]['quantity'] = 1;
+                    } else {
+                        $goods[$good['id'] . $good['price']]['quantity'] ++;
+                    }
+                    $weight += $good['weight'];
+                    $estimate_cost += $good['price'];
+                }
+                $first_good = array_shift($goods);
+                if(!in_array($parcel['delivery_type_id'], [1,2])) {
+                    $estimate_cost += $parcel['delivery_price'];
+                }
+                $weight /= 1000;
+                $csv .= '"' . $weight . '";';
+                $csv .= '"' . $parcel['delivery_price'] . '";';
+                $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $parcel['delivery_price'] : 0) . '";';
+                $csv .= '"' . $first_good['stock_number'] . '";';
+                $csv .= '"' . $first_good['good_name'] . '";';
+                $csv .= '"' . $first_good['quantity'] . '";';
+                $csv .= '"' . $first_good['price'] . '";';
+                $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $first_good['price'] : 0) . '";';
+                $csv .= '"' . $first_good['weight']/1000 . '";';
+                $csv .= '"' . $parcel['type_name'] . '";';
+                $csv .= ';';
+                $csv .= '"' . $fragile . '";';
+                $csv .= '"' . $estimate_cost . '";';
+                $csv .= ';';
+                $csv .= ';';
+                $csv .= '"' . $first_good['package'] . '";';
+                $csv .= ';';
+                $csv .= '"' . ($parcel['delivery_date'] != '0000-00-00' ? $parcel['delivery_date'] : '') . '";';
+                $csv .= '"' . ($parcel['delivery_interval'] ? ($parcel['delivery_interval'] == 1 ? '1-я половина' : '2-я половина') : '') . '";';
+                $csv .= '"' . $parcel['comments'] . '";';
+                $csv .= '"' . ($parcel['partial_decline'] ? 'да' : '') . '"' . "\r\n";
+                foreach ($goods as $good) {
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= '"' . $good['stock_number'] . '";';
+                    $csv .= '"' . $good['good_name'] . '";';
+                    $csv .= '"' . $good['quantity'] . '";';
+                    $csv .= '"' . $good['price'] . '";';
+                    $csv .= '"' . ($parcel['payment_status_id'] != 1 ? $good['price'] : 0) . '";';
+                    $csv .= '"' . $good['weight']/1000 . '";';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= '"' . $good['package'] . '";';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= ';';
+                    $csv .= '' . "\r\n";
+                }
+            }
+            $file_name = mktime() . '.csv';
+            $name = ROOT_DIR . 'tmp' . DS . 'parcels' . DS . $file_name;
+            $file_url = SITE_DIR . 'tmp/parcels/' . $file_name;
+            file_put_contents($name, $csv);
+            foreach ($parcels as $parcel) {
+                $row = [
+                    'id' => $parcel['parcel_id'],
+                    'status_id' => 1,
+                    'filename' => $file_name
+                ];
+                $this->model('parcels')->insert($row);
                 $order = [
                     'id' => $parcel['order_id'],
-                    'status_id' => 12,
+                    'status_id' => 11,
                     'last_status_update' => date('Y-m-d H:i:s')
                 ];
                 $this->model('orders')->insert($order);
+            }
+            $b2_api = new b2_api_class();
+            $res = $b2_api->upload($file_url);
+            print_r($res);
+            if(!$res['flag_error']) {
+                foreach ($parcels as $parcel) {
+                    $order = [
+                        'id' => $parcel['order_id'],
+                        'status_id' => 12,
+                        'last_status_update' => date('Y-m-d H:i:s')
+                    ];
+                    $this->model('orders')->insert($order);
+                }
             }
         }
     }
