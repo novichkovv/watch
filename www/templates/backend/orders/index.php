@@ -23,7 +23,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" data-sign="=" placeholder="Поиск" name="o.id" class="form-control filter-field">
+                            <input style="width: 35px;" type="text" data-sign="=" placeholder="Поиск" name="o.id" class="form-control filter-field">
                         </td>
                         <td>
                             <select data-sign="=" class="form-control filter-field filter-select" name="o.product_id">
@@ -67,6 +67,17 @@
                             </select>
                         </td>
                         <td>
+                            <select data-sign="=" name="o.cc_status_id" class="form-control filter-field filter-select">
+                                <option value="">Все</option>
+                                <option value="0">Нет данных</option>
+                                <?php foreach ($delivery_statuses as $status): ?>
+                                    <option value="<?php echo $status['status_name']; ?>">
+                                        <?php echo $status['status_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
                             <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
                         </td>
                         <td>
@@ -84,6 +95,7 @@
                         <th>Статус</th>
                         <th>Статус платежа</th>
                         <th>Статус КЦ</th>
+                        <th>Статус Доставки</th>
                         <th>Телефон</th>
                         <th>Дата</th>
                     </tr>

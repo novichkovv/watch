@@ -247,13 +247,13 @@ function ajax_datatable(id, display_records, options)
             {
                 $('td', nRow).css('background-color', '#e1ffe6');
             }
-            else if ( aData[3] == "Отказ в КЦ" )
+            if ( aData[3] == "Отказ в КЦ" )
             {
                 $('td', nRow).css('background-color', '#ffe6e1');
             }
-            else if ( aData[3] == "3" )
+            else if ( aData[3] == "Выполнен" )
             {
-                $('td', nRow).css('background-color', 'Blue');
+                $('td', nRow).css('background-color', '#dce0ff');
             }
         },
         "oLanguage": {

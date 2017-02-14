@@ -28,12 +28,17 @@ class b2_api_class extends base
         return $this->makeApiCall('TARIF', $params);
     }
 
+    public function getStatuses($params)
+    {
+        $params['code_type'] = 'client';
+        return $this->makeApiCall('STATUS_LIST', $params);
+    }
+
     public function makeApiCall($func, array $params = array(), $url = '', $method = 'GET') {
         $params['func'] = $func;
         $params['client'] = B2_API_CLIENT;
         $params['key'] = B2_API_KEY;
         $url = B2_API_URL . $url . ($method == 'GET' ? '?' . http_build_query($params) : '');
-        echo $url;
         $headers = array(
             "User-Agent: php-tutorial/1.0",
         );

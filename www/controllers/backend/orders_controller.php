@@ -36,6 +36,7 @@ class orders_controller extends controller
                     'IF(os.id IS NULL, " - ", os.status_name)',
                     'IF(ps.id IS NULL, " - ", ps.status_name)',
                     'IF(cs.id IS NULL, " - ", cs.status_name)',
+                    'IF(o.delivery_status IS NULL, " - ", o.delivery_status)',
                     'u.phone',
                     'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
                 ];

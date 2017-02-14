@@ -122,7 +122,6 @@ class cron_class extends base
             }
             $b2_api = new b2_api_class();
             $res = $b2_api->upload($file_url);
-            print_r($res);
             if(!$res['flag_error']) {
                 foreach ($parcels as $parcel) {
                     $order = [
@@ -331,5 +330,40 @@ class cron_class extends base
             }
         }
 
+    }
+
+    public function updateDeliveryStatuses()
+    {
+        $orders = $this->model('orders')->getByField('status_id', '12', true, 'create_date DESC', 100);
+        $codes = [];
+        $sorted_orders = [];
+        foreach ($orders as $order) {
+            $parcel = $this->model('parcels')->getByField('order_id', $order['id']);
+            $codes['codes'][] = $parcel['id'];
+            $sorted_orders[$parcel['id']] = $order;
+        }
+        $codes['codes'] = json_encode($codes);
+        $api = new b2_api_class();
+
+            print_r($api->getStatuses($codes)['codes']);
+        foreach ($api->getStatuses($codes)['codes'] as $code) {
+//            print_r($code);
+echo $code['status'];
+            if($sorted_orders[$code['code']]['delivery_status'] != $code['status']) {
+                $order = [
+                    'id' => $sorted_orders[$code['code']]['id'],
+                    'delivery_status' => $code['status']
+                ];
+                switch ($code['status']) {
+                    case "Вручено получателю":
+                        $order['status_id'] = 13;
+                        $order['payment_status_id'] = 1;
+                        $order['pay_date'] = date('Y-m-d H:i:s');
+                        $order['last_status_update'] = date('Y-m-d H:i:s');
+                        break;
+                }
+                $this->model('orders')->insert($order);
+            }
+        }
     }
 }
