@@ -103,6 +103,7 @@ class cron_class extends base
         }
         $file_name = mktime() . '.csv';
         $name = ROOT_DIR . 'tmp' . DS . 'parcels' . DS . $file_name;
+        $file_url = SITE_DIR . 'tmp/parcels/' . $file_name;
         file_put_contents($name, $csv);
         foreach ($parcels as $parcel) {
             $row = [
@@ -119,7 +120,7 @@ class cron_class extends base
             $this->model('orders')->insert($order);
         }
         $b2_api = new b2_api_class();
-        $res = $b2_api->upload($name);
+        $res = $b2_api->upload($file_url);
         print_r($res);
         if(!$res['flag_error']) {
             foreach ($parcels as $parcel) {
