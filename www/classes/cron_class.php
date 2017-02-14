@@ -108,7 +108,7 @@ class cron_class extends base
             $row = [
                 'id' => $parcel['parcel_id'],
                 'status_id' => 1,
-                'file_name' => $file_name
+                'filename' => $file_name
             ];
             $this->model('parcels')->insert($row);
             $order = [
@@ -118,23 +118,26 @@ class cron_class extends base
             ];
             $this->model('orders')->insert($order);
         }
-//        $b2_api = new b2_api_class();
-//        if(!$b2_api->upload($name)['flag_error']) {
-//            foreach ($parcels as $parcel) {
-//                $order = [
-//                    'id' => $parcel['order_id'],
-//                    'status_id' => 12,
-//                    'last_status_update' => date('Y-m-d H:i:s')
-//                ];
-//                $this->model('orders')->insert($order);
-//            }
-//        }
+        $b2_api = new b2_api_class();
+        $res = $b2_api->upload($name);
+        print_r($res);
+        if(!$res['flag_error']) {
+            foreach ($parcels as $parcel) {
+                $order = [
+                    'id' => $parcel['order_id'],
+                    'status_id' => 12,
+                    'last_status_update' => date('Y-m-d H:i:s')
+                ];
+                $this->model('orders')->insert($order);
+            }
+        }
     }
 
     public function updateMLInfo()
     {
         $orders = $this->model('orders')->id_array()->getAll('create_date DESC', 100);
         $ml_api = new ml_api_class();
+        print_r($ml_api->getOrderListLastUpdate([]));
         foreach ($ml_api->getOrderListLastUpdate([]) as $item) {
             $order_id = $item['foreign_value'];
             if(isset($orders[$order_id]) && $orders[$order_id]['cc_status_id'] != $item['status_num']) {
