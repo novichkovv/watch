@@ -243,7 +243,7 @@ function ajax_datatable(id, display_records, options)
             aoData.push({"name" : "params", "value" : JSON.stringify(params)});
         },
         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            if ( aData[3] == "Подтвержден в КЦ" )
+            if ( aData[5] == "Подтвержден" )
             {
                 $('td', nRow).css('background-color', '#C5FFCD');
             }
