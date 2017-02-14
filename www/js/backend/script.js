@@ -242,6 +242,20 @@ function ajax_datatable(id, display_records, options)
             });
             aoData.push({"name" : "params", "value" : JSON.stringify(params)});
         },
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+            if ( aData[3] == "Подтвержден в КЦ" )
+            {
+                $('td', nRow).css('background-color', '#C5FFCD');
+            }
+            else if ( aData[3] == "Отказ в КЦ" )
+            {
+                $('td', nRow).css('background-color', '#ffb2b2');
+            }
+            else if ( aData[3] == "3" )
+            {
+                $('td', nRow).css('background-color', 'Blue');
+            }
+        },
         "oLanguage": {
             "sLengthMenu": "<span></span> _MENU_",
             "oPaginate": { "sFirst": "First", "sLast": "Last", "sNext": "<i class=\"fa fa-angle-right\"></i>", "sPrevious": "<i class=\"fa fa-angle-left\"></i>" }

@@ -18,13 +18,6 @@
                 </div>
             </div>
             <div class="portlet-body custom-datatable" style="overflow-x: auto;">
-                <div class="form-group">
-                    <label class="control-label col-md-4">Адрес</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="address" id="autocomplete" autocomplete="off">
-                    </div>
-
-                </div>
                 <table class="table table-bordered" id="get_orders">
                     <thead>
                     <tr>
@@ -60,12 +53,21 @@
                                         <?php echo $status['status_name']; ?>
                                     </option>
                                 <?php endforeach; ?>
-                            </select>                        </td>
-                        <td>
-                            <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
+                            </select>
                         </td>
                         <td>
-                            <input data-sign="=" type="text" placeholder="Поиск" name="o.my_name" class="form-control filter-field" value="">
+                            <select data-sign="=" name="o.cc_status_id" class="form-control filter-field filter-select">
+                                <option value="">Все</option>
+                                <option value="0">Нет данных</option>
+                                <?php foreach ($cc_statuses as $status): ?>
+                                    <option value="<?php echo $status['id']; ?>">
+                                        <?php echo $status['status_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input data-sign="like" type="text" placeholder="Поиск" name="u.phone" class="form-control filter-field">
                         </td>
                         <td>
                             <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
@@ -76,15 +78,14 @@
 <!--                        </td>-->
                     </tr>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Продукт</th>
                         <th>Статус</th>
                         <th>Статус платежа</th>
+                        <th>Статус КЦ</th>
                         <th>Телефон</th>
-                        <th>My Name</th>
-                        <th>Дата Создания</th>
-                        <th>Коммент</th>
-                        <th></th>
+                        <th>Дата</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -116,7 +117,7 @@
 
 //запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
         $('#autocomplete').autocomplete( options );
-        ajax_datatable('get_orders');
+        ajax_datatable('get_orders', 25);
         $("body").on("click", ".show_order", function () {
             var id = $(this).attr('data-id');
             var params = {
@@ -441,3 +442,8 @@
         });
     });
 </script>
+<style>
+    .custom-datatable table td {
+        padding: 2px !important;
+    }
+</style>

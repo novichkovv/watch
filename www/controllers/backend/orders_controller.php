@@ -28,14 +28,14 @@ class orders_controller extends controller
                 $params['table'] = 'orders o';
                 $params['select'] = [
                     'CONCAT("
-                    <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
+                    <a data-toggle=\"modal\" class=\"btn btn-xs btn-default show_order",IF(o.status_id = 2, " red-row", ""),"\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
                         <i class=\"fa fa-search\"></i>
                     </a>")',
                     'o.id',
                     'p.product_name',
-                    'IF(os.id IS NULL, "Не Принят", os.status_name)',
-                    'IF(ps.id IS NULL, "Нет данных", ps.status_name)',
-                    'IF(cs.id = 0, "Не поступил", cs.status_name)',
+                    'IF(os.id IS NULL, " - ", os.status_name)',
+                    'IF(ps.id IS NULL, " - ", ps.status_name)',
+                    'IF(cs.id IS NULL, " - ", cs.status_name)',
                     'u.phone',
                     'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
                 ];
