@@ -13,7 +13,8 @@ class orders_controller extends controller
         $this->render('my_name', $my_account['account_name']);
         $this->render('products', $this->model('products')->getAll('product_name'));
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
-        $this->render('payment_statuses', $this->model('order_statuses')->getAll('id'));
+        $this->render('payment_statuses', $this->model('payment_statuses')->getAll('id'));
+        $this->render('cc_statuses', $this->model('cc_statuses')->getAll('id'));
         $this->addScript(SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js');
         $this->view('orders' . DS . 'index');
     }
@@ -26,18 +27,17 @@ class orders_controller extends controller
                 $params = [];
                 $params['table'] = 'orders o';
                 $params['select'] = [
+                    'CONCAT("
+                    <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
+                        <i class=\"fa fa-search\"></i>
+                    </a>")',
                     'o.id',
                     'p.product_name',
                     'IF(os.id IS NULL, "Не Принят", os.status_name)',
                     'IF(ps.id IS NULL, "Нет данных", ps.status_name)',
-                    'u.user_name',
-                    'o.my_name',
-                    'o.create_date',
-                    'o.comments',
-                    'CONCAT("
-                    <a data-toggle=\"modal\" class=\"btn outline blue show_order\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
-                        <i class=\"fa fa-search\"></i>
-                    </a>")'
+                    'IF(cs.id = 0, "Не поступил", cs.status_name)',
+                    'u.phone',
+                    'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
                 ];
                 $params['join']['products p'] = [
                     'left' => true,
@@ -51,6 +51,11 @@ class orders_controller extends controller
                     'as' => 'os',
                     'left' => true,
                     'on' => 'os.id = o.status_id'
+                ];
+                $params['join']['cc_statuses'] = [
+                    'as' => 'cs',
+                    'left' => true,
+                    'on' => 'cs.id = o.cc_status_id'
                 ];
                 $params['join']['payment_statuses'] = [
                     'as' => 'ps',

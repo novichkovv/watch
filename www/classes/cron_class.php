@@ -118,17 +118,17 @@ class cron_class extends base
             ];
             $this->model('orders')->insert($order);
         }
-        $b2_api = new b2_api_class();
-        if(!$b2_api->upload($name)['flag_error']) {
-            foreach ($parcels as $parcel) {
-                $order = [
-                    'id' => $parcel['order_id'],
-                    'status_id' => 12,
-                    'last_status_update' => date('Y-m-d H:i:s')
-                ];
-                $this->model('orders')->insert($order);
-            }
-        }
+//        $b2_api = new b2_api_class();
+//        if(!$b2_api->upload($name)['flag_error']) {
+//            foreach ($parcels as $parcel) {
+//                $order = [
+//                    'id' => $parcel['order_id'],
+//                    'status_id' => 12,
+//                    'last_status_update' => date('Y-m-d H:i:s')
+//                ];
+//                $this->model('orders')->insert($order);
+//            }
+//        }
     }
 
     public function updateMLInfo()

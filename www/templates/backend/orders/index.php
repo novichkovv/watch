@@ -28,6 +28,7 @@
                 <table class="table table-bordered" id="get_orders">
                     <thead>
                     <tr>
+                        <td></td>
                         <td>
                             <input type="text" data-sign="=" placeholder="Поиск" name="o.id" class="form-control filter-field">
                         </td>
@@ -69,10 +70,10 @@
                         <td>
                             <input data-sign="=" type="text" placeholder="Поиск" name="DATE(o.create_date)" class="form-control filter-field datepicker">
                         </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
                     </tr>
                     <tr>
                         <th>#</th>
