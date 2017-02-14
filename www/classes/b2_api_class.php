@@ -7,6 +7,12 @@
  */
 class b2_api_class extends base
 {
+
+    public function upload($file)
+    {
+        return $this->makeApiCall('UPLOAD', ['file' => $file]);
+    }
+
     public function getStoreInfo()
     {
         return $this->makeApiCall('INFO_STORE');

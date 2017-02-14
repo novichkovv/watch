@@ -157,6 +157,12 @@
                             <input type="text" name="good[consignment_note]" class="form-control" value="<?php echo $good['consignment_note']; ?>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Упаковка</label>
+                        <div class="col-md-8">
+                            <input type="text" name="good[package]" class="form-control" value="<?php echo $good['package']; ?>">
+                        </div>
+                    </div>
 
                     <?php if (!empty($goog['id'])): ?>
                         <div class="form-group">

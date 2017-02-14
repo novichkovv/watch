@@ -4,7 +4,7 @@ require_once CORE_DIR . 'autoload.php';
 //$api = new sms_api_class();
 //print_r($api->send_sms('79038236333', 'Ваш Заказ находится в Пункте Выдачи, Москва, пр.Шокальского, д.61 пав. 15'));
 $cron = new cron_class();
-$cron->updateMLInfo();
+$cron->sendParcels();
 //$api = new ml_api_class();
 //$api->getOrderListLastUpdate([]);
 /**
