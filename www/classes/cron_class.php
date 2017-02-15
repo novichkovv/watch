@@ -347,8 +347,6 @@ class cron_class extends base
 
             print_r($api->getStatuses($codes)['codes']);
         foreach ($api->getStatuses($codes)['codes'] as $code) {
-//            print_r($code);
-echo $code['status'];
             if($sorted_orders[$code['code']]['delivery_status'] != $code['status']) {
                 $order = [
                     'id' => $sorted_orders[$code['code']]['id'],
