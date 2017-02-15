@@ -69,7 +69,7 @@ class cron_class extends base
                 $csv .= '"' . ($parcel['partial_decline'] ? 'да' : '') . '"' . "\r\n";
                 foreach ($goods as $good) {
                     $csv .= ';';
-                    $csv .= ';';
+                    $csv .= '"' . $parcel['parcel_id'] . '";';
                     $csv .= ';';
                     $csv .= ';';
                     $csv .= ';';
