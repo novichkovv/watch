@@ -122,6 +122,7 @@ class cron_class extends base
             }
             $b2_api = new b2_api_class();
             $res = $b2_api->upload($file_url);
+            print_r($res);
             if(!$res['flag_error']) {
                 foreach ($parcels as $parcel) {
                     $order = [
