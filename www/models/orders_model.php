@@ -37,9 +37,9 @@ class orders_model extends model
                 DATE(create_date) as create_date,
                 SUM(1) as all_orders,
                 SUM(IF(status_id = 0, 1, 0)) AS unaccepted,
-                SUM(IF(status_id = 1, 1, 0)) AS accepted,
-                SUM(IF(status_id IN (2,5,6), 1, 0)) AS approved,
-                SUM(IF(status_id = 3, 1, 0)) AS declined
+                SUM(IF(cc_status_id = 1, 1, 0)) AS accepted,
+                SUM(IF(cc_status_id = 2, 1, 0)) AS approved,
+                SUM(IF(status_id IN (4,5), 1, 0)) AS declined
             FROM
                 orders
             WHERE
@@ -77,9 +77,9 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(o.status_id IN (2,5,6), p.price, 0)) AS sum,
+                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
                 SUM(IF(o.status_id = 1, 1, 0)) AS accepted,
-                SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
+                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
                 COUNT(o.id) total
             FROM
                 orders o
@@ -104,9 +104,9 @@ class orders_model extends model
     {
         $stm = $this->pdo->prepare('
             SELECT 
-                SUM(IF(o.status_id IN (2,5,6), p.price, 0)) AS sum,
-                SUM(IF(o.status_id = 3, 1, 0)) AS accepted,
-                SUM(IF(o.status_id IN (2,5,6), 1, 0)) AS approved,
+                SUM(IF(o.status_id = 2, p.price, 0)) AS sum,
+                SUM(IF(o.status_id = 1, 1, 0)) AS accepted,
+                SUM(IF(o.status_id = 2, 1, 0)) AS approved,
                 COUNT(o.id) total
             FROM
                 orders o
@@ -305,8 +305,8 @@ class orders_model extends model
             SELECT 
                 p.id,
                 p.product_name,
-                SUM(if(status_id IN (2,5,6), p.price, 0)) earned,
-                SUM(if(status_id IN (2,5,6), 1, 0)) approved,
+                SUM(if(status_id  = 2, p.price, 0)) earned,
+                SUM(if(status_id = 2, 1, 0)) approved,
                 SUM(if(status_id = 3, 1, 0)) declined,
                 COUNT(o.id) total
             FROM
