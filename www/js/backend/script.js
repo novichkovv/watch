@@ -255,6 +255,10 @@ function ajax_datatable(id, display_records, options)
             {
                 $('td', nRow).css('background-color', '#dce0ff');
             }
+            else if (aData[6] == 'Возврат отправителю')
+            {
+                $('td', nRow).css('background-color', '#FF5F4C');
+            }
         },
         "oLanguage": {
             "sLengthMenu": "<span></span> _MENU_",
