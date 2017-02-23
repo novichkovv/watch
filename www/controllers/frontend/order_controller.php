@@ -75,7 +75,9 @@ class order_controller extends controller
                 'ip' => $_SERVER['REMOTE_ADDR']
             ];
             $ml_api = new ml_api_class();
-            $ml_api->addLead($params);
+            if(!DEVELOPER_MODE) {
+                $ml_api->addLead($params);
+            }
             header('Location: ' . SITE_DIR . 'order/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
             exit;
         }

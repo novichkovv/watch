@@ -9,24 +9,36 @@ class index_controller extends controller
 {
     public function index()
     {
-        $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
+//        $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
+//        $account_name = $my_account['account_name'];
+//        if(!$my_account) {
+//            $account_name = registry::get('user')['email'];
+//        }
+        $account_name = registry::get('user')['email'];
         $this->render('accounts', $this->model('m1_accounts')->getAll());
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.min.js']);
         $this->addScript([SITE_DIR . 'js/libs/flot/jquery.flot.time.js']);
         $products = $this->model('products')->getAll('create_date DESC');
-        $this->render('products', $products);
-        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), null, $my_account['account_name']);
-        $stats['today'] = $this->model('orders')->getTodayCount(null, $my_account['account_name']);
-        $stats['month'] = $this->model('orders')->getMonthCount(null, $my_account['account_name']);
-        $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $my_account['account_name']);
-        $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $my_account['account_name']);
-        $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), $my_account['account_name']);
+
+
+        $stats = $this->model('orders')->getOrderDailyStats(date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), null, $account_name);
+        $stats['today'] = $this->model('orders')->getTodayCount(null, $account_name);
+        $stats['month'] = $this->model('orders')->getMonthCount(null, $account_name);
+        $visitors['today'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-d 00:00:00'), null, $account_name);
+        $visitors['month'] = $this->model('orders')->getVisitorsByProduct(null, date('Y-m-01 00:00:00'), null, $account_name);
+        $cost_stats = $this->model('orders')->getCostApprovedStats(null, date('Y-m-d', strtotime(date('Y-m-d') . ' - 10 day')), date('Y-m-d'), $account_name);
         $stats['cpa'] = $cost_stats['cpa'];
         $stats['revenue'] = $cost_stats['revenue'];
-        $this->render('product_stats', $this->model('orders')->getProductsStats(null, null, null, $my_account['account_name']));
+        $this->render('product_stats', $this->model('orders')->getProductsStats(null, null, null, $account_name));
         $this->render('visitors', $visitors);
         $this->render('stats', $stats);
-        $this->view('index' . DS . 'index');
+        if(registry::get('user')['view_type'] == 2) {
+            $this->render('products', $this->model('products')->getUserProducts(registry::get('user')['id']));
+            $this->view('index' . DS . 'index_wm');
+        } else {
+            $this->render('products', $products);
+            $this->view('index' . DS . 'index');
+        }
     }
 
     public function index_ajax()

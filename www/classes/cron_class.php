@@ -121,7 +121,11 @@ class cron_class extends base
                 $this->model('orders')->insert($order);
             }
             $b2_api = new b2_api_class();
-            $res = $b2_api->upload($file_url);
+            if(!DEVELOPER_MODE) {
+                $res = $b2_api->upload($file_url);
+            } else {
+                $res = [];
+            }
             print_r($res);
             if(!$res['flag_error']) {
                 foreach ($parcels as $parcel) {
@@ -355,6 +359,7 @@ class cron_class extends base
                 ];
                 switch ($code['status']) {
                     case "Вручено получателю":
+                    case "Доставлено":
                         $order['status_id'] = 13;
                         $order['payment_status_id'] = 1;
                         $order['pay_date'] = date('Y-m-d H:i:s');

@@ -29,14 +29,11 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Имя</label>
-                <input type="text" class="form-control" name="user_name" value="<?php echo $user['user_name']; ?>">
-            </div>
-            <div class="form-group">
-                <label>Фамилия</label>
-                <input type="text" class="form-control" name="user_surname" value="<?php echo $user['user_surname']; ?>">
-            </div>
+
+<!--            <div class="form-group">-->
+<!--                <label>Фамилия</label>-->
+<!--                <input type="text" class="form-control" name="user_surname" value="--><?php //echo $user['user_surname']; ?><!--">-->
+<!--            </div>-->
             <div class="form-group">
                 <label>Пароль</label>
                 <input type="password" class="form-control" name="user_password" data-validate="password" value=""<?php if($_GET['id']) echo ' placeholder="Оставьте пустым, если не меняете"' ?>>

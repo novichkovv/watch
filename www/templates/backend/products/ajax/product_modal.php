@@ -129,6 +129,14 @@
                     </div>
                 </div>
             </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Выплата за лид</label>
+                    <div class="col-md-6">
+                        <input type="text" name="product[payment]" class="form-control" value="<?php echo $product['payment']; ?>">
+                    </div>
+                </div>
+            </div>
 <!--            <div class="portlet-body">-->
 <!--                <div class="form-group">-->
 <!--                    <label class="control-label col-md-4">Название Товара</label>-->

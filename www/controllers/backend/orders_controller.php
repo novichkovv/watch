@@ -11,12 +11,18 @@ class orders_controller extends controller
     {
         $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
         $this->render('my_name', $my_account['account_name']);
-        $this->render('products', $this->model('products')->getAll('product_name'));
+
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
         $this->render('payment_statuses', $this->model('payment_statuses')->getAll('id'));
         $this->render('cc_statuses', $this->model('cc_statuses')->getAll('id'));
         $this->addScript(SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js');
-        $this->view('orders' . DS . 'index');
+        if(registry::get('user')['view_type'] == 2) {
+            $this->render('products', $this->model('products')->getUserProducts(registry::get('user')['id']));
+            $this->view('orders' . DS . 'index_wm');
+        } else {
+            $this->render('products', $this->model('products')->getAll('product_name'));
+            $this->view('orders' . DS . 'index');
+        }
     }
 
     public function index_ajax()
@@ -24,51 +30,90 @@ class orders_controller extends controller
         switch ($_REQUEST['action']) {
             case "get_orders":
                 $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
-                $params = [];
-                $params['table'] = 'orders o';
-                $params['select'] = [
-                    'CONCAT("
+                if(registry::get('user')['view_type'] == 2) {
+                    $params = [];
+                    $params['table'] = 'orders o';
+                    $params['select'] = [
+                        'o.id',
+                        'p.product_name',
+                        'IF(cs.id IS NULL, " - ", cs.status_name)',
+                        'u.user_name',
+                        'o.comments',
+                        'IF(ccs.id IS NULL, " - ", ccs.status_name)',
+                        'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
+                    ];
+                    $params['join']['products p'] = [
+                        'left' => true,
+                        'on' => 'p.id = o.product_id',
+                    ];
+                    $params['join']['users u'] = [
+                        'left' => true,
+                        'on' => 'u.id = o.user_id'
+                    ];
+                    $params['join']['cc_statuses'] = [
+                        'as' => 'cs',
+                        'left' => true,
+                        'on' => 'cs.id = o.cc_status_id'
+                    ];
+                    $params['join']['cc_cancel_statuses'] = [
+                        'as' => 'ccs',
+                        'left' => true,
+                        'on' => 'o.cc_cancel_status_id = ccs.id'
+                    ];
+                    $params['where']['o.my_name'] = [
+                        'sign' => '=',
+                        'value' => registry::get('user')['email'],
+                        'left' => true
+                    ];
+                    $params['order'] = 'o.create_date DESC';
+                } else {
+                    $params = [];
+                    $params['table'] = 'orders o';
+                    $params['select'] = [
+                        'CONCAT("
                     <a data-toggle=\"modal\" class=\"btn btn-xs btn-default show_order",IF(o.status_id = 2, " red-row", ""),"\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
                         <i class=\"fa fa-search\"></i>
                     </a>")',
-                    'o.id',
-                    'p.product_name',
-                    'IF(os.id IS NULL, " - ", os.status_name)',
-                    'IF(ps.id IS NULL, " - ", ps.status_name)',
-                    'IF(cs.id IS NULL, " - ", cs.status_name)',
-                    'IF(o.delivery_status IS NULL, " - ", o.delivery_status)',
-                    'u.phone',
-                    'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
-                ];
-                $params['join']['products p'] = [
-                    'left' => true,
-                    'on' => 'p.id = o.product_id',
-                ];
-                $params['join']['users u'] = [
-                    'left' => true,
-                    'on' => 'u.id = o.user_id'
-                ];
-                $params['join']['order_statuses'] = [
-                    'as' => 'os',
-                    'left' => true,
-                    'on' => 'os.id = o.status_id'
-                ];
-                $params['join']['cc_statuses'] = [
-                    'as' => 'cs',
-                    'left' => true,
-                    'on' => 'cs.id = o.cc_status_id'
-                ];
-                $params['join']['payment_statuses'] = [
-                    'as' => 'ps',
-                    'left' => true,
-                    'on' => 'ps.id = o.payment_status_id'
-                ];
+                        'o.id',
+                        'p.product_name',
+                        'IF(os.id IS NULL, " - ", os.status_name)',
+                        'IF(ps.id IS NULL, " - ", ps.status_name)',
+                        'IF(cs.id IS NULL, " - ", cs.status_name)',
+                        'IF(o.delivery_status IS NULL, " - ", o.delivery_status)',
+                        'u.phone',
+                        'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
+                    ];
+                    $params['join']['products p'] = [
+                        'left' => true,
+                        'on' => 'p.id = o.product_id',
+                    ];
+                    $params['join']['users u'] = [
+                        'left' => true,
+                        'on' => 'u.id = o.user_id'
+                    ];
+                    $params['join']['order_statuses'] = [
+                        'as' => 'os',
+                        'left' => true,
+                        'on' => 'os.id = o.status_id'
+                    ];
+                    $params['join']['cc_statuses'] = [
+                        'as' => 'cs',
+                        'left' => true,
+                        'on' => 'cs.id = o.cc_status_id'
+                    ];
+                    $params['join']['payment_statuses'] = [
+                        'as' => 'ps',
+                        'left' => true,
+                        'on' => 'ps.id = o.payment_status_id'
+                    ];
 //                $params['where']['o.my_name'] = [
 //                    'sign' => '=',
 //                    'value' => $my_account['account_name'],
 //                    'left' => true
 //                ];
-                $params['order'] = 'o.create_date DESC';
+                    $params['order'] = 'o.create_date DESC';
+                }
+
                 echo json_encode($this->getDataTable($params));
                 exit;
                 break;

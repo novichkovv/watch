@@ -62,10 +62,20 @@ class system_users_controller extends controller
             }
             $row['email'] = $_POST['email'];
             $row['user_group_id'] = $_POST['user_group_id'];
+            $row['user_name'] = $_POST['user_name'];
+            $row['view_type'] = $_POST['view_type'];
             if($_POST['user_password']) {
                 $row['user_password'] = md5($_POST['user_password']);
             }
-            $this->model('system_users')->insert($row);
+            $user_id = $this->model('system_users')->insert($row);
+            $this->model('system_user_products')->delete('system_user_id', $user_id);
+            foreach ($_POST['user_products'] as $user_product) {
+                $row = [
+                    'system_user_id' => $user_id,
+                    'product_id' => $user_product
+                ];
+                $this->model('system_user_products')->insert($row);
+            }
             if($_POST['user_password']) {
                 $this->logOut();
                 $this->auth(registry::get('user')['email'], md5($_POST['user_password']));
@@ -75,7 +85,14 @@ class system_users_controller extends controller
             header('Location: ' . SITE_DIR . 'system_users/');
             exit;
         }
+        $user_products = [];
+        foreach ($this->model('system_user_products')->getByField('system_user_id', $_GET['id'], true) as $item) {
+            $user_products[] = $item['product_id'];
+        }
+//        print_r($user_products);exit;
+        $this->render('user_products', $user_products);
         $this->render('user_groups', $this->model('user_groups')->getAll());
+        $this->render('products', $this->model('products')->getAll('create_date DESC'));
         if($_GET['id']) {
             $this->render('user', $this->model('system_users')->getById($_GET['id']));
         }

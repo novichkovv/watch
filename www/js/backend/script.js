@@ -251,7 +251,7 @@ function ajax_datatable(id, display_records, options)
             {
                 $('td', nRow).css('background-color', '#ffe6e1');
             }
-            else if ( aData[3] == "Выполнен" || aData[3] == "Доставлено")
+            else if ( aData[3] == "Выполнен" || aData[5] == "Доставлено")
             {
                 $('td', nRow).css('background-color', '#dce0ff');
             }
