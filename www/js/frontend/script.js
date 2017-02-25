@@ -7,9 +7,11 @@ $(document).ready(function() {
         if(this.name.value==''){
             alert('Введите Ваше имя!');
             return false
-        } if(this.phone.value=='') {
+        } if(this.phone.value=='+7') {
             alert('Введите Ваш номер телефона!');
             return false
+        } if(this.phone.value.length < 12) {
+            alert('Проверьте правильность телефона!')
         }
         $(".m1_form").each(function() {
             $(this).find('input[type="submit"], button[type="submit"]').prop('disabled', true);

@@ -1,7 +1,25 @@
 /**
  * Created by asus1 on 29.08.2015.
  */
-
+$ = jQuery.noConflict();
+$('document').ready(function() {
+    $("body").on("submit", ".m1_form", function () {
+        if(this.name.value==''){
+            alert('Введите Ваше имя!');
+            return false
+        } if(this.phone.value=='+7') {
+            alert('Введите Ваш номер телефона!');
+            return false
+        } if(this.phone.value.length < 12) {
+            alert('Проверьте правильность телефона!');
+            return false;
+        }
+        $(".m1_form").each(function() {
+            $(this).find('input[type="submit"], button[type="submit"]').prop('disabled', true);
+        });
+        return true;
+    });
+});
 /**
  *
  * @param params
