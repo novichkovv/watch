@@ -29,7 +29,6 @@ class orders_controller extends controller
     {
         switch ($_REQUEST['action']) {
             case "get_orders":
-                $my_account = $this->model('m1_accounts')->getByField('user_id', registry::get('user')['id']);
                 if(registry::get('user')['view_type'] == 2) {
                     $params = [];
                     $params['table'] = 'orders o';
@@ -79,7 +78,7 @@ class orders_controller extends controller
                         'IF(os.id IS NULL, " - ", os.status_name)',
                         'IF(ps.id IS NULL, " - ", ps.status_name)',
                         'IF(cs.id IS NULL, " - ", cs.status_name)',
-                        'IF(o.delivery_status IS NULL, " - ", o.delivery_status)',
+                        'IF(cs.id IN (4,5), cc.status_name ,IF(o.delivery_status IS NULL, " - ", o.delivery_status))',
                         'u.phone',
                         'IF(DATE(o.create_date) = DATE(NOW()), DATE_FORMAT(o.create_date,"%h:%i"), DATE_FORMAT(o.create_date,"%d.%m %h:%i"))',
                     ];
@@ -105,6 +104,11 @@ class orders_controller extends controller
                         'as' => 'ps',
                         'left' => true,
                         'on' => 'ps.id = o.payment_status_id'
+                    ];
+                    $params['join']['cc_cancel_statuses'] = [
+                        'as' => 'cc',
+                        'left' => true,
+                        'on' => 'cc.id = o.cc_cancel_status_id'
                     ];
 //                $params['where']['o.my_name'] = [
 //                    'sign' => '=',
