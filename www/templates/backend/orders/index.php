@@ -129,7 +129,22 @@
 
 //запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
         $('#autocomplete').autocomplete( options );
-        ajax_datatable('get_orders', 25);
+        ajax_datatable('get_orders', 25, {
+            "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                if (aData[5] == "Подтвержден") {
+                    $('td', nRow).css('background-color', '#e1ffe6');
+                }
+                if (aData[3] == "Отказ в КЦ") {
+                    $('td', nRow).css('background-color', '#ffe6e1');
+                }
+                else if (aData[3] == "Выполнен" || aData[6] == "Доставлено") {
+                    $('td', nRow).css('background-color', '#dce0ff');
+                }
+                else if (aData[6] == 'Возврат отправителю') {
+                    $('td', nRow).css('background-color', '#FF5F4C');
+                }
+            }
+        });
         $("body").on("click", ".show_order", function () {
             var id = $(this).attr('data-id');
             var params = {

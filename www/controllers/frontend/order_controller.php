@@ -18,9 +18,7 @@ class order_controller extends controller
         }
         if($_GET['id']) {
             $order = $this->model('orders')->getById($_GET['id']);
-            $order['status_id'] = 8;
-            $order['last_status_update'] = date('Y-m-d H:i:s');
-            $this->model('orders')->insert($order);
+
             $product = $this->model('products')->getById($order['product_id']);
             $path = 'landings' . DS . $product['success_landing_key'] . DS;
             $dir = SITE_DIR . 'templates/frontend/landings' . '/' . $product['success_landing_key'] . '/';
@@ -75,6 +73,9 @@ class order_controller extends controller
                 'ip' => $_SERVER['REMOTE_ADDR']
             ];
             $ml_api = new ml_api_class();
+            $order['status_id'] = 8;
+            $order['last_status_update'] = date('Y-m-d H:i:s');
+            $this->model('orders')->insert($order);
             if(!DEVELOPER_MODE) {
                 $ml_api->addLead($params);
             }

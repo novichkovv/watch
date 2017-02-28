@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
+                <div class="row hidden">
                     <div class="col-md-12">
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs ">
@@ -419,7 +419,7 @@
                             var a = $(".graph-2-filter.active").find('a');
                             var stat_id = $(a).attr("href").substring(1);
                             var tooltip = $(a).attr('data-tooltip');
-                            show_stats(respond[stat_id], tooltip);
+//                            show_stats(respond[stat_id], tooltip);
                             $(function() {
                                 var arr = respond.unaccepted;
                                 //{"2016, 10,09":"3","2016, 10,10":"8","2016, 10,11":"8","2016, 10,12":"10","2016, 10,13":"11","2016, 10,14":"10","2016, 10,15":"15","2016, 10,16":"4","2016, 10,17":"15","2016, 10,18":"16","2016, 10,19":"10","2016, 10,20":"7","2016, 10,21":"10","2016, 10,22":"5","2016, 10,23":"5","2016, 10,24":"5"};//<?php echo $graph; ?>;
@@ -614,7 +614,7 @@
 //            console.log(stat_id);
 //            console.log(stats);
         });
-        show_stats(stats['cpa'], "р. за апрув");
+//        show_stats(stats['cpa'], "р. за апрув");
 
 
 

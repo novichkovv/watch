@@ -242,24 +242,6 @@ function ajax_datatable(id, display_records, options)
             });
             aoData.push({"name" : "params", "value" : JSON.stringify(params)});
         },
-        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            if ( aData[5] == "Подтвержден" )
-            {
-                $('td', nRow).css('background-color', '#e1ffe6');
-            }
-            if ( aData[3] == "Отказ в КЦ" )
-            {
-                $('td', nRow).css('background-color', '#ffe6e1');
-            }
-            else if ( aData[3] == "Выполнен" || aData[6] == "Доставлено")
-            {
-                $('td', nRow).css('background-color', '#dce0ff');
-            }
-            else if (aData[6] == 'Возврат отправителю')
-            {
-                $('td', nRow).css('background-color', '#FF5F4C');
-            }
-        },
         "oLanguage": {
             "sLengthMenu": "<span></span> _MENU_",
             "oPaginate": { "sFirst": "First", "sLast": "Last", "sNext": "<i class=\"fa fa-angle-right\"></i>", "sPrevious": "<i class=\"fa fa-angle-left\"></i>" }

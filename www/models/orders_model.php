@@ -130,6 +130,116 @@ class orders_model extends model
         return $this->get_row($stm, $terms);
     }
 
+    public function getPeriodCount($product_id = null, $my_name = null, $date_from = null, $date_to = null)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT 
+                SUM(IF(o.cc_status_id = 2, og.price, 0)) AS sum,
+                IF(o.cc_status_id = 2, p.payment, 0) AS payment,
+                IF(o.cc_status_id = 1, 1, 0) AS accepted,
+                IF(o.cc_status_id = 2, 1, 0) AS approved,
+                IF(o.cc_status_id IN(4,5), 1, 0) AS declined,
+                1 total
+            FROM
+                orders o
+                    LEFT JOIN
+                products p ON p.id = o.product_id
+                    LEFT JOIN
+                order_goods og ON o.id = og.order_id
+            WHERE
+                1
+            ' . ($product_id ? ' AND o.product_id = :product_id' : '') . '
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
+            ' . ($date_from ? ' AND o.create_date >= :date_from' : '') . '
+            ' . ($date_to ? ' AND o.create_date <= :date_to' : '') . '
+            GROUP BY
+                o.id
+        ');
+        $terms = [];
+        if($product_id) {
+            $terms['product_id'] = $product_id;
+        }
+        if($my_name) {
+            $terms['my_name'] = $my_name;
+        }
+        if($date_to) {
+            $terms['date_to'] = $date_to;
+        }
+        if($date_from) {
+            $terms['date_from'] = $date_from;
+        }
+        $res = [];
+        $tmp = $this->get_all($stm, $terms);
+        foreach ($tmp as $k => $item) {
+            foreach ($item as $key => $val) {
+                if(!$res[$key]) {
+                    $res[$key] = $val;
+                } else {
+                    $res[$key] += $val;
+                }
+            }
+        }
+
+        return $res;
+
+    }
+
+    public function getDeliveryStats($product_id = null, $my_name = null, $date_from = null, $date_to = null)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT 
+                o.id,
+                IF(o.status_id = 13, o.delivery_price, 0) delivery,
+                IF(o.status_id = 13, 1, 0) delivered,
+                SUM(IF(o.status_id = 13, og.price, 0)) delivered_sum,
+                IF(o.status_id = 14, 1, 0) canceled,
+                SUM(IF(o.status_id = 14, og.price, 0)) canceled_sum,
+                SUM(IF(o.status_id = 12, og.price + o.delivery_price, 0)) waiting_sum,
+                IF(o.status_id = 12, 1, 0) waiting
+            FROM
+                orders o
+                    LEFT JOIN 
+                order_goods og ON og.order_id = o.id
+                WHERE o.status_id IN (12,13,14)
+            ' . ($product_id ? ' AND o.product_id = :product_id' : '') . '
+            ' . ($my_name ? ' AND o.my_name = :my_name' : '') . '
+            ' . ($date_from ? ' AND IF(o.status_id = 13, o.last_status_update, o.create_date) >= :date_from' : '') . '
+            ' . ($date_to ? ' AND IF(o.status_id = 13, o.last_status_update, o.create_date) <= :date_to' : '') . '
+                    GROUP BY o.id
+        ');
+        $terms = [];
+        if($product_id) {
+            $terms['product_id'] = $product_id;
+        }
+        if($my_name) {
+            $terms['my_name'] = $my_name;
+        }
+        if($date_to) {
+            $terms['date_to'] = $date_to . ' 23:59:59';
+        }
+        if($date_from) {
+            $terms['date_from'] = $date_from . ' 00:00:00';
+        }
+        $res = [];
+        $res['delivered_sum'] = 0;
+        $res['delivered'] = 0;
+        $res['canceled'] = 0;
+        $res['waiting'] = 0;
+        $res['waiting_sum'] = 0;
+//        echo $stm->getQuery($terms);
+        $tmp = $this->get_all($stm, $terms);
+        foreach ($tmp as $k => $item) {
+            $res['delivered_sum'] += $item['delivered_sum'];
+            $res['delivered_sum'] += $item['delivery'];
+            $res['delivered'] += $item['delivered'];
+            $res['canceled'] += $item['canceled'];
+            $res['waiting_sum'] += $item['waiting_sum'];
+            $res['waiting'] += $item['waiting'];
+        }
+//        print_r($res);
+        return $res;
+    }
+
     public function getVisitorsByProduct($product_id = null, $date_from = null, $date_to = null, $my_name = null)
     {
         $stm = $this->pdo->prepare('

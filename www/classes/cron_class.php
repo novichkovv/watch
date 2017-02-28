@@ -365,6 +365,11 @@ class cron_class extends base
                         $order['pay_date'] = date('Y-m-d H:i:s');
                         $order['last_status_update'] = date('Y-m-d H:i:s');
                         break;
+                    case "Возврат отправителю":
+                        $order['status_id'] = 14;
+                        $order['payment_status_id'] = 5;
+                        $order['last_status_update'] = date('Y-m-d H:i:s');
+                        break;
                 }
                 $this->model('orders')->insert($order);
             }

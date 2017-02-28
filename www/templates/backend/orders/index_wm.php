@@ -96,7 +96,16 @@
 
 //запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
         $('#autocomplete').autocomplete( options );
-        ajax_datatable('get_orders', 25);
+        ajax_datatable('get_orders', 25, {
+            "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                if (aData[2] == "Подтвержден") {
+                    $('td', nRow).css('background-color', '#e1ffe6');
+                }
+                if (aData[2] == "Отменен") {
+                    $('td', nRow).css('background-color', '#ffe6e1');
+                }
+            }
+        });
         $("body").on("click", ".show_order", function () {
             var id = $(this).attr('data-id');
             var params = {
