@@ -53,6 +53,7 @@ class goods_controller extends controller
         if($_GET['id']) {
             $this->render('good', $this->model('goods')->getById($_GET['id']));
         }
+
         $this->render('groups', $this->model('good_groups')->getAll('create_date DESC'));
         $this->render('colors', $this->model('good_colors')->getAll('create_date DESC'));
         $this->render('suppliers', $this->model('suppliers')->getAll('create_date DESC'));

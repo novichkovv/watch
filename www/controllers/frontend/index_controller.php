@@ -43,7 +43,7 @@ class index_controller extends controller
             'session_id' => session_id(),
             'cookie' => $cookie,
             'product_id' => $product['id'],
-            'account' => $_GET['w'],
+            'account' => strtoupper($_GET['w']),
             'click_id' => $_GET['s'],
             'create_date' => date('Y-m-d H:i:s')
         ];

@@ -137,6 +137,23 @@
                     </div>
                 </div>
             </div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Вид оплаты</label>
+                    <div class="col-md-6">
+                        <select class="form-control" name="product[checkout_method_id]">
+                        <?php foreach ($checkout_methods as $method): ?>
+                            <option value="<?php echo $method['id']; ?>"
+                                <?php if ($method['id'] == $product['checkout_method_id']): ?>
+                                    selected
+                                <?php endif; ?>>
+                                <?php echo $method['method_name']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
 <!--            <div class="portlet-body">-->
 <!--                <div class="form-group">-->
 <!--                    <label class="control-label col-md-4">Название Товара</label>-->

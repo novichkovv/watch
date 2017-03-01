@@ -51,6 +51,7 @@ class products_controller extends controller
                 foreach ($this->model('product_goods')->getByField('product_id', $product['id'], true) as $item) {
                     $product['goods'][$item['good_id']] = $item['good_id'];
                 }
+                $this->render('checkout_methods', $this->model('checkout_methods')->getAll('create_date desc'));
                 $this->render('product', $product);
                 $template = $this->fetch('products' . DS . 'ajax' . DS . 'product_modal');
                 echo json_encode(array('status' => 1, 'template' => $template));
@@ -82,6 +83,59 @@ class products_controller extends controller
                 exit;
                 break;
 
+        }
+    }
+
+    public function checkout_methods()
+    {
+        $this->view('products' . DS . 'checkout_methods');
+    }
+
+    public function checkout_methods_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "get_form":
+                if($_POST['id']) {
+                    $this->render('checkout_method', $this->model('checkout_methods')->getById($_POST['id']));
+                }
+                $template = $this->fetch('products' . DS . 'ajax' . DS . 'checkout_method_form');
+                echo json_encode(array('status' => 1, 'template' => $template));
+                exit;
+                break;
+
+            case "save_form":
+                $checkout_method = $_POST['checkout_method'];
+                if(!$checkout_method['id']) {
+                    $checkout_method['create_date'] = date('Y-m-d H:i:s');
+                }
+                $this->model('checkout_methods')->insert($checkout_method);
+                echo json_encode(array('status' => 1));
+                exit;
+                break;
+
+            case "get_table":
+                $params = [];
+                $params['table'] = 'checkout_methods';
+                $params['select'] = [
+                    'method_name',
+                    'CONCAT("
+                    <a class=\"btn outline blue edit_btn\" href=\"#form_modal\" data-id=\"", id ,"\" data-toggle=\"modal\">
+                        <i class=\"fa fa-pencil\"></i> 
+                    </a>
+                    <a class=\"btn outline red delete_btn\" href=\"#delete_modal\" data-id=\"", id ,"\" data-toggle=\"modal\">
+                        <i class=\"fa fa-remove\"></i>
+                    </a>
+                    ")'
+                ];
+                echo json_encode($this->getDataTable($params));
+                exit;
+                break;
+
+            case "delete_item":
+                $this->model('checkout_methods')->deleteById($_POST['id']);
+                echo json_encode(array('status' => 1));
+                exit;
+                break;
         }
     }
 }
