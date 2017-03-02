@@ -1,4 +1,5 @@
-.model-button {
+.model-button, .color-button {
+    width: 100%;
     text-align: center;
     padding-bottom: 30px;
     padding-top: 30px;
@@ -6,11 +7,33 @@
     border-radius: 4px;
     margin-bottom: 20px;
 }
-.model-button img{
+.model-button img, .color-button img{
     max-height: 200px;
+    /*height: 100%;*/
 }
 .model-button .h1 {
     margin-bottom: 12px;
+}
+.model-button.selected {
+    border-color: #ffbc1a !important;
+}
+.step {
+    height: 300px;
+    /*position: absolute !important;*/
+}
+.step:not(.active) {
+    opacity: 0;
+    display: none;
+    /*margin-left: 30px;*/
+}
+.navigate-button {
+    width: 90%;
+    margin: auto;
+    background-color: #ffbc1a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
 }
 .payment_btn {
     display: block;

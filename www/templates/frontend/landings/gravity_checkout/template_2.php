@@ -33,71 +33,111 @@
         /></noscript>
 </head>
     <body>
-    <div class="main-wrap">
-        <div class="section" style="padding-top: 0 !important;">
+    <div class="container">
+        <div id="step_1" class="step active" style="padding-top: 0 !important;">
             <div style="width: 100%; padding-top: 20px; padding-bottom: 30px; background-color: white; font-size: 35px;">
                 <span style="color: #24221f; text-shadow: 1px 1px #bebebd">Выберите модель</span>
             </div>
             <div class="model-button" data-model="1">
-                <div class="h1">IPhone 5,5s,5se</div>
+                <div class="h1">IPhone 5, 5s</div>
                 <div class="img">
                     <img src="<?php echo SITE_DIR; ?>templates/frontend/landings/gravity_checkout/img/iphone5.jpg">
                 </div>
             </div>
-            <div class="model-button" data-model="1">
-                <div class="h1">IPhone 6,6s</div>
+            <div class="model-button" data-model="2">
+                <div class="h1">IPhone 6, 6s</div>
                 <div class="img">
                     <img src="<?php echo SITE_DIR; ?>templates/frontend/landings/gravity_checkout/img/iphone6.jpg">
                 </div>
             </div>
+        </div>
+        <div id="step_2" class=" step" style="padding-top: 0 !important;">
+            <div style="width: 100%; padding-top: 20px; padding-bottom: 30px; background-color: white; font-size: 35px;">
+                <span style="color: #24221f; text-shadow: 1px 1px #bebebd">Выберите Цвет</span>
+            </div>
+            <div class="color-button" data-color="1">
+                <div class="h1">Черный</div>
+                <div class="img">
+                    <img src="<?php echo SITE_DIR; ?>templates/frontend/landings/gravity_checkout/img/black.jpg">
+                </div>
+            </div>
+            <div class="color-button" data-color="2">
+                <div class="h1">Белый</div>
+                <div class="img">
+                    <img src="<?php echo SITE_DIR; ?>templates/frontend/landings/gravity_checkout/img/white.jpg">
+                </div>
+            </div>
+            <div class="navigate-button" data-hide="2" data-show="1">< Выбор модели</div>
+        </div>
 
-<!--            <div class="container clearfix">-->
-<!--                <div class="models">-->
-<!--                    <h4>Для смартфонов:</h4>-->
-<!--                    <ul>-->
-<!--                        <li>iPhone 5, 6, 6+, 7, 7+</li>-->
-<!--                        <li>samsung note 5</li>-->
-<!--                        <li>samsung s6</li>-->
-<!--                        <li>samsung edge 6+</li>-->
-<!--                        <li>samsung edge now s7</li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--                <div class="cost">-->
-<!--                    <h4>Акция:</h4>-->
-<!--                    <span class="sale">-75%</span><br>-->
-<!--                    <span class="old-cost">4230р</span><br>-->
-<!--                    <span class="new-cost">1090р</span>-->
-<!--                </div>-->
-<!--            </div>-->
-        </div>
-        <div class="center but-1">
-<!--            <form method="post">-->
-<!--                <input type="hidden" name="order_id" value="--><?php //echo $order['id']; ?><!--">-->
-<!--                <a href="--><?php //echo SITE_DIR; ?><!--order/select/?id=--><?php //echo $order['id']; ?><!--" class="payment_btn"><b style="font-size: 32px;">790р</b> ОПЛАТИТЬ СЕЙЧАС</a><br>-->
-<!--                <a href="--><?php //echo SITE_DIR; ?><!--order/later/?id=--><?php //echo $order['id']; ?><!--" class="muted_btn"><b style="font-size: 27px;">1090р</b> ОПЛАТИТЬ ПРИ ПОЛУЧЕНИИ</a>-->
-<!--            </form>-->
-<!--            <a href="#delivery" class="button-m"></a></div>-->
-        </div>
-<!--        <div class="section footer">-->
-<!--            <div class="center">-->
-<!--                <br>-->
-<!--                <img class="mob-vis" src="http://watch.loc/images/frontend/payment_methods/payanyway.jpg" alt="copyright">-->
-<!--<!--                <p style="text-align: center"><a style="color: inherit;" href="http://reals-gooods.ru/antigravitycase1/politics.html" target="_blank">Политика конфиденциальности</a></p><p></p>-->-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
+    <script type="text/javascript">
+        $ = jQuery.noConflict();
+        $(document).ready(function () {
+//            $(".step").click(function () {
+//                var step = $(this).attr('data-step');
+//                var next_step = parseInt(step) + 1;
+//                $(this).
+//            })
+            $("body").on('click', '.navigate-button', function () {
+                var show_step = $(this).attr('data-show');
+                var hide_step = $(this).attr('data-hide');
+                step_back(hide_step, show_step);
+            });
+            $("body").on('click', '.model-button', function() {
+                $('.model-button').removeClass('selected');
+                $(this).addClass('selected');
+//                alert(1);
+                step(1, 2);
+//                $("#step_1").animate({
+//                    'margin-left': "-=30",
+//                    'opacity': 0
+//                }, 300, function () {
+//                    $("#step_1").hide();
+//                    $("#step_2").animate({
+//                        'margin-left': "-=30",
+//                        'opacity': '1'
+//                    });
+//                });
 
-<!--    <form action="--><?php //echo SITE_DIR; ?><!--order/" method="post" class="m1_form">-->
-<!--        <div><input type="text" name="name" placeholder="Введите Ф.И.О" required=""></div>-->
-<!--        <div><input type="text" name="phone" placeholder="Введите телефон" required=""></div>-->
-<!--        <input type="hidden" name="visitor_id" value="--><?php //echo $visitor_id; ?><!--"/>-->
-<!--        <input type="hidden" name="product_id" value="--><?php //echo $product['affiliate_id']; ?><!--"/>-->
-<!--        <input type="hidden" name="ref" value="--><?php //echo $product['webmaster_id']; ?><!--"/>-->
-<!--        <input type="hidden" name="app_product_id" value="--><?php //echo $product['id']; ?><!--"/>-->
-<!--        <input type="hidden" name="s" value="--><?php //echo $_GET['s']; ?><!--">-->
-<!--        <input type="hidden" name="t" value="--><?php //echo $_GET['t']; ?><!--">-->
-<!--        <input type="hidden" name="w" value="--><?php //echo $_GET['w']; ?><!--">-->
-<!--        <input type="hidden" name="pixel" value="--><?php //echo $_GET['pixel']; ?><!--">-->
-<!--        <div><button class="button-m"></button></div>-->
-<!--    </form>-->
-    </body></html>
+//                $("#step_1").fadeOut();
+            });
+        });
+        function step(hide_step, show_step)
+        {
+            var $show_step = $("#step_" + show_step);
+            var $hide_step = $("#step_" + hide_step);
+            $show_step.css('margin-left', 30);
+            $hide_step.animate({
+                'margin-left': "-=30",
+                'opacity': 0
+            }, 300, function () {
+                $hide_step.hide();
+                $show_step.show();
+                $show_step.animate({
+                    'margin-left': "-=30",
+                    'opacity': '1'
+                });
+            });
+        }
+
+        function step_back(hide_step, show_step)
+        {
+            var $show_step = $("#step_" + show_step);
+            var $hide_step = $("#step_" + hide_step);
+            $show_step.css('margin-left', 30);
+            $("#step_" + hide_step).animate({
+                'margin-left': "+=30",
+                'opacity': 0
+            }, 300, function () {
+                $hide_step.hide();
+                $show_step.show();
+                $show_step.animate({
+                    'margin-left': "-=30",
+                    'opacity': '1'
+                });
+            });
+        }
+    </script>
+    </body>
+</html>
