@@ -9,7 +9,6 @@ class cost_controller extends controller
 {
     public function index()
     {
-        print_r($this->model('parcels')->getParcelsToSend());exit;
         if($_POST) {
             $this->writeLog('test', $_POST);
         }

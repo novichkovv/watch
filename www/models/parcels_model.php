@@ -76,7 +76,6 @@ class parcels_model extends model
                 }
             }
         }
-        print_r($res);
         return $res;
     }
 }
