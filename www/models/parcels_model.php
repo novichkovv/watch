@@ -16,6 +16,7 @@ class parcels_model extends model
             o.payment_status_id,
             o.delivery_price,
             og.price,
+            og.id order_good_id,
             g.id good_id,
             g.good_name,
             g.stock_number,
@@ -69,7 +70,7 @@ class parcels_model extends model
                     'package',
                     'cost'
                 ])) {
-                    $res[$v['parcel_id']]['goods'][$v['good_id']][$key] = $val;
+                    $res[$v['parcel_id']]['goods'][$v['order_good_id']][$key] = $val;
                 } else {
                     $res[$v['parcel_id']][$key] = $val;
                 }
