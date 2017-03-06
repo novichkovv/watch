@@ -84,6 +84,7 @@ class delivery_controller extends controller
                     ")',
                     'p.order_id',
                     'i.parcel_id',
+                    'CONCAT("<div style=\"width: 800px;\">",i.last_status,"</div>")',
                     'CONCAT("<div style=\"width: 120px;\">",i.file_date,"</div>")',
                     'CONCAT("<div style=\"width: 120px;\">",i.delivery_date,"</div>")',
                     'i.user_id',
@@ -119,7 +120,6 @@ class delivery_controller extends controller
                     'CONCAT("<div style=\"width: 120px;\">",i.first_delivery,"</div>")',
                     'CONCAT("<div style=\"width: 120px;\">",i.success_delivery,"</div>")',
                     'i.reason',
-                    'CONCAT("<div style=\"width: 800px;\">",i.last_status,"</div>")'
                 ];
                 $params['table'] = 'delivery_info i';
                 $params['join']['parcels'] = [

@@ -27,6 +27,7 @@
                         <td><!--Заказ--></td>
                         <td><!--Заказ--></td>
                         <td><!--Посылка--></td>
+                        <td><!--Последний почтовый статус--></td>
                         <td><!--Акт--></td>
                         <td><!--Дата файла--></td>
                         <td><!--Дата поступления--></td>
@@ -62,12 +63,12 @@
                         <td><!--Первая доставка--></td>
                         <td><!--Результативная доставка--></td>
                         <td><!--Причины переноса доставки--></td>
-                        <td><!--Последний почтовый статус--></td>
                     </tr>
                     <tr>
                         <th></th>
                         <th>Заказ</th>
                         <th>Посылка</th>
+                        <th>Последний почтовый статус</th>
                         <th>Дата</th>
                         <th>Дата поступления</th>
                         <th>User id</th>
@@ -103,7 +104,6 @@
                         <th>Первая доставка</th>
                         <th>Результативная доставка</th>
                         <th>Причины переноса доставки</th>
-                        <th>Последний почтовый статус</th>
                     </tr>
                     </thead>
                     <tbody></tbody>
@@ -122,7 +122,7 @@
         var container = $('.custom-datatable');
         var topscroll = $('.topscroll');
         topscroll.width(container.width());
-        $('.fake').width($('.table').width() + 1000);
+        $('.fake').width($('.table').width() + 2200);
 
         topscroll.scroll(function(e){
             container.scrollLeft($(this).scrollLeft());
