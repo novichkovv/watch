@@ -62,7 +62,7 @@ class delivery_controller extends controller
                     'last_status' => $row[38]
                 ];
                 if($existing[$row[5]]) {
-                    $info['id'] = $existing['id'];
+                    $info['id'] = $existing[$row[5]]['id'];
                 }
                 $this->model('delivery_info')->insert($info);
             }
