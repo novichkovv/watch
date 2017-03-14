@@ -70,6 +70,9 @@
                         <th>Посылка</th>
                         <th>Последний почтовый статус</th>
                         <th>Дата</th>
+                        <th>Тип доставки</th>
+                        <th>last_call</th>
+                        <th>last_delivery</th>
                         <th>Дата поступления</th>
                         <th>User id</th>
                         <th>Акт</th>
@@ -89,9 +92,6 @@
                         <th>Стоимость услуг</th>
                         <th>Стоимость страхования</th>
                         <th>date_pay</th>
-                        <th>Тип доставки</th>
-                        <th>last_call</th>
-                        <th>last_delivery</th>
                         <th>package_comment</th>
                         <th>product_description</th>
                         <th>Оценочная стоимость</th>
@@ -112,9 +112,12 @@
         </div>
     </div>
 </div>
+<a  href="http://ya.ru"><i class="fa fa-info"></i> </a>
+<a class="fancybox iframe" data-fancybox-type="iframe" href="http://watch19.ru">This goes to iframe</a>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
+        $(".fancybox").fancybox();
         ajax_datatable('get_delivery_table');
         $("#report_input").change(function() {
             $("#report_form").submit();
@@ -141,7 +144,9 @@
     }
     .table td{
         /*width: 800px;*/
-        font-size: 12px !important;
+        font-size: 15px !important;
+        line-height: 1;
+        padding: 1px !important;
     }
 
     .topscroll {

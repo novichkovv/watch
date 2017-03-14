@@ -68,6 +68,8 @@ class delivery_controller extends controller
             }
 
         }
+        $this->addScript(SITE_DIR . 'js/libs/fancybox/source/jquery.fancybox.pack.js');
+        $this->addStyle(SITE_DIR . 'js/libs/fancybox/source/jquery.fancybox.css');
         $this->view('delivery' . DS . 'index');
     }
 
@@ -81,19 +83,28 @@ class delivery_controller extends controller
                     <a href=\"' . SITE_DIR . 'orders/order/?id=", p.order_id,"\" class=\"btn btn-icon btn-default\">
                         <i class=\"fa fa-arrow-right\"></i>
                     </a>
+                    <a href=\"https://www.pochta.ru/tracking#", i.barcode,"\" data-fancybox-type=\"iframe\" class=\"fancybox iframe btn btn-icon btn-default\">
+                        <i class=\"fa fa-info\"></i>
+                    </a>
+                    <a href=\"http://www.gdezakaz.ru/?code=", i.barcode,"\" data-fancybox-type=\"iframe\" class=\"fancybox iframe btn btn-icon btn-default\">
+                        <i class=\"fa fa-info-circle\"></i>
+                    </a>
                     ")',
                     'p.order_id',
                     'i.parcel_id',
                     'CONCAT("<div style=\"width: 800px;\">",i.last_status,"</div>")',
-                    'CONCAT("<div style=\"width: 120px;\">",i.file_date,"</div>")',
-                    'CONCAT("<div style=\"width: 120px;\">",i.delivery_date,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",DATE(i.file_date),"</div>")',
+                    'CONCAT("<div style=\"width: 220px;\">",i.delivery_type,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",i.last_call,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",i.last_delivery,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",DATE(i.delivery_date),"</div>")',
                     'i.user_id',
                     'i.act',
                     'CONCAT("<div style=\"width: 220px;\">",i.client_name,"</div>")',
                     'i.b2cpl_code',
                     'CONCAT("<div style=\"width: 220px;\">",i.state,"</div>")',
                     'CONCAT("<div style=\"width: 220px;\">",i.location,"</div>")',
-                    'CONCAT("<div style=\"width: 120px;\">",i.status_date,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",DATE(i.status_date),"</div>")',
                     'i.price',
                     'i.delivery_price',
                     'i.city',
@@ -104,16 +115,13 @@ class delivery_controller extends controller
                     'i.payment',
                     'i.cost',
                     'i.insurance',
-                    'CONCAT("<div style=\"width: 120px;\">",i.pay_date,"</div>")',
-                    'CONCAT("<div style=\"width: 220px;\">",i.delivery_type,"</div>")',
-                    'CONCAT("<div style=\"width: 120px;\">",i.last_call,"</div>")',
-                    'CONCAT("<div style=\"width: 120px;\">",i.last_delivery,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",DATE(i.pay_date),"</div>")',
                     'i.package_comment',
                     'CONCAT("<div style=\"width: 500px;\">",i.product_description,"</div>")',
                     'i.estimate_cost',
                     'i.postal_rate',
                     'i.barcode',
-                    'CONCAT("<div style=\"width: 120px;\">",i.act_date,"</div>")',
+                    'CONCAT("<div style=\"width: 120px;\">",DATE(i.act_date),"</div>")',
                     'i.extra',
                     'CONCAT("<div style=\"width: 120px;\">",i.first_call,"</div>")',
                     'i.calls_quantity',
