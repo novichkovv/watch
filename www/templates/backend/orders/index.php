@@ -115,9 +115,65 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="sms_modal" role="dialog" aria-hidden="true">
+    <div class="page-loading page-loading-boxed">
+        <img src="<?php echo SITE_DIR; ?>assets/global/img/loading-spinner-grey.gif" alt="" class="loading">
+        <span> &nbsp;&nbsp;Chargement... </span>
+    </div>
+    <div class="modal-dialog">
+        <form method="post" id="sms_form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="fa fa-envelope"></i> Отправить СМС Клиенту </div>
+                            <div class="actions">
+                                <button class="btn btn-circle  btn-default btn-sm">
+                                    <i class="fa fa-plus"></i> Отправить
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="form-group">
+                                <label>Шаблон</label>
+                                <select class="form-control">
+<!--                                    <option value="1">Заказ Прибыл - Напоминание</option>-->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Текст *</label>
+                                <textarea data-require="1" class="form-control" name="sms_text"></textarea>
+                                <div class="error-require validate-message">
+                                    Заполните это поле
+                                </div>
+                                <input type="hidden" name="sms_order_id" id="sms_order_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function() {
+        $("body").on("click", ".send_sms", function () {
+            $("#sms_order_id").val($(this).attr('data-id'));
+        });
+        $("body").on("submit", "#sms_form", function () {
+            if(validate('sms_form')) {
+                ajax({
+                    'action': 'send_sms',
+                    'get_from_form': 'sms_form',
+                    'callback': function(msg) {
+                        $("#sms_modal").modal('hide');
+                        Notifier.success('Сообщение отправлено');
+                    }
+                });
+            }
+            return false;
+        });
         var options = {
             serviceUrl:'http://ahunter.ru/site/suggest/address',
             params: { output: "json" },
@@ -126,9 +182,9 @@
             paramName: "query",
             maxHeight: 500
         };
-
+        $(".fancybox").fancybox();
 //запускаем плагин, селектор '#js-Field' соответствует полю, где вводится адрес
-        $('#autocomplete').autocomplete( options );
+//        $('#autocomplete').autocomplete( options );
         ajax_datatable('get_orders', 25, {
             "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                 if (aData[5] == "Подтвержден") {

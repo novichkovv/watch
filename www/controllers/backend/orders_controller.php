@@ -15,7 +15,11 @@ class orders_controller extends controller
         $this->render('order_statuses', $this->model('order_statuses')->getAll('id'));
         $this->render('payment_statuses', $this->model('payment_statuses')->getAll('id'));
         $this->render('cc_statuses', $this->model('cc_statuses')->getAll('id'));
-        $this->addScript(SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js');
+        $this->addScript([
+            SITE_DIR . 'js/libs/autocomplete/src/jquery.autocomplete.js',
+            SITE_DIR . 'js/libs/fancybox/source/jquery.fancybox.pack.js'
+        ]);
+        $this->addStyle(SITE_DIR . 'js/libs/fancybox/source/jquery.fancybox.css');
         if(registry::get('user')['view_type'] == 2) {
             $this->render('products', $this->model('products')->getUserProducts(registry::get('user')['id']));
             $this->view('orders' . DS . 'index_wm');
@@ -70,9 +74,17 @@ class orders_controller extends controller
                     $params['table'] = 'orders o';
                     $params['select'] = [
                         'CONCAT("
-                    <a data-toggle=\"modal\" class=\"btn btn-xs btn-default show_order",IF(o.status_id = 2, " red-row", ""),"\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
-                        <i class=\"fa fa-search\"></i>
-                    </a>")',
+                        <div style=\"width: 92px;\">
+                        <a data-toggle=\"modal\" class=\"btn btn-xs btn-default show_order",IF(o.status_id = 2, " red-row", ""),"\" href=\"' . SITE_DIR . 'orders/order?id=", o.id, "\">
+                            <i class=\"fa fa-search\"></i>
+                        </a>
+                        <a href=\"http://www.gdezakaz.ru/?code=", di.barcode,"\" data-fancybox-type=\"iframe\" class=\"fancybox iframe btn btn-xs btn-icon btn-default\">
+                            <i class=\"fa fa-info-circle\"></i>
+                        </a>
+                        <a data-toggle=\"modal\" class=\"btn btn-xs btn-default send_sms\" href=\"#sms_modal\" data-id=\"", o.id, "\">
+                            <i class=\"fa fa-envelope\"></i>
+                        </a>
+                        ")',
                         'o.id',
                         'p.product_name',
                         'IF(os.id IS NULL, " - ", os.status_name)',
@@ -109,6 +121,14 @@ class orders_controller extends controller
                         'as' => 'cc',
                         'left' => true,
                         'on' => 'cc.id = o.cc_cancel_status_id'
+                    ];
+                    $params['join']['parcels pa'] = [
+                        'left' => true,
+                        'on' => 'pa.order_id = o.id'
+                    ];
+                    $params['join']['delivery_info di'] = [
+                        'left' => true,
+                        'on' => 'di.parcel_id = pa.id'
                     ];
 //                $params['where']['o.my_name'] = [
 //                    'sign' => '=',
@@ -194,6 +214,15 @@ class orders_controller extends controller
             case "suggest_house":
                 $res = $this->model('orders')->houseSuggest($_POST['val'], $_POST['parent']);
                 echo json_encode(array('status' => 1, 'suggest' => $res));
+                exit;
+                break;
+
+            case "send_sms":
+                $order = $this->model('orders')->getById($_POST['sms_order_id']);
+                $address = $this->model('user_addresses')->getById($order['address_id']);
+                $api = new sms_api_class();
+                $api->send_sms($address['phone'], $_POST['sms_text']);
+                echo json_encode(array('status' => 1));
                 exit;
                 break;
         }
