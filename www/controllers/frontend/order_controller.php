@@ -67,8 +67,8 @@ class order_controller extends controller
             $order['last_status_update'] = date('Y-m-d H:i:s');
             $order['price'] = $product['price'];
             $order['id'] = $this->model('orders')->insert($order);
-            $this->addLog($order['status_id'], 1, $order['id']);
-            switch ($product['checkout_method_id']) {
+//            $this->addLog($order['status_id'], 1, $order['id']);
+            switch ($product['checkout_method_id'] = 1) { ////////////////////убрать = 1 !!!!!
                 case "1":
                     $params = [
                         'tel' => $_POST['phone'],
@@ -82,7 +82,7 @@ class order_controller extends controller
                     $order['last_status_update'] = date('Y-m-d H:i:s');
                     $this->model('orders')->insert($order);
                     if(!DEVELOPER_MODE) {
-                        $ml_api->addLead($params);
+//                        $ml_api->addLead($params);
                     }
                     header('Location: ' . SITE_DIR . 'order/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
                     exit;
