@@ -16,17 +16,18 @@ class base
      * @param string $db
      * @param string $user
      * @param string $password
+     * @param string $host
      * @return model
      */
 
-    protected function model($model, $table = null, $db = null, $user = null, $password = null)
+    protected function model($model, $table = null, $db = null, $user = null, $password = null, $host = null)
     {
         $models = registry::get('models');
         if(!$m = $models[$model][$table]) {
             $model_file = ROOT_DIR . 'models' . DS . $model . '_model.php';
             if(file_exists($model_file)) {
                 $model_class = $model . '_model';
-                $m = new $model_class($table ? $table : $model, $db, $user, $password);
+                $m = new $model_class($table ? $table : $model, $db, $user, $password, $host);
             } else {
                 $m = new default_model($model);
             }

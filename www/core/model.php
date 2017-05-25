@@ -11,9 +11,9 @@ class model extends base
     protected $pdo;
     protected $id_array;
 
-    function __construct($table, $db = null, $user = null, $password = null)
+    function __construct($table, $db = null, $user = null, $password = null, $host = null)
     {
-        $this->pdo = db_connect_singleton::getInstance($db ? $db : DB_NAME)->pdo;
+        $this->pdo = db_connect_singleton::getInstance($db ? $db : DB_NAME, $host, $user, $password)->pdo;
         $this->table = $table;
         $this->init();
     }
