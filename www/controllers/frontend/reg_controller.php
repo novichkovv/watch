@@ -9,7 +9,6 @@ class reg_controller extends controller
 {
     public function index()
     {
-        echo 1;
         $this->view('reg' . DS . 'index');
     }
 
