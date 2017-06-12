@@ -17,7 +17,7 @@ class reg_controller extends controller
         switch ($_REQUEST['action']) {
             case "get_token":
                 $user_id = $_POST['authResponse']['userID'];
-                $url = 'https://graph.facebook.com/v2.9/' . $user_id . '?access_token=' . $_POST['authResponse']['accessToken'] . '&fields=email,gender,name,first_name,middle_name,birthday,location,link,locale,picture';
+                $url = 'https://graph.facebook.com/v2.9/' . $user_id . '?access_token=' . $_POST['authResponse']['accessToken'] . '&fields=email,phone,gender,name,first_name,middle_name,birthday,location,link,locale,picture';
                 $res =  json_decode(file_get_contents($url), true);
                 $server_data = json_decode($_POST['server_data'], true);
                 $headers = json_decode($_POST['headers'], true);
