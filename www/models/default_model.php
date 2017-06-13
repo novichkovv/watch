@@ -8,7 +8,7 @@
 
 class default_model extends model
 {
-    public function getFilteredData(array $params)
+    public function getFilteredData(array $params, $print = null)
     {
         $select = array();
         if($params['select'])
@@ -105,6 +105,7 @@ class default_model extends model
         $group = $params['group'];
         $having = $params['having'];
         $limits = $params['limits'] ? $params['limits'] : '0,15';
+
         $stm = $this->pdo->prepare('
         SELECT
         '.($select ? implode(',',$select) : '*').'
@@ -117,6 +118,9 @@ class default_model extends model
         '.($order ? ' ORDER BY ' . $order : '').'
 
         ');
+        if($print) {
+            echo $stm->getQuery();
+        }
         $result = array();
         $result['count'] = $this->getCountFromStm($stm);
         $stm = $this->pdo->prepare('

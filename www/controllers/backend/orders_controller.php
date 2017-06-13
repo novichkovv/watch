@@ -363,20 +363,18 @@ class orders_controller extends controller
                     'table' => 'orders',
                     'select' => [
                         'id',
-                        'IF(payment_status_id = 1, "Оплачено", IF(payment_status_id = "-1", "Отказано", "В обработке"))',
+                        'IF(payment_status_id = 1, "Оплачено", IF(payment_status_id = "2", "Отказано", "В обработке"))',
                         'price',
                         'paid_amount',
                         'create_date',
                         'pay_date'
-                    ],
-                    'where' => [
-                        'create_date' => [
-                            'sign' => '>',
-                            '2017-06-13 00:00:00'
-                        ]
                     ]
                 ];
-                echo $this->getDataTable($params);
+                $params['where']['create_date'] = [
+                    'sign' => '>',
+                    'value' => '2017-06-13 00:00:00'
+                ];
+                echo json_encode($this->getDataTable($params));
                 exit;
                 break;
         }

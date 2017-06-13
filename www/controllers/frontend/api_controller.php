@@ -90,7 +90,7 @@ class api_controller extends controller
     {
         $row = [
             'aff_order_id' => $_GET['id'],
-            'payment_status_id' => $_GET['payment_status'],
+            'payment_status_id' => ($_GET['payment_status'] == '-1' ? 2 : $_GET['payment_status']),
             'price' => $_GET['price'],
             'paid_amount' => $_GET['payment_sum']
         ];
@@ -104,8 +104,7 @@ class api_controller extends controller
         }
         $this->model('orders')->insert($row);
 
-        $url = 'http://watch.loc/api/powers/?id={{id}}&payment_status={{payment_status}}&price={{price}}&payment_sum={{payment_sum}}';
-        print_r($_GET);
+//        $url = 'http://watch.loc/api/powers/?id={{id}}&payment_status={{payment_status}}&price={{price}}&payment_sum={{payment_sum}}';
         $this->writeLog('test', $_GET);
     }
 

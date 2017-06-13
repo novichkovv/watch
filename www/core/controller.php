@@ -369,7 +369,7 @@ abstract class controller extends base
         }
         $params['limits'] = isset($_REQUEST['iDisplayStart']) ? $_REQUEST['iDisplayStart'].','.$_REQUEST['iDisplayLength'] : '';
         $params['order'] =  $_REQUEST['iSortCol_0'] ? $params['select'][$_REQUEST['iSortCol_0']] . ($_REQUEST['sSortDir_0'] ? ' ' . $_REQUEST['sSortDir_0'] : $params['order']) : $params['order'];
-        $res = $this->model('default')->getFilteredData($params, $params['table']);
+        $res = $this->model('default')->getFilteredData($params, $print);
         if($print) {
             print_r($res);
         }
