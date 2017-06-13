@@ -1,0 +1,269 @@
+.tablebodytext{
+    display: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/* слегка доработанный, универсальный clearfix хак */
+.clearfix:after {
+
+    visibility: hidden;
+
+    display: block;
+
+    font-size: 0;
+
+    content: " ";
+
+    clear: both;
+
+    height: 0;
+
+}
+.clearfix { display: inline-block; }
+
+/* start commented backslash hack \*/
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+
+/* close commented backslash hack */
+/* Eric Meyer's CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'OpenSans', sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    background-color: #f1f1f1;
+    font-family: 'OpenSans', sans-serif;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* End of Eric Meyer's CSS Reset */
+
+html {
+    height: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+body {
+    font: 12px/18px Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+    width: 973px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+.header {
+    height: 128px;
+    background: #FFE680;
+
+}
+#nav_main{
+    background-image: url(../img/2.png);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+#store_info{
+ height: 60px;
+}
+#logo_box{
+    float: left;
+    width: 610px;
+    padding-top: 15px;
+}
+#phone_box{
+    float: left;
+    background-image: url("/images/icons.png");
+    background-position:  0 -68px;
+    background-repeat: no-repeat;
+    font-size: 11px;
+    padding-left: 20px;
+    margin-top: 27px;
+}
+#user_box{
+    float: left;
+    font-size: 11px;
+    background-image: url("/images/icons.png");
+    background-position:  0 -137px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    margin-top: 27px;
+    color: #333;
+}
+
+#user_box span{
+    display: inline-block;
+    margin-left: 5px;
+    color: #333;
+}
+#user_box:hover a span{
+    color: #8A8A8A;
+}
+#cart_box{
+    float: left;
+    margin-top: 27px;
+    text-align: right;
+}
+#nav_catalog{
+    margin-bottom: 10px;
+}
+/* Middle
+-----------------------------------------------------------------------------*/
+.content {
+    padding: 0 0 50px;
+}
+.border_box{
+    padding: 20px;
+    border:1px solid #dddddd;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: 'OpenSans', sans-serif;
+    color: #666;
+}
+/* Footer
+-----------------------------------------------------------------------------*/
+.footer {
+    width: 973px;
+    margin: -30px auto 0;
+    height: 30px;
+   border-top:1px solid #dddddd;
+    position: relative;
+    font-size: 10px;
+}
+#footer_menu{
+    float: left;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+#copyrite{
+    float: left;
+    line-height: 40px;
+    color: #999;
+}
+#footer_text{
+    float: left;
+    line-height: 40px;
+    color: #999;
+}
+.vert_line{
+    background-color: #D2D2D2;
+    display: block;
+    float: left;
+    height: 18px;
+    margin: 28px 15px 0;
+    width: 1px;
+}
+.news-list,
+.news-detail{
+    border: 1px solid #e8e8e8;
+border-radius: 5px;
+background-color: #FFFFFF;
+box-shadow: 0 1px 0 0 #D2D2D2;
+padding:20px;
+}
+div.news-list img.preview_picture{
+margin-right: 20px;
+}
+div.news-list .news-item a{
+font-size:18px;
+color:#666;
+text-decoration:none;
+}
+div.news-list a:hover{
+text-decoration:underline;
+}
+.news-detail h3{
+font-size:21px;
+margin-bottom: 20px;
+}
+.content.content-pages{
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 #d2d2d2;
+    margin-bottom: 40px;
+    padding: 20px 20px 0
+}
+.content.content-pages ul{
+    margin: 10px 0 10px 20px;
+}
+.content.content-pages ul li{
+    list-style: disc;
+}
+.content.content-pages h1 {
+display: block;
+font-size: 2em;
+-webkit-margin-before: 0.67em;
+-webkit-margin-after: 0.67em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+margin: 10px 0;
+}
+.content.content-pages p {
+display: block;
+margin: 10px 0;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+.content.content-pages ul, .content.content-pages menu, .content.content-pages dir {
+display: block;
+list-style-type: disc;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+.content.content-pages strong, .content.content-pages b {
+font-weight: bold;
+}

@@ -1,0 +1,38 @@
+#footer_menu{
+    float: left;
+    width: 465px;
+}
+/* Left menu*/
+#footer_menu ul
+{
+	list-style:none;
+	margin:0; padding:0;
+	position: relative; /*IE bug*/
+    padding: 2px 0;
+}
+
+#footer_menu ul li
+{
+    float: left;
+    padding: 0 15px;
+    text-align: center;
+    border-left: 1px solid #dddddd;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+#footer_menu ul li:hover a
+{
+    float: left;
+    color: #999999;
+}
+
+#footer_menu ul li a
+{
+
+    color: #0088cc;
+    font-size: 10px;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+
