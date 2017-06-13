@@ -352,7 +352,7 @@ class orders_controller extends controller
 
     public function light()
     {
-        $this->render('orders' . DS . 'light');
+        $this->view('orders' . DS . 'light');
     }
 
     public function light_ajax()
