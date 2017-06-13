@@ -85,4 +85,32 @@ class api_controller extends controller
     {
         $this->ml();
     }
+
+    public function powers()
+    {
+        $row = [
+            'aff_order_id' => $_GET['id'],
+            'payment_status_id' => $_GET['payment_status'],
+            'price' => $_GET['price'],
+            'paid_amount' => $_GET['payment_sum']
+        ];
+        if($id = $this->model('orders')->getByField('aff_order_id', $_GET['id'])['id']) {
+            $row['id'] = $id;
+            if($_GET['payment_status'] == 1) {
+                $row['pay_date'] = date('Y-m-d H:i:s');
+            }
+        } else {
+            $row['create_date'] = date('Y-m-d H:i:s');
+        }
+        $this->model('orders')->insert($row);
+
+        $url = 'http://watch.loc/api/powers/?id={{id}}&payment_status={{payment_status}}&price={{price}}&payment_sum={{payment_sum}}';
+        print_r($_GET);
+        $this->writeLog('test', $_GET);
+    }
+
+    public function powers_na()
+    {
+        $this->powers();
+    }
 }

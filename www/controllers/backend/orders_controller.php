@@ -349,4 +349,36 @@ class orders_controller extends controller
                 break;
         }
     }
+
+    public function light()
+    {
+        $this->render('orders' . DS . 'light');
+    }
+
+    public function light_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "get_orders":
+                $params = [
+                    'table' => 'orders',
+                    'select' => [
+                        'id',
+                        'IF(payment_status_id = 1, "Оплачено", IF(payment_status_id = "-1", "Отказано", "В обработке"))',
+                        'price',
+                        'paid_amount',
+                        'create_date',
+                        'pay_date'
+                    ],
+                    'where' => [
+                        'create_date' => [
+                            'sign' => '>',
+                            '2017-06-13 00:00:00'
+                        ]
+                    ]
+                ];
+                echo $this->getDataTable($params);
+                exit;
+                break;
+        }
+    }
 }
