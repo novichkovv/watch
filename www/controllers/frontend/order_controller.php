@@ -68,7 +68,7 @@ class order_controller extends controller
             $order['price'] = $product['price'];
             $order['id'] = $this->model('orders')->insert($order);
 //            $this->addLog($order['status_id'], 1, $order['id']);
-            switch ($product['checkout_method_id'] = 1) { ////////////////////убрать = 1 !!!!!
+            switch ($product['checkout_method_id']) { ////////////////////убрать = 1 !!!!!
                 case "1":
                     $params = [
                         'tel' => $_POST['phone'],
@@ -92,12 +92,43 @@ class order_controller extends controller
                     header('Location: ' . SITE_DIR . 'order/cart/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
                     exit;
                     break;
+
+                case "3":
+                    $this->vertex($order);
+                    header('Location: ' . SITE_DIR . 'order/?id=' . $order['id'] . '&pixel=' . $_POST['pixel']);
+                    exit;
+                    break;
             }
 
             exit;
         }
     }
 
+    private function vertex($order)
+    {
+        $product = $this->model('products')->getById($order['product_id'] );
+        $user = $this->model('users')->getById($order['user_id'] );
+
+        $params = [
+            'fio' => $user['user_name'],
+            'phone' => $user['phone'],
+            'country' => 'Россия',
+            'goods' => [
+                [
+                    'goodID' => $product['affiliate_id'],
+                    'quantity' => 1,
+                    'price' => $product['price']
+                ]
+            ]
+        ];
+        $api = new vertex_api_class();
+        $res = $api->order($params);
+        if($res['OK']) {
+            $order['aff_order_id'] = $res["OK"];
+            $this->model('orders')->insert($order);
+        }
+    }
+    
     public function select()
     {
         $order = $this->model('orders')->getById($_GET['id']);

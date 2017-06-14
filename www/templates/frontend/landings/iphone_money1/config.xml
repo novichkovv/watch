@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Это файл конфигурации для эмулятора шаблонизатора LeadVertex. Он не используется на реальных лендингах, и содержит
+     в себе лишь имитацию реальных настроек. Этот файл можно смело удалить -->
+
+<emulator>
+    <!--
+        «Количественные» скидки. Атрибуты:
+         - alias - алиас товара
+         - unity - единица измерения товара
+         - name - человекопонятное название товара
+         - price - цена товара за заданное количество единиц. Например, 1:100,2:200 значит, что одна единица товара стоит
+           100, а 2 - 200 (рублей, тенге, гривен. В зависимости от ваших настроек)
+    -->
+    <goods>
+        <good alias="alias_Iphone71490018147" unity="шт." name="Часы" price="1:100,2:200,3:300"/>
+        <good alias="id2" unity="шт." name="Браслет" price="1:100,2:200,3:300"/>
+        <good alias="coffee" unity="шт." name="Кофе" price="1:100,2:200,3:300"/>
+        <good alias="braslet" unity="шт." name="Браслет" price="1:100,2:200,3:300"/>
+        <good alias="pochta" unity="шт." name="Доставка" price="1:300"/>
+        <good alias="courier" unity="шт." name="Доставка курьером" price="1:500"/>
+    </goods>
+
+
+    <!-- ВСЕ ИДУЩИЕ НИЖЕ ПАРАМЕТРЫ УСТАРЕЛИ, И ИСПОЛЬЗУЮТСЯ ТОЛЬКО ДЛЯ СОВМЕСТИМОСТИ СО СТАРЫМИ ЛЕНДИНГАМИ  -->
+    <!-- ПОДДЕРЖКА ЛЕНДИНГОВ СТАРОГО ФОРМАТА БУДЕТ ПРЕКРАЩЕНА 2016-21-31 ИЛИ РАНЬШЕ  -->
+
+    <price>
+        <!-- Цена товара -->
+        <price>1690</price>
+        <!-- Старая цена -->
+        <price_old>3900</price_old>
+    </price>
+    <discount>
+        <!--
+        «Количественные» скидки. Атрибуты:
+         - quantity - количество товара. Целое число
+         - sum - принудительно заданная сумма товара за указанное кличество. Целое число
+         - discount - скидка в процентах. Если задана сумма, то все равно нужно указать примерную скидку в процентах для работоспособности некоторых тегов. Целое число
+         - round - округлять ли сумму скидки. Целое число, 0 или 1
+        В данном примере
+         - за 2 товара скидка 20%
+         - за 3 товара скидка 30%
+         - за 5 товаров скидка 59%, но будет параметр цены будет браться из sum.
+         -->
+        <discount quantity="2" sum="0" discount="20" round="1" />
+        <discount quantity="3" sum="0" discount="30" round="1" />
+        <discount quantity="5" sum="5000" discount="59" round="1" />
+    </discount>
+    <!--
+        fields - список полей, отображаемых на главной форме
+        fields_update - список полей, отображаемых в форме уточнения данных
+     -->
+    <form fields="fio,country,phone,additional1,quantity,checkboxPersonalData" fields_update="postIndex,address" button-text="Оформить заказ">
+        <!-- Атрибуты:
+            required - является ли поле обязательным
+            error - выводить ли сообщение об ошибке (нужно только для стилизации ошибок через css)
+            type - string (input type="text"), dropdown (select), text (textarea), checkbox (input type="checkbox")
+        -->
+        <field name="fio" required="1" error="0" type="string">
+            <caption>Ф.И.О.</caption>
+            <error>Ф.И.О. заполненно неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="country" required="1" error="0" type="dropdown">
+            <caption>Страна</caption>
+            <error>Страна указана неверно</error>
+            <pattern>Россия, Украина, Казахстан</pattern>
+        </field>
+        <field name="postIndex" required="0" error="0" type="string">
+            <caption>Индекс</caption>
+            <error>Почтовый индекс неверно</error>
+            <pattern>~\d{5,6}~</pattern>
+        </field>
+        <field name="region" required="0" error="0" type="string">
+            <caption>Край/регион/область</caption>
+            <error>Край/регион/область заполненно неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="city" required="0" error="0" type="string">
+            <caption>Город</caption>
+            <error>Город указан неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="address" required="0" error="0" type="text">
+            <caption>Адрес</caption>
+            <error>Адрес указан неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="phone" required="1" error="0" type="string">
+            <caption>Телефон</caption>
+            <error>Телефон указан неверно</error>
+            <pattern>~^\+?\d{10,15}$~</pattern>
+        </field>
+        <field name="email" required="1" error="0" type="string">
+            <caption>Email</caption>
+            <error>Email указан неверно</error>
+            <pattern>~^[-.\w]+@(?:[a-z\d]{2,}\.)+[a-z]{2,6}$~</pattern>
+        </field>
+        <field name="quantity" required="1" error="0" type="dropdown">
+            <caption>Количество</caption>
+            <error>Количество указано неверно</error>
+            <pattern>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</pattern>
+        </field>
+        <field name="comment" required="0" error="0" type="text">
+            <caption>Комментарий</caption>
+            <error>Комментарий указан неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="checkboxPersonalData" required="1" error="0" type="checkbox">
+            <caption>Согласен на обработку персональных данных</caption>
+            <error>Для оформления заказа вы должны дать согласие на обработку своих персональных данных</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="checkboxAgreeTerms" required="1" error="0" type="checkbox">
+            <caption>С условиями покупки согласен</caption>
+            <error>Вы должны согласиться с условиями покупки</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="additional1" required="1" error="0" type="dropdown">
+            <caption>Комплектация</caption>
+            <error>Такой комплектации нет</error>
+            <pattern>Базовая, Расширенная {{1000}}, Топовая {{3500}}</pattern>
+        </field>
+        <field name="additional2" required="0" error="0" type="string">
+            <caption>Доп.поле #2</caption>
+            <error>Доп.поле #2 заполненно неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="additional3" required="0" error="0" type="string">
+            <caption>Доп.поле #3</caption>
+            <error>Доп.поле #3 заполненно неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+        <field name="additional4" required="0" error="0" type="string">
+            <caption>Доп.поле #4</caption>
+            <error>Доп.поле #4 заполненно неверно</error>
+            <pattern>~.*~</pattern>
+        </field>
+    </form>
+    <config>
+        <!-- Валюта -->
+        <param name="currency.price" value="руб"/>
+        <!-- Цена доставки -->
+        <param name="delivery.price" value="100"/>
+        <!-- Умножать цену доставки на количество товаров -->
+        <param name="delivery.forEach" value="0"/>
+        <!-- Количество товара по умолчанию -->
+        <param name="quantity.default" value="1"/>
+        <!-- Единица измерения товара -->
+        <param name="quantity.unit" value=" шт."/>
+        <!-- Телефон -->
+        <param name="application.phone" value="+7(495) 555 55 55"/>
+        <!-- Email -->
+        <param name="application.email" value="email@example.com"/>
+        <!-- Название оффера -->
+        <param name="application.name" value="Мой новый оффер"/>
+        <!-- Мета-описание -->
+        <param name="application.meta.description" value="Сервис для создания продающих страниц с партнерской программой и полным функционалом управления продажами"/>
+        <!-- Мета-ключевые слова -->
+        <param name="application.meta.keywords" value="продажа, оффер, одностраничник, лендинг, купить, leadvertex - супер"/>
+    </config>
+</emulator>
