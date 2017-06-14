@@ -39,8 +39,8 @@
 <script>
 
 //window.app = {
-//    offers: {"2838":{"price":"5990","delivery_price":"","price2":"9990","currency":{"code":"RUB","name":"\u0440\u0443\u0431"},"id":2838,"link":"","country":{"code":"RU","name":"\u0420\u043e\u0441\u0441\u0438\u044f"},"product_sku":"iphone7","discount":""}},
-//    currentOffer: {"price":"5990","delivery_price":"","price2":"9990","currency":{"code":"RUB","name":"\u0440\u0443\u0431"},"id":2838,"link":"","country":{"code":"RU","name":"\u0420\u043e\u0441\u0441\u0438\u044f"},"product_sku":"iphone7","discount":""},
+//    offers: {"2838":{"price":"6990","delivery_price":"","price2":"9990","currency":{"code":"RUB","name":"\u0440\u0443\u0431"},"id":2838,"link":"","country":{"code":"RU","name":"\u0420\u043e\u0441\u0441\u0438\u044f"},"product_sku":"iphone7","discount":""}},
+//    currentOffer: {"price":"6990","delivery_price":"","price2":"9990","currency":{"code":"RUB","name":"\u0440\u0443\u0431"},"id":2838,"link":"","country":{"code":"RU","name":"\u0420\u043e\u0441\u0441\u0438\u044f"},"product_sku":"iphone7","discount":""},
 //    allowedCountries: ["RU"],
 //    currentCountry: "RU",
 //    _setOfferId: false,
@@ -136,7 +136,7 @@ $(function() {
         <div class="form">
             <div class="price">
                 <div>Скидка <b>50%</b></div>
-                <div>Цена: <b class="price_land_s1"><x-newprice>5990</x-newprice></b> <span class="price_land_curr"><x-currency>руб</x-currency>.</span></div>
+                <div>Цена: <b class="price_land_s1"><x-newprice>6990</x-newprice></b> <span class="price_land_curr"><x-currency>руб</x-currency>.</span></div>
             </div>
 <!--            <div class="color-block">-->
 <!--                <h3>Выберите свой цвет:</h3>-->
@@ -416,7 +416,7 @@ $(function() {
 <!-- <footer> -->
 <div class="footer" id="order">
     <div class="container">
-        <h1>Новинка! <b>Iphone 7</b> всего за <b class="price_land_s1"><x-newprice>5990</x-newprice></b> <span class="price_land_curr"><x-currency>руб</x-currency>.</span>!</h1>
+        <h1>Новинка! <b>Iphone 7</b> всего за <b class="price_land_s1"><x-newprice>6990</x-newprice></b> <span class="price_land_curr"><x-currency>руб</x-currency>.</span>!</h1>
         <div class="right-side pull-right">
             <h3>До конца акции осталось:</h3>
             <div class="countdown" id="timer">
@@ -547,43 +547,43 @@ $(function() {
 <div class="yvedw">
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Кирилл Лавин, г.Москва, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Кирилл Лавин, г.Москва, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Анастасия Бажутина, г.Астрахань, сделала заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Анастасия Бажутина, г.Астрахань, сделала заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Михаил Мартеев, г.Липецк, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Михаил Мартеев, г.Липецк, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Ольга Артёмова, г.Екатеринбург, сделала заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Ольга Артёмова, г.Екатеринбург, сделала заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Алексей Снисаренко, г.Климовск, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Алексей Снисаренко, г.Климовск, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Егор Беляков, г.Салехард, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Егор Беляков, г.Салехард, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Мария Пескова, г.Уссурийск, сделала заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Мария Пескова, г.Уссурийск, сделала заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Дмитрий Маслов, г.Киров, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Дмитрий Маслов, г.Киров, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Полина Комарова, г.Москва, сделала заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Полина Комарова, г.Москва, сделала заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
   <div class="yved yvedf1" style="display: none;">
     <img src="<?php echo $dir; ?>img/yico.png" alt="" class="yvedi">
-    <div class="yvedvt"><div class="yvedt">Виктор Бодро́в, г.Санкт-Петербург, сделал заказ на сумму <x-newprice>5990</x-newprice> <x-currency>руб</x-currency>.</div></div>
+    <div class="yvedvt"><div class="yvedt">Виктор Бодро́в, г.Санкт-Петербург, сделал заказ на сумму <x-newprice>6990</x-newprice> <x-currency>руб</x-currency>.</div></div>
   </div>
 </div>
 
