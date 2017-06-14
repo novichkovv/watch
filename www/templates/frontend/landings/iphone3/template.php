@@ -25,7 +25,6 @@
 <script type="text/javascript">(window.BX||top.BX).message({'JS_CORE_LOADING':'Загрузка...','JS_CORE_NO_DATA':'- Нет данных -','JS_CORE_WINDOW_CLOSE':'Закрыть','JS_CORE_WINDOW_EXPAND':'Развернуть','JS_CORE_WINDOW_NARROW':'Свернуть в окно','JS_CORE_WINDOW_SAVE':'Сохранить','JS_CORE_WINDOW_CANCEL':'Отменить','JS_CORE_H':'ч','JS_CORE_M':'м','JS_CORE_S':'с','JSADM_AI_HIDE_EXTRA':'Скрыть лишние','JSADM_AI_ALL_NOTIF':'Показать все','JSADM_AUTH_REQ':'Требуется авторизация!','JS_CORE_WINDOW_AUTH':'Войти','JS_CORE_IMAGE_FULL':'Полный размер'});</script>
 <script type="text/javascript">(window.BX||top.BX).message({'LANGUAGE_ID':'ru','FORMAT_DATE':'DD.MM.YYYY','FORMAT_DATETIME':'DD.MM.YYYY HH:MI:SS','COOKIE_PREFIX':'BITRIX_SM','SERVER_TZ_OFFSET':'10800','SITE_ID':'s1','USER_ID':'','SERVER_TIME':'1497324114','USER_TZ_OFFSET':'0','USER_TZ_AUTO':'Y','bitrix_sessid':'79de076de496c52bcd32b0b6e180c204'});</script>
 
-    <script src="https://cdn.vblog1.com/js/36b5a/analytics.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/core.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/core_ajax.js"></script>
 <script type="text/javascript" src="<?php echo $dir; ?>js/session.js"></script>
