@@ -1,0 +1,125 @@
+.vvc-widget-main-pane article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+	display: block;
+}
+.vvc-widget-main-pane audio, canvas, video {
+	display: inline-block;
+}
+.vvc-widget-main-pane audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+.vvc-widget-main-pane [hidden] {
+	display: none;
+}
+.vvc-widget-main-pane {
+	font-family: Tahoma, Arial, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+.vvc-widget-main-pane a:focus {
+	outline: thin dotted;
+}
+.vvc-widget-main-pane a:active, a:hover {
+	outline: 0;
+}
+.vvc-widget-main-pane h1 {
+	font-size: 2em;
+}
+.vvc-widget-main-pane abbr[title] {
+	border-bottom: 1px dotted;
+}
+.vvc-widget-main-pane b, strong {
+	font-weight: bold;
+}
+.vvc-widget-main-pane dfn {
+	font-style: italic;
+}
+.vvc-widget-main-pane mark {
+	background: #ff0;
+	color: #000;
+}
+.vvc-widget-main-pane code, kbd, pre, samp {
+	font-family: monospace, serif;
+	font-size: 1em;
+}
+.vvc-widget-main-pane pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+.vvc-widget-main-pane q {
+	quotes: "\201C" "\201D" "\2018" "\2019";
+}
+.vvc-widget-main-pane small {
+	font-size: 80%;
+}
+.vvc-widget-main-pane sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+.vvc-widget-main-pane img {
+	border: 0;
+}
+.vvc-widget-main-pane svg:not(:root) {
+	overflow: hidden;
+}
+.vvc-widget-main-pane figure {
+	margin: 0;
+}
+.vvc-widget-main-pane fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+.vvc-widget-main-pane legend {
+	border: 0;
+	padding: 0;
+}
+.vvc-widget-main-pane button, input, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+}
+.vvc-widget-main-pane button, input {
+	line-height: normal;
+}
+.vvc-widget-main-pane button, html input[type="button"], input[type="reset"], input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+.vvc-widget-main-pane button[disabled], input[disabled] {
+	cursor: default;
+}
+.vvc-widget-main-pane input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+.vvc-widget-main-pane input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.vvc-widget-main-pane input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.vvc-widget-main-pane button::-moz-focus-inner, input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+.vvc-widget-main-pane textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+.vvc-widget-main-pane table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
